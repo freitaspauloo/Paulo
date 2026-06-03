@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 // 👋 This is your home page. Everything between the <main> tags below is what
@@ -26,6 +28,11 @@ export default function Home() {
         <Button>Primary button</Button>
         <Button variant="outline">Outline button</Button>
       </div>
+
+      {/* Link to the component demo page (src/app/demo/page.tsx) */}
+      <Button variant="link" render={<Link href="/demo" />}>
+        See all components →
+      </Button>
     </main>
   );
 }
