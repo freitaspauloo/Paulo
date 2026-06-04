@@ -11,12 +11,16 @@ import {
   ArrowUp,
   CalendarDays,
   ChevronDown,
+  CreditCard,
   Globe,
   ListTodo,
+  LogOut,
   Paperclip,
   Pencil,
   Plus,
+  Settings,
   Sparkles,
+  User,
 } from "lucide-react";
 
 import { AlignedPopup } from "@/components/aligned-popup";
@@ -43,8 +47,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -362,19 +366,67 @@ export default function ComponentsPage() {
         </Tabs>
       </Section>
 
-      {/* Dropdown + toast */}
-      <Section title="Dropdown & toast">
-        <div className="flex flex-wrap gap-3">
+      {/* Dropdown menu — account menu with icons + shortcuts */}
+      <Section title="Dropdown menu (from Figma)">
+        <div className="flex flex-wrap items-center gap-3">
           <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" />}>
-              Open menu
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My account</DropdownMenuLabel>
+            <DropdownMenuTrigger
+              render={
+                <Button variant="outline">
+                  English
+                  <ChevronDown />
+                </Button>
+              }
+            />
+            <DropdownMenuContent align="start" className="w-32">
+              <DropdownMenuItem>English</DropdownMenuItem>
+              <DropdownMenuItem>Português</DropdownMenuItem>
+              <DropdownMenuItem>Español</DropdownMenuItem>
+              <DropdownMenuItem>Français</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Account menu triggered by an avatar */}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <button
+                  type="button"
+                  className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <Avatar initials="N" palette="black" />
+                </button>
+              }
+            />
+            <DropdownMenuContent align="start" className="w-56">
+              <div className="px-1.5 py-1.5">
+                <p className="text-sm font-medium text-foreground">Nicole</p>
+                <p className="text-xs text-muted-foreground">
+                  nicole@aligned.ai
+                </p>
+              </div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Log out</DropdownMenuItem>
+              <DropdownMenuItem>
+                <User />
+                Profile
+                <DropdownMenuShortcut>⌘⇧P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <CreditCard />
+                Billing
+                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings />
+                Settings
+                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem variant="destructive">
+                <LogOut />
+                Log out
+                <DropdownMenuShortcut>⌘⇧Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
