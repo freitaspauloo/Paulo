@@ -18,6 +18,7 @@ import { Kbd } from "@/components/aligned-kbd";
 import { TopNavBar, ConversationHeader } from "@/components/aligned-navbar";
 import { AlignedSidebar } from "@/components/aligned-sidebar";
 import { ImageGrid } from "@/components/aligned-image-grid";
+import { AlignedComposer } from "@/components/aligned-composer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -221,6 +222,17 @@ export default function ComponentsPage() {
         <div className="flex flex-col gap-6">
           <ImageGrid count={6} />
           <ImageGrid count={9} max={6} />
+        </div>
+      </Section>
+
+      {/* Prompt / Text Composer — the chat input */}
+      <Section title="Prompt / Composer (from Figma)">
+        <div className="flex flex-col gap-5">
+          <AlignedComposer />
+          <AlignedComposer
+            defaultValue="Building a Node.js application requires a balance between simplicity and structure."
+            status="2 / 4 tasks in progress"
+          />
         </div>
       </Section>
 
