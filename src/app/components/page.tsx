@@ -7,6 +7,7 @@
 
 import { toast } from "sonner";
 
+import { AlignedPopup } from "@/components/aligned-popup";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,16 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -69,38 +60,25 @@ export default function ComponentsPage() {
         </p>
       </header>
 
-      {/* ⭐ Pop-up (Dialog) — the starting component */}
-      <Section title="Pop-up (Dialog)">
-        <Card className="max-w-md">
-          <CardHeader>
-            <CardTitle>Pop-up</CardTitle>
-            <CardDescription>
-              A modal that appears over the page. Click the button to open it.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Dialog>
-              <DialogTrigger render={<Button />}>Open pop-up</DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Delete project?</DialogTitle>
-                  <DialogDescription>
-                    This action can&apos;t be undone. This will permanently
-                    remove the project and all of its data.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <DialogClose render={<Button variant="outline" />}>
-                    Cancel
-                  </DialogClose>
-                  <DialogClose render={<Button variant="destructive" />}>
-                    Delete
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          </CardContent>
-        </Card>
+      {/* ⭐ Aligned AI Pop-up — rebuilt from Figma, in all three variants */}
+      <Section title="Pop-up (from Figma)">
+        <div className="flex flex-wrap items-start gap-6">
+          <AlignedPopup
+            variant="banner"
+            onDismiss={() => toast("Dismissed")}
+            onLearnMore={() => toast("Learn more clicked")}
+          />
+          <AlignedPopup
+            variant="wrapped"
+            onDismiss={() => toast("Dismissed")}
+            onLearnMore={() => toast("Learn more clicked")}
+          />
+          <AlignedPopup
+            variant="no-image"
+            onDismiss={() => toast("Dismissed")}
+            onLearnMore={() => toast("Learn more clicked")}
+          />
+        </div>
       </Section>
 
       {/* Buttons */}
