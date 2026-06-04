@@ -15,6 +15,7 @@ import { Tag } from "@/components/aligned-tag";
 import { Avatar, AvatarGroup } from "@/components/aligned-avatar";
 import { Loading } from "@/components/aligned-loading";
 import { Kbd } from "@/components/aligned-kbd";
+import { TopNavBar, ConversationHeader } from "@/components/aligned-navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -197,6 +198,14 @@ export default function ComponentsPage() {
             <span>Save</span>
             <Kbd>⌘S</Kbd>
           </div>
+        </div>
+      </Section>
+
+      {/* Nav Bar — site nav + conversation header */}
+      <Section title="Nav Bar (from Figma)">
+        <div className="flex flex-col gap-4">
+          <TopNavBar />
+          <ConversationHeader />
         </div>
       </Section>
 
