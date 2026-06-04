@@ -29,10 +29,15 @@ export default function Home() {
         <Button variant="outline">Outline button</Button>
       </div>
 
-      {/* Link to the component demo page (src/app/demo/page.tsx) */}
-      <Button variant="link" render={<Link href="/demo" />}>
-        See all components →
-      </Button>
+      {/* Links to the two showcase pages */}
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <Button variant="link" render={<Link href="/tokens" />}>
+          Design tokens →
+        </Button>
+        <Button variant="link" render={<Link href="/components" />}>
+          Components →
+        </Button>
+      </div>
     </main>
   );
 }

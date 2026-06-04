@@ -1,10 +1,9 @@
 "use client";
 
-// 🎨 Component demo page — lives at /demo
+// 🧩 Components page — lives at /components
 //
-// This page shows every component you have, all on one screen, so you can see
-// how they look and behave. Feel free to copy any block from here into your
-// home page (src/app/page.tsx). Edit freely — save and the page updates.
+// Real, interactive shadcn components, all styled with the Aligned AI tokens.
+// We start with the Pop-up (Dialog). Copy any block into your own pages.
 
 import { toast } from "sonner";
 
@@ -40,7 +39,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// A small helper so each section has a consistent heading.
 function Section({
   title,
   children,
@@ -58,52 +56,54 @@ function Section({
   );
 }
 
-export default function DemoPage() {
+export default function ComponentsPage() {
   return (
     <main className="mx-auto w-full max-w-3xl space-y-12 px-6 py-16">
-      {/* Page header */}
       <header className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          Component demo
-        </h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Components</h1>
         <p className="text-muted-foreground">
-          Everything you have installed, on one page. Copy any piece you like
-          into your home page.
+          Interactive shadcn components, styled with your Aligned AI tokens.{" "}
+          <a href="/tokens" className="font-medium text-foreground underline">
+            See the design tokens →
+          </a>
         </p>
       </header>
 
-      {/* Aligned AI design tokens — pulled from Figma into the theme */}
-      <Section title="Aligned AI — palette tokens">
-        <div className="flex flex-wrap gap-3">
-          {[
-            { name: "Purple", bg: "bg-purple-bg", text: "text-purple" },
-            { name: "Pink", bg: "bg-pink-bg", text: "text-pink" },
-            { name: "Cyan", bg: "bg-cyan-bg", text: "text-cyan" },
-            { name: "Mint", bg: "bg-mint-bg", text: "text-mint" },
-            { name: "Orange", bg: "bg-orange-bg", text: "text-orange" },
-            { name: "Brown", bg: "bg-brown-bg", text: "text-brown" },
-          ].map((c) => (
-            <div
-              key={c.name}
-              className={`flex h-16 w-24 items-center justify-center rounded-[var(--radius)] text-sm font-medium ${c.bg} ${c.text}`}
-            >
-              {c.name}
-            </div>
-          ))}
-        </div>
+      {/* ⭐ Pop-up (Dialog) — the starting component */}
+      <Section title="Pop-up (Dialog)">
+        <Card className="max-w-md">
+          <CardHeader>
+            <CardTitle>Pop-up</CardTitle>
+            <CardDescription>
+              A modal that appears over the page. Click the button to open it.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Dialog>
+              <DialogTrigger render={<Button />}>Open pop-up</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Delete project?</DialogTitle>
+                  <DialogDescription>
+                    This action can&apos;t be undone. This will permanently
+                    remove the project and all of its data.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose render={<Button variant="outline" />}>
+                    Cancel
+                  </DialogClose>
+                  <DialogClose render={<Button variant="destructive" />}>
+                    Delete
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </CardContent>
+        </Card>
       </Section>
 
-      {/* Status tokens */}
-      <Section title="Aligned AI — status tokens">
-        <div className="flex flex-wrap gap-3">
-          <Badge className="bg-progress-subtle text-progress">Progress</Badge>
-          <Badge className="bg-success-subtle text-success">Success</Badge>
-          <Badge className="bg-warning-subtle text-warning">Warning</Badge>
-          <Badge className="bg-destructive/10 text-destructive">Error</Badge>
-        </div>
-      </Section>
-
-      {/* Buttons — try changing the `variant` to see different styles */}
+      {/* Buttons */}
       <Section title="Buttons">
         <div className="flex flex-wrap gap-3">
           <Button>Default</Button>
@@ -115,7 +115,7 @@ export default function DemoPage() {
         </div>
       </Section>
 
-      {/* Badges — little status pills */}
+      {/* Badges */}
       <Section title="Badges">
         <div className="flex flex-wrap gap-3">
           <Badge>Default</Badge>
@@ -125,7 +125,7 @@ export default function DemoPage() {
         </div>
       </Section>
 
-      {/* Card with a form inside (Input + Label) */}
+      {/* Card + form fields */}
       <Section title="Card + form fields">
         <Card className="max-w-sm">
           <CardHeader>
@@ -150,7 +150,7 @@ export default function DemoPage() {
         </Card>
       </Section>
 
-      {/* Tabs — switch between sections of content */}
+      {/* Tabs */}
       <Section title="Tabs">
         <Tabs defaultValue="overview" className="max-w-md">
           <TabsList>
@@ -170,31 +170,9 @@ export default function DemoPage() {
         </Tabs>
       </Section>
 
-      {/* Interactive bits: Dialog, Dropdown, and a Toast */}
-      <Section title="Dialog, dropdown & toast">
+      {/* Dropdown + toast */}
+      <Section title="Dropdown & toast">
         <div className="flex flex-wrap gap-3">
-          {/* Dialog — a pop-up modal */}
-          <Dialog>
-            <DialogTrigger render={<Button variant="outline" />}>
-              Open dialog
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Are you sure?</DialogTitle>
-                <DialogDescription>
-                  This is an example dialog. Add any content you like here.
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <DialogClose render={<Button variant="outline" />}>
-                  Cancel
-                </DialogClose>
-                <DialogClose render={<Button />}>Confirm</DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-
-          {/* Dropdown menu — a click-to-open menu */}
           <DropdownMenu>
             <DropdownMenuTrigger render={<Button variant="outline" />}>
               Open menu
@@ -208,7 +186,6 @@ export default function DemoPage() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Toast — a little pop-up notification (powered by Sonner) */}
           <Button
             variant="secondary"
             onClick={() =>
