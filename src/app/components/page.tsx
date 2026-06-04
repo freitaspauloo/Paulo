@@ -7,7 +7,10 @@
 
 import { toast } from "sonner";
 
+import { CalendarDays, Globe, ListTodo } from "lucide-react";
+
 import { AlignedPopup } from "@/components/aligned-popup";
+import { Chip } from "@/components/aligned-chip";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -78,6 +81,26 @@ export default function ComponentsPage() {
             onDismiss={() => toast("Dismissed")}
             onLearnMore={() => toast("Learn more clicked")}
           />
+        </div>
+      </Section>
+
+      {/* Chip — tappable suggestion pills */}
+      <Section title="Chip (from Figma)">
+        <div className="flex flex-wrap items-center gap-2">
+          <Chip onClick={() => toast("Make an App")}>Make an App</Chip>
+          <Chip icon={<Globe />} onClick={() => toast("Search the web")}>
+            Search the web
+          </Chip>
+          <Chip
+            icon={<CalendarDays />}
+            selected
+            onClick={() => toast("Schedule my week")}
+          >
+            Schedule my week
+          </Chip>
+          <Chip icon={<ListTodo />} disabled>
+            Make a to-do list
+          </Chip>
         </div>
       </Section>
 
