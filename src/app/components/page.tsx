@@ -12,6 +12,7 @@ import { CalendarDays, Globe, Hash, ListTodo, Sparkles } from "lucide-react";
 import { AlignedPopup } from "@/components/aligned-popup";
 import { Chip } from "@/components/aligned-chip";
 import { Tag } from "@/components/aligned-tag";
+import { Avatar, AvatarGroup } from "@/components/aligned-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -127,6 +128,28 @@ export default function ComponentsPage() {
           <Tag palette="purple" onRemove={() => toast("Removed tag")}>
             removable
           </Tag>
+        </div>
+      </Section>
+
+      {/* Avatar — identity element */}
+      <Section title="Avatar (from Figma)">
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-wrap items-center gap-3">
+            <Avatar initials="AL" palette="black" />
+            <Avatar initials="JD" palette="purple" />
+            <Avatar initials="MK" palette="mint" />
+            <Avatar initials="RS" palette="orange" />
+            <Avatar agent="nova" />
+            <Avatar agent="jade" />
+            <Avatar agent="bloom" />
+            <Avatar />
+          </div>
+          <AvatarGroup overflowCount={4}>
+            <Avatar agent="nova" />
+            <Avatar initials="AL" palette="purple" />
+            <Avatar agent="gold" />
+            <Avatar initials="JD" palette="mint" />
+          </AvatarGroup>
         </div>
       </Section>
 
