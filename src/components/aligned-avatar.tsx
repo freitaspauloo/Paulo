@@ -35,12 +35,13 @@ const paletteClasses: Record<AvatarPalette, string> = {
   brown: "bg-brown-bg text-brown",
 };
 
-// A few "agent" gradient presets (soft conic/linear orbs).
+// A few "agent" gradient presets — soft, layered radial orbs (blurred blend
+// of palette colors) to match the Figma agent avatars.
 const agentGradients: Record<string, string> = {
-  nova: "bg-[conic-gradient(from_180deg,#fd177f,#6550b9,#0088f1,#fd177f)]",
-  gold: "bg-[conic-gradient(from_120deg,#ffefd6,#ff6202,#cc4e00,#ffefd6)]",
-  jade: "bg-[conic-gradient(from_220deg,#03dba5,#0088f1,#6550b9,#03dba5)]",
-  bloom: "bg-[conic-gradient(from_90deg,#fee9f5,#fd177f,#6550b9,#fee9f5)]",
+  nova: "bg-[radial-gradient(circle_at_30%_25%,#fd177f_0%,transparent_55%),radial-gradient(circle_at_75%_70%,#0088f1_0%,transparent_55%),radial-gradient(circle_at_60%_30%,#6550b9_0%,transparent_60%)] bg-[#6550b9]",
+  gold: "bg-[radial-gradient(circle_at_30%_30%,#ffe629_0%,transparent_55%),radial-gradient(circle_at_70%_70%,#ff6202_0%,transparent_60%)] bg-[#ff8a3d]",
+  jade: "bg-[radial-gradient(circle_at_35%_30%,#03dba5_0%,transparent_55%),radial-gradient(circle_at_70%_75%,#0088f1_0%,transparent_60%)] bg-[#16b8a6]",
+  bloom: "bg-[radial-gradient(circle_at_30%_30%,#fee9f5_0%,transparent_50%),radial-gradient(circle_at_70%_65%,#fd177f_0%,transparent_60%)] bg-[#fd5fa3]",
 };
 
 interface AvatarProps extends React.ComponentProps<"span"> {

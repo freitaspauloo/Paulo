@@ -33,13 +33,11 @@ function Actions({
   onLearnMore,
 }: Pick<AlignedPopupProps, "onDismiss" | "onLearnMore">) {
   return (
-    <div className="flex items-center gap-4">
-      <Button variant="outline" size="sm" onClick={onDismiss}>
+    <div className="flex items-center gap-2">
+      <Button variant="outline" onClick={onDismiss}>
         Dismiss
       </Button>
-      <Button size="sm" onClick={onLearnMore}>
-        Learn more
-      </Button>
+      <Button onClick={onLearnMore}>Learn more</Button>
     </div>
   );
 }

@@ -49,11 +49,11 @@ export function TopNavBar({ className }: { className?: string }) {
 
       {/* Actions */}
       <div className="flex flex-1 items-center justify-end gap-3">
-        <Button variant="outline" size="sm">
+        <Button variant="outline">
           English
           <ChevronDown />
         </Button>
-        <Button size="sm">Sign in</Button>
+        <Button>Sign in</Button>
       </div>
     </div>
   );

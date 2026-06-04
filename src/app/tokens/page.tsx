@@ -93,8 +93,12 @@ export default function TokensPage() {
       <Section title="Radius & type">
         <div className="flex flex-wrap items-end gap-6">
           <div className="space-y-2">
-            <div className="h-20 w-20 rounded-[var(--radius)] bg-secondary" />
-            <p className="text-xs text-muted-foreground">radius 12px</p>
+            <div className="h-20 w-20 rounded-[8px] bg-secondary" />
+            <p className="text-xs text-muted-foreground">control · 8px</p>
+          </div>
+          <div className="space-y-2">
+            <div className="h-20 w-20 rounded-[12px] bg-secondary" />
+            <p className="text-xs text-muted-foreground">card · 12px</p>
           </div>
           <div className="space-y-1">
             <p className="text-2xl font-semibold tracking-tight">Inter</p>

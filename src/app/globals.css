@@ -99,7 +99,9 @@
   --chart-4: #cc4e00;                 /* orange */
   --chart-5: #c2298a;                 /* pink */
 
-  --radius: 0.75rem;                  /* radius/card-small = 12px */
+  /* radius/control = 8px. shadcn's scale then yields ~12px cards (rounded-xl)
+     and ~14px (rounded-2xl), matching Aligned's control/card/surface radii. */
+  --radius: 0.5rem;
 
   --sidebar: #f9f9f9;                 /* color/bg/elevated */
   --sidebar-foreground: #000000;

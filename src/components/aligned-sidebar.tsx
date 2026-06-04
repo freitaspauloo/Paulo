@@ -55,7 +55,7 @@ export function AlignedSidebar({ className }: { className?: string }) {
   return (
     <aside
       className={cn(
-        "flex h-[560px] w-[264px] flex-col rounded-[var(--radius)] border bg-card p-2",
+        "flex h-[560px] w-[264px] flex-col rounded-[16px] border bg-card p-2",
         className,
       )}
     >
