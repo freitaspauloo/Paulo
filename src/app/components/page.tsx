@@ -14,6 +14,7 @@ import { Chip } from "@/components/aligned-chip";
 import { Tag } from "@/components/aligned-tag";
 import { Avatar, AvatarGroup } from "@/components/aligned-avatar";
 import { Loading } from "@/components/aligned-loading";
+import { Kbd } from "@/components/aligned-kbd";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -172,6 +173,29 @@ export default function ComponentsPage() {
           <div className="flex flex-col items-center gap-2">
             <Loading variant="dots" />
             <span className="text-xs text-muted-foreground">dots</span>
+          </div>
+        </div>
+      </Section>
+
+      {/* Shortcuts — keyboard key-caps */}
+      <Section title="Shortcuts (from Figma)">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <Kbd>⌘</Kbd>
+            <Kbd>⇧</Kbd>
+            <Kbd>⌥</Kbd>
+            <Kbd>⌃</Kbd>
+            <Kbd>fn</Kbd>
+            <Kbd>ESC</Kbd>
+            <Kbd>Tab</Kbd>
+            <Kbd>F1</Kbd>
+            <Kbd>⌘⇧A</Kbd>
+            <Kbd>⌘A</Kbd>
+          </div>
+          {/* Inline usage, e.g. inside a menu row */}
+          <div className="flex w-56 items-center justify-between rounded-[var(--radius)] border bg-card px-3 py-2 text-sm">
+            <span>Save</span>
+            <Kbd>⌘S</Kbd>
           </div>
         </div>
       </Section>
