@@ -5,7 +5,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Component, Home, MessagesSquare, Palette } from "lucide-react";
+import {
+  Component,
+  Home,
+  LayoutGrid,
+  MessagesSquare,
+  Palette,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -23,6 +29,7 @@ const navItems = [
   { title: "Home", href: "/", icon: Home },
   { title: "Design tokens", href: "/tokens", icon: Palette },
   { title: "Components", href: "/components", icon: Component },
+  { title: "Library", href: "/library", icon: LayoutGrid },
   { title: "Chat interface", href: "/chat", icon: MessagesSquare },
 ];
 
