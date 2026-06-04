@@ -17,6 +17,7 @@ import { Loading } from "@/components/aligned-loading";
 import { Kbd } from "@/components/aligned-kbd";
 import { TopNavBar, ConversationHeader } from "@/components/aligned-navbar";
 import { AlignedSidebar } from "@/components/aligned-sidebar";
+import { ImageGrid } from "@/components/aligned-image-grid";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -213,6 +214,14 @@ export default function ComponentsPage() {
       {/* Side Bar — chat navigation panel */}
       <Section title="Side Bar (from Figma)">
         <AlignedSidebar />
+      </Section>
+
+      {/* Image Grid — adaptive gallery */}
+      <Section title="Image Grid (from Figma)">
+        <div className="flex flex-col gap-6">
+          <ImageGrid count={6} />
+          <ImageGrid count={9} max={6} />
+        </div>
       </Section>
 
       {/* Buttons */}
