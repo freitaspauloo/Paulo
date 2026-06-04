@@ -13,6 +13,7 @@ import { AlignedPopup } from "@/components/aligned-popup";
 import { Chip } from "@/components/aligned-chip";
 import { Tag } from "@/components/aligned-tag";
 import { Avatar, AvatarGroup } from "@/components/aligned-avatar";
+import { Loading } from "@/components/aligned-loading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -150,6 +151,28 @@ export default function ComponentsPage() {
             <Avatar agent="gold" />
             <Avatar initials="JD" palette="mint" />
           </AvatarGroup>
+        </div>
+      </Section>
+
+      {/* Loading — animated activity indicators */}
+      <Section title="Loading (from Figma)">
+        <div className="flex flex-wrap items-center gap-8">
+          <div className="flex flex-col items-center gap-2">
+            <Loading variant="spinner" />
+            <span className="text-xs text-muted-foreground">spinner</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Loading variant="sparkle" />
+            <span className="text-xs text-muted-foreground">sparkle</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Loading variant="pulse" />
+            <span className="text-xs text-muted-foreground">pulse</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <Loading variant="dots" />
+            <span className="text-xs text-muted-foreground">dots</span>
+          </div>
         </div>
       </Section>
 
