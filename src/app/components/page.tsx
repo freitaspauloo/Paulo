@@ -7,7 +7,17 @@
 
 import { toast } from "sonner";
 
-import { CalendarDays, Globe, ListTodo, Sparkles } from "lucide-react";
+import {
+  ArrowUp,
+  CalendarDays,
+  ChevronDown,
+  Globe,
+  ListTodo,
+  Paperclip,
+  Pencil,
+  Plus,
+  Sparkles,
+} from "lucide-react";
 
 import { AlignedPopup } from "@/components/aligned-popup";
 import { Chip } from "@/components/aligned-chip";
@@ -228,15 +238,72 @@ export default function ComponentsPage() {
         </div>
       </Section>
 
-      {/* Buttons */}
-      <Section title="Buttons">
-        <div className="flex flex-wrap gap-3">
-          <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="link">Link</Button>
+      {/* Buttons — the Aligned AI button system */}
+      <Section title="Buttons (from Figma)">
+        <div className="flex flex-col gap-4">
+          {/* Primary */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="w-20 text-xs text-muted-foreground">Primary</span>
+            <Button>Button</Button>
+            <Button>
+              <Plus />
+              Create
+            </Button>
+            <Button>
+              Submit
+              <ArrowUp />
+            </Button>
+            <Button disabled>Submit</Button>
+          </div>
+
+          {/* Secondary (white + border) */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="w-20 text-xs text-muted-foreground">Secondary</span>
+            <Button variant="outline">Button</Button>
+            <Button variant="outline">
+              English
+              <ChevronDown />
+            </Button>
+            <Button variant="outline">
+              <Pencil />
+              Edit
+            </Button>
+          </div>
+
+          {/* Ghost */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="w-20 text-xs text-muted-foreground">Ghost</span>
+            <Button variant="ghost">Undo</Button>
+            <Button variant="ghost" disabled>
+              Redo
+            </Button>
+            <Button variant="ghost">
+              Theme
+              <ChevronDown />
+            </Button>
+          </div>
+
+          {/* Danger (solid red) */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="w-20 text-xs text-muted-foreground">Danger</span>
+            <Button variant="destructive">Delete</Button>
+            <Button variant="destructive">Make private</Button>
+            <Button variant="destructive">Deactivate</Button>
+          </div>
+
+          {/* Icon buttons */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="w-20 text-xs text-muted-foreground">Icon</span>
+            <Button size="icon" className="rounded-full">
+              <ArrowUp />
+            </Button>
+            <Button variant="outline" size="icon">
+              <Paperclip />
+            </Button>
+            <Button variant="ghost" size="icon">
+              <Plus />
+            </Button>
+          </div>
         </div>
       </Section>
 
