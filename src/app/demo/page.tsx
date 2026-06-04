@@ -72,6 +72,37 @@ export default function DemoPage() {
         </p>
       </header>
 
+      {/* Aligned AI design tokens — pulled from Figma into the theme */}
+      <Section title="Aligned AI — palette tokens">
+        <div className="flex flex-wrap gap-3">
+          {[
+            { name: "Purple", bg: "bg-purple-bg", text: "text-purple" },
+            { name: "Pink", bg: "bg-pink-bg", text: "text-pink" },
+            { name: "Cyan", bg: "bg-cyan-bg", text: "text-cyan" },
+            { name: "Mint", bg: "bg-mint-bg", text: "text-mint" },
+            { name: "Orange", bg: "bg-orange-bg", text: "text-orange" },
+            { name: "Brown", bg: "bg-brown-bg", text: "text-brown" },
+          ].map((c) => (
+            <div
+              key={c.name}
+              className={`flex h-16 w-24 items-center justify-center rounded-[var(--radius)] text-sm font-medium ${c.bg} ${c.text}`}
+            >
+              {c.name}
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Status tokens */}
+      <Section title="Aligned AI — status tokens">
+        <div className="flex flex-wrap gap-3">
+          <Badge className="bg-progress-subtle text-progress">Progress</Badge>
+          <Badge className="bg-success-subtle text-success">Success</Badge>
+          <Badge className="bg-warning-subtle text-warning">Warning</Badge>
+          <Badge className="bg-destructive/10 text-destructive">Error</Badge>
+        </div>
+      </Section>
+
       {/* Buttons — try changing the `variant` to see different styles */}
       <Section title="Buttons">
         <div className="flex flex-wrap gap-3">

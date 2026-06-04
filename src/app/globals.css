@@ -39,6 +39,26 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  /* Aligned AI — status colors */
+  --color-success: var(--success);
+  --color-success-subtle: var(--success-subtle);
+  --color-warning: var(--warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-progress: var(--progress);
+  --color-progress-subtle: var(--progress-subtle);
+  /* Aligned AI — palette colors */
+  --color-purple: var(--palette-purple);
+  --color-purple-bg: var(--palette-purple-bg);
+  --color-pink: var(--palette-pink);
+  --color-pink-bg: var(--palette-pink-bg);
+  --color-cyan: var(--palette-cyan);
+  --color-cyan-bg: var(--palette-cyan-bg);
+  --color-mint: var(--palette-mint);
+  --color-mint-bg: var(--palette-mint-bg);
+  --color-orange: var(--palette-orange);
+  --color-orange-bg: var(--palette-orange-bg);
+  --color-brown: var(--palette-brown);
+  --color-brown-bg: var(--palette-brown-bg);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -48,73 +68,118 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ===========================================================================
+   Aligned AI design tokens (from Figma) — Light
+   Mapped onto shadcn's semantic color variables so every component adopts them.
+   =========================================================================== */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: #ffffff;              /* color/bg/base */
+  --foreground: #000000;              /* color/text/primary */
+  --card: #ffffff;                    /* color/bg/surface */
+  --card-foreground: #000000;
+  --popover: #f9f9f9;                 /* color/bg/elevated */
+  --popover-foreground: #000000;
+  --primary: #202020;                 /* color/bg/inverse */
+  --primary-foreground: #ffffff;      /* color/text/on-inverse */
+  --secondary: #f2f2f2;               /* color/bg/subtle (flattened) */
+  --secondary-foreground: #000000;
+  --muted: #f9f9f9;                   /* color/bg/elevated */
+  --muted-foreground: #646464;        /* color/text/secondary */
+  --accent: #f2f2f2;                  /* color/bg/subtle */
+  --accent-foreground: #000000;
+  --destructive: #dc3e42;             /* color/status/error */
+  --border: rgba(0, 0, 0, 0.12);      /* color/border/default */
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: rgba(0, 0, 0, 0.87);        /* color/border/focus */
+
+  /* charts mapped to the Aligned palette */
+  --chart-1: #6550b9;                 /* purple */
+  --chart-2: #107d98;                 /* cyan */
+  --chart-3: #027864;                 /* mint */
+  --chart-4: #cc4e00;                 /* orange */
+  --chart-5: #c2298a;                 /* pink */
+
+  --radius: 0.75rem;                  /* radius/card-small = 12px */
+
+  --sidebar: #f9f9f9;                 /* color/bg/elevated */
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #202020;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f2f2f2;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: rgba(0, 0, 0, 0.09);   /* color/border/subtle */
+  --sidebar-ring: rgba(0, 0, 0, 0.87);
+
+  /* status */
+  --success: #12a594;
+  --success-subtle: rgba(18, 165, 148, 0.12);
+  --warning: #ef5f00;
+  --warning-subtle: rgba(239, 95, 0, 0.12);
+  --progress: #3e63dd;
+  --progress-subtle: rgba(62, 99, 221, 0.12);
+
+  /* palette (bg = soft surface, base = text/solid) */
+  --palette-purple: #6550b9;  --palette-purple-bg: #f4f0fe;
+  --palette-pink: #c2298a;    --palette-pink-bg: #fee9f5;
+  --palette-cyan: #107d98;    --palette-cyan-bg: #def7f9;
+  --palette-mint: #027864;    --palette-mint-bg: #ddf9f2;
+  --palette-orange: #cc4e00;  --palette-orange-bg: #ffefd6;
+  --palette-brown: #7d5e54;   --palette-brown-bg: #fffab8;
 }
 
+/* ===========================================================================
+   Aligned AI design tokens (from Figma) — Dark
+   =========================================================================== */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #111111;              /* color/bg/base */
+  --foreground: #ffffff;             /* color/text/primary */
+  --card: #222222;                   /* color/bg/surface */
+  --card-foreground: #ffffff;
+  --popover: #191919;                /* color/bg/elevated */
+  --popover-foreground: #ffffff;
+  --primary: #fcfcfc;                /* color/bg/inverse */
+  --primary-foreground: #000000;     /* color/text/on-inverse */
+  --secondary: #1d1d1d;              /* color/bg/subtle (flattened) */
+  --secondary-foreground: #ffffff;
+  --muted: #191919;                  /* color/bg/elevated */
+  --muted-foreground: #b4b4b4;       /* color/text/secondary */
+  --accent: #222222;
+  --accent-foreground: #ffffff;
+  --destructive: #dc3e42;            /* color/status/error */
+  --border: rgba(255, 255, 255, 0.15);   /* color/border/default */
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: rgba(255, 255, 255, 0.93);      /* color/border/focus */
+
+  --chart-1: #4b21f6;                /* purple */
+  --chart-2: #0088f1;                /* cyan */
+  --chart-3: #03dba5;                /* mint */
+  --chart-4: #ff6202;                /* orange */
+  --chart-5: #fd177f;                /* pink */
+
+  --sidebar: #191919;                /* color/bg/elevated */
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #fcfcfc;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #222222;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.11);  /* color/border/subtle */
+  --sidebar-ring: rgba(255, 255, 255, 0.93);
+
+  /* status (same hues, used on dark surfaces) */
+  --success: #12a594;
+  --success-subtle: rgba(18, 165, 148, 0.12);
+  --warning: #ef5f00;
+  --warning-subtle: rgba(239, 95, 0, 0.12);
+  --progress: #3e63dd;
+  --progress-subtle: rgba(62, 99, 221, 0.12);
+
+  /* palette (dark variants) */
+  --palette-purple: #f4f0fe;  --palette-purple-bg: #4b21f6;
+  --palette-pink: #fee9f5;    --palette-pink-bg: #fd177f;
+  --palette-cyan: #def7f9;    --palette-cyan-bg: #0088f1;
+  --palette-mint: #115949;    --palette-mint-bg: #03dba5;
+  --palette-orange: #ffefd6;  --palette-orange-bg: #ff6202;
+  --palette-brown: #ffe629;   --palette-brown-bg: #7d5e54;
 }
 
 @layer base {
