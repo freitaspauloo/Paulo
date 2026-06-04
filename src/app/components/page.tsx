@@ -7,10 +7,11 @@
 
 import { toast } from "sonner";
 
-import { CalendarDays, Globe, ListTodo } from "lucide-react";
+import { CalendarDays, Globe, Hash, ListTodo, Sparkles } from "lucide-react";
 
 import { AlignedPopup } from "@/components/aligned-popup";
 import { Chip } from "@/components/aligned-chip";
+import { Tag } from "@/components/aligned-tag";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -101,6 +102,31 @@ export default function ComponentsPage() {
           <Chip icon={<ListTodo />} disabled>
             Make a to-do list
           </Chip>
+        </div>
+      </Section>
+
+      {/* Tag — labeled metadata pills */}
+      <Section title="Tag (from Figma)">
+        <div className="flex flex-wrap items-center gap-2">
+          <Tag palette="purple" icon={<Hash />}>
+            planning
+          </Tag>
+          <Tag palette="pink" icon={<Hash />}>
+            code review
+          </Tag>
+          <Tag palette="cyan" icon={<Hash />}>
+            research
+          </Tag>
+          <Tag palette="mint" icon={<Hash />}>
+            writing
+          </Tag>
+          <Tag palette="orange" icon={<Sparkles />}>
+            urgent
+          </Tag>
+          <Tag palette="default">backlog</Tag>
+          <Tag palette="purple" onRemove={() => toast("Removed tag")}>
+            removable
+          </Tag>
         </div>
       </Section>
 
