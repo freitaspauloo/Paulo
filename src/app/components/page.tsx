@@ -16,6 +16,7 @@ import { Avatar, AvatarGroup } from "@/components/aligned-avatar";
 import { Loading } from "@/components/aligned-loading";
 import { Kbd } from "@/components/aligned-kbd";
 import { TopNavBar, ConversationHeader } from "@/components/aligned-navbar";
+import { AlignedSidebar } from "@/components/aligned-sidebar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -207,6 +208,11 @@ export default function ComponentsPage() {
           <TopNavBar />
           <ConversationHeader />
         </div>
+      </Section>
+
+      {/* Side Bar — chat navigation panel */}
+      <Section title="Side Bar (from Figma)">
+        <AlignedSidebar />
       </Section>
 
       {/* Buttons */}
