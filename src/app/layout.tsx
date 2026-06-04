@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 // Inter is the typeface used in the Aligned AI Figma design.
 const inter = Inter({
@@ -29,8 +31,18 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {children}
+      <body className="min-h-full antialiased">
+        <SidebarProvider>
+          {/* Left navigation sidebar — switches between pages */}
+          <AppSidebar />
+          <SidebarInset>
+            {/* Small top bar holds the collapse/expand toggle */}
+            <header className="flex h-12 items-center gap-2 border-b px-4">
+              <SidebarTrigger />
+            </header>
+            {children}
+          </SidebarInset>
+        </SidebarProvider>
         <Toaster />
       </body>
     </html>
