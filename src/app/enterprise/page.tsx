@@ -126,7 +126,7 @@ export default function EnterprisePage() {
 
         <div className="mx-auto mt-14 max-w-3xl space-y-6 text-center">
           <h1 className="text-balance text-5xl font-semibold tracking-[-0.03em] sm:text-6xl">
-            One AI for everything.
+            Frontier-class AI, hosted in the US, at a fraction of the cost.
           </h1>
           <p className="mx-auto max-w-xl text-pretty leading-relaxed text-muted-foreground">
             A powerful AI assistant for work, learning, family life, research,
