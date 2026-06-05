@@ -37,6 +37,9 @@ export default function Home() {
         <Button variant="link" render={<Link href="/components" />}>
           Components →
         </Button>
+        <Button variant="link" render={<Link href="/agent" />}>
+          Agent →
+        </Button>
       </div>
     </main>
   );

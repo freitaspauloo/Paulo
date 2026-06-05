@@ -6,6 +6,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  Bot,
   Component,
   Home,
   LayoutGrid,
@@ -31,6 +32,7 @@ const navItems = [
   { title: "Components", href: "/components", icon: Component },
   { title: "Library", href: "/library", icon: LayoutGrid },
   { title: "Chat interface", href: "/chat", icon: MessagesSquare },
+  { title: "Agent", href: "/agent", icon: Bot },
 ];
 
 export function AppSidebar() {
