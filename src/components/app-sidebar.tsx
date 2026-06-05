@@ -13,6 +13,7 @@ import {
   LayoutGrid,
   MessagesSquare,
   Palette,
+  Sparkles,
 } from "lucide-react";
 
 import {
@@ -35,6 +36,7 @@ const navItems = [
   { title: "Chat interface", href: "/chat", icon: MessagesSquare },
   { title: "Agent", href: "/agent", icon: Bot },
   { title: "Enterprise", href: "/enterprise", icon: Building2 },
+  { title: "Landing (v2)", href: "/landing", icon: Sparkles },
 ];
 
 export function AppSidebar() {
