@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-// 🏢 Aligned — landing page transferred from Figma (node 2482:1570) as real,
-// responsive code. Text, buttons and layout are coded; only the genuine
-// photographs / product screenshots are image assets (as in any real build).
+// 🏢 Aligned — landing page from Figma Aligned-2 (node 2482:1570).
+// Full-bleed marketing layout (no dev sidebar). Photos are exported assets.
 
 import {
   ArrowRight,
@@ -18,7 +17,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// ── Brand glyphs (lucide dropped brand icons in this version) ───────────────
+const PAGE = "mx-auto w-full max-w-[72rem]";
+
 const social = [
   { label: "X", path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
   { label: "LinkedIn", path: "M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" },
@@ -26,7 +26,6 @@ const social = [
   { label: "Instagram", path: "M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 5.84a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2zm5.11-6.76a.93.93 0 1 1-1.87 0 .93.93 0 0 1 1.87 0z" },
 ];
 
-// ── Data ─────────────────────────────────────────────────────────────────────
 const features = [
   { title: "Collaborate", body: "Work together in real time. Same chat, same project.", icon: Users, color: "text-cyan" },
   { title: "Research", body: "Hours of digging, minutes of yours. Every claim cited.", icon: FileText, color: "text-pink" },
@@ -63,10 +62,14 @@ const charts = [
   },
 ];
 
-// ── Reusable bits ────────────────────────────────────────────────────────────
 function Eyebrow({ accent, children }: { accent: string; children: React.ReactNode }) {
   return (
-    <span className={cn("inline-flex w-fit items-center rounded-full bg-card px-3 py-1 text-xs font-semibold ring-1 ring-foreground/10", accent)}>
+    <span
+      className={cn(
+        "inline-flex w-fit items-center rounded-full bg-white/80 px-3 py-1 text-xs font-semibold ring-1 ring-foreground/10 backdrop-blur-sm",
+        accent,
+      )}
+    >
       {children}
     </span>
   );
@@ -92,16 +95,24 @@ function Tinted({
   reverse?: boolean;
 }) {
   return (
-    <section className={cn("rounded-[2.5rem] px-6 py-12 sm:px-14 sm:py-16", tint)}>
-      <div className="grid items-center gap-10 md:grid-cols-2">
-        <div className={cn("space-y-5", reverse && "md:order-2")}>
+    <section className={cn("overflow-hidden rounded-[2.5rem] px-6 py-12 sm:px-12 sm:py-16", tint)}>
+      <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+        <div className={cn("space-y-5 md:max-w-md", reverse && "md:order-2")}>
           <Eyebrow accent={accent}>{eyebrow}</Eyebrow>
-          <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em]">{title}</h2>
-          <p className="max-w-md text-pretty leading-relaxed text-muted-foreground">{body}</p>
-          <Button size="lg">Try it for free</Button>
+          <h2 className="text-balance text-4xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-[2.75rem]">
+            {title}
+          </h2>
+          <p className="text-pretty text-base leading-relaxed text-muted-foreground">{body}</p>
+          <Button size="lg" className="h-11 rounded-full px-6">
+            Try it for free
+          </Button>
         </div>
-        <div className={cn(reverse && "md:order-1")}>
-          <img src={photo} alt={alt} className="w-full" />
+        <div className={cn("relative", reverse && "md:order-1")}>
+          <img
+            src={photo}
+            alt={alt}
+            className="w-full drop-shadow-[0_24px_48px_rgba(0,0,0,0.12)]"
+          />
         </div>
       </div>
     </section>
@@ -110,68 +121,93 @@ function Tinted({
 
 export default function EnterprisePage() {
   return (
-    <main className="w-full bg-[#fafbfc]">
-      {/* ─── Hero + nav ───────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#d0e8f8_0%,#f8fdfe_39%,#e5f9fc_72%,#f0fcfe_100%)] px-6 pb-20">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between py-5">
-          <span className="flex items-center gap-2 font-semibold">
-            <span className="flex size-6 items-center justify-center rounded-md bg-foreground text-background text-xs">A</span>
+    <main className="w-full overflow-x-hidden bg-white text-foreground">
+      {/* Hero — soft radial cyan wash (Figma 2482:1570) */}
+      <section className="relative overflow-hidden bg-[radial-gradient(ellipse_120%_90%_at_50%_-15%,#b5e3f5_0%,#dff4fb_42%,#f7fcfe_72%,#ffffff_100%)] px-6 pb-20 pt-0 sm:pb-28">
+        <nav className={cn(PAGE, "flex h-[4.25rem] items-center justify-between")}>
+          <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold tracking-[-0.01em]">
+            <span className="flex size-7 items-center justify-center rounded-lg bg-foreground text-[0.7rem] font-bold text-background">
+              A
+            </span>
             Aligned AI
           </span>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm">Log in</Button>
-            <Button size="sm">Start for free</Button>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="sm" className="rounded-full px-4">
+              Log in
+            </Button>
+            <Button size="sm" className="rounded-full px-4">
+              Start for free
+            </Button>
           </div>
         </nav>
 
-        <div className="mx-auto mt-14 max-w-3xl space-y-6 text-center">
-          <h1 className="text-balance text-5xl font-semibold tracking-[-0.03em] sm:text-6xl">
-            Frontier-class AI, hosted in the US, at a fraction of the cost.
+        <div className="mx-auto mt-10 max-w-[44rem] space-y-6 px-6 text-center sm:mt-14">
+          <h1 className="text-balance text-[clamp(2.35rem,5.2vw,3.65rem)] font-semibold leading-[1.06] tracking-[-0.035em]">
+            Frontier-class AI, hosted in the US,
+            <br className="hidden sm:block" /> at a fraction of the cost.
           </h1>
-          <p className="mx-auto max-w-xl text-pretty leading-relaxed text-muted-foreground">
+          <p className="mx-auto max-w-[34rem] text-pretty text-base leading-7 text-muted-foreground sm:text-[1.05rem]">
             A powerful AI assistant for work, learning, family life, research,
             coding, and everyday questions — built with safety, privacy, and
             aligned with your values in mind.
           </p>
-          <Button size="lg" className="mx-auto">Try Aligned AI free</Button>
+          <Button size="lg" className="mx-auto h-11 rounded-full px-7 text-[0.95rem]">
+            Try Aligned AI free
+          </Button>
         </div>
 
-        <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl shadow-2xl ring-1 ring-foreground/10">
-          <img src="/enterprise/photo-hero.png" alt="Aligned AI chat interface" className="w-full" />
+        <div
+          className={cn(
+            PAGE,
+            "mt-12 overflow-hidden rounded-[1.35rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.18)] ring-1 ring-foreground/10 sm:mt-14 sm:rounded-[1.5rem]",
+          )}
+        >
+          <img
+            src="/enterprise/photo-hero.png"
+            alt="Aligned AI chat interface"
+            className="w-full"
+          />
         </div>
       </section>
 
-      {/* ─── Feature cards ────────────────────────────────────────────── */}
-      <section className="py-24">
-        <div className="mx-auto max-w-2xl space-y-3 px-6 text-center">
-          <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      {/* Feature carousel — tall cards, icon top-aligned */}
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-[40rem] space-y-3 px-6 text-center">
+          <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.025em] sm:text-5xl">
             Whatever you bring to it, Aligned AI is ready
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Ask anything, keep what matters, and know it&apos;s right — wherever you are.
           </p>
         </div>
 
-        <div className="mt-12 flex snap-x gap-5 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:gap-5 sm:px-[max(1.5rem,calc((100%-72rem)/2+1.5rem))] [&::-webkit-scrollbar]:hidden">
           {features.map((f) => (
-            <div key={f.title} className="flex h-52 w-[17rem] shrink-0 snap-start flex-col gap-6 rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10">
-              <f.icon className={cn("size-7", f.color)} />
-              <div className="space-y-1.5">
-                <h3 className="text-lg font-semibold">{f.title}</h3>
+            <div
+              key={f.title}
+              className="flex min-h-[17.5rem] w-[17.5rem] shrink-0 snap-start flex-col justify-between rounded-2xl bg-card p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-foreground/[0.08] sm:min-h-[18.5rem] sm:w-[18.5rem]"
+            >
+              <f.icon className={cn("size-8", f.color)} strokeWidth={1.75} />
+              <div className="space-y-2">
+                <h3 className="text-xl font-semibold tracking-[-0.01em]">{f.title}</h3>
                 <p className="text-sm leading-6 text-muted-foreground">{f.body}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-2">
-          <Button variant="outline" size="icon" className="rounded-full" aria-label="Previous"><ChevronLeft /></Button>
-          <Button variant="outline" size="icon" className="rounded-full" aria-label="Next"><ChevronRight /></Button>
+        <div className="mt-8 flex items-center justify-center gap-2">
+          <Button variant="outline" size="icon" className="size-9 rounded-full" aria-label="Previous">
+            <ChevronLeft />
+          </Button>
+          <Button variant="outline" size="icon" className="size-9 rounded-full" aria-label="Next">
+            <ChevronRight />
+          </Button>
         </div>
       </section>
 
-      {/* ─── Private by design / Answers you can trust ────────────────── */}
-      <div className="mx-auto max-w-6xl space-y-6 px-6">
+      {/* Tinted story sections */}
+      <div className={cn(PAGE, "space-y-5 px-6 pb-6 sm:space-y-6")}>
         <Tinted
           tint="bg-purple-bg"
           accent="text-purple"
@@ -193,28 +229,51 @@ export default function EnterprisePage() {
         />
       </div>
 
-      {/* ─── Just as good, a fraction of the cost ─────────────────────── */}
-      <section className="my-24 bg-[#eef2fe] py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-2xl space-y-3 text-center">
-            <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      {/* Benchmark charts — full-bleed pale blue band */}
+      <section className="my-20 bg-[#eef2fe] py-20 sm:my-28 sm:py-24">
+        <div className={cn(PAGE, "px-6")}>
+          <div className="mx-auto max-w-[40rem] space-y-3 text-center">
+            <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-[-0.025em] sm:text-5xl">
               Just as good, a fraction of the cost.
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Most competitive pricing, comparatively accurate, and faith-specific alignment.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:gap-5">
             {charts.map((chart) => (
-              <div key={chart.title} className="rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10">
+              <div
+                key={chart.title}
+                className="rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)] ring-1 ring-foreground/[0.08] sm:p-7"
+              >
                 <h3 className="text-sm font-semibold">{chart.title}</h3>
-                <div className="mt-6 flex h-44 items-end justify-around gap-3">
+                <div className="mt-8 flex h-48 items-end justify-around gap-3">
                   {chart.bars.map((b) => (
-                    <div key={b.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
-                      <span className={cn("text-xs tabular-nums", b.lead ? "font-semibold text-foreground" : "text-muted-foreground")}>{b.value}</span>
-                      <div className={cn("w-full rounded-t-md", b.lead ? "bg-gradient-to-t from-progress to-cyan" : "bg-foreground/10")} style={{ height: `${Math.max(b.pct, 4)}%` }} />
-                      <span className="text-[0.7rem] text-muted-foreground">{b.label}</span>
+                    <div
+                      key={b.label}
+                      className="flex h-full flex-1 flex-col items-center justify-end gap-2"
+                    >
+                      <span
+                        className={cn(
+                          "text-xs tabular-nums",
+                          b.lead ? "font-semibold text-foreground" : "text-muted-foreground",
+                        )}
+                      >
+                        {b.value}
+                      </span>
+                      <div
+                        className={cn(
+                          "w-full max-w-[3.5rem] rounded-t-lg",
+                          b.lead
+                            ? "bg-gradient-to-t from-progress to-cyan"
+                            : "bg-foreground/10",
+                        )}
+                        style={{ height: `${Math.max(b.pct, 6)}%` }}
+                      />
+                      <span className="text-center text-[0.7rem] leading-tight text-muted-foreground">
+                        {b.label}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -222,19 +281,26 @@ export default function EnterprisePage() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
-            <span className="inline-flex items-center gap-1.5"><span className="size-2 rounded-full bg-progress" /> Aligned AI</span>
-            <span className="inline-flex items-center gap-1.5 text-muted-foreground"><span className="size-2 rounded-full bg-foreground/30" /> Top 3 frontier</span>
-            <span className="inline-flex items-center gap-1.5 text-muted-foreground"><span className="size-2 rounded-full bg-foreground/15" /> Other frontier</span>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-5 text-sm">
+            <span className="inline-flex items-center gap-2">
+              <span className="size-2 rounded-full bg-progress" /> Aligned AI
+            </span>
+            <span className="inline-flex items-center gap-2 text-muted-foreground">
+              <span className="size-2 rounded-full bg-foreground/30" /> Top 3 frontier
+            </span>
+            <span className="inline-flex items-center gap-2 text-muted-foreground">
+              <span className="size-2 rounded-full bg-foreground/15" /> Other frontier
+            </span>
           </div>
-          <div className="mt-4 text-center">
-            <Button variant="link">View Benchmarks <ArrowRight /></Button>
+          <div className="mt-3 text-center">
+            <Button variant="link" className="text-foreground">
+              View Benchmarks <ArrowRight />
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* ─── Powerful AI / Safe for teens ─────────────────────────────── */}
-      <div className="mx-auto max-w-6xl space-y-6 px-6 pb-24">
+      <div className={cn(PAGE, "space-y-5 px-6 pb-24 sm:space-y-6 sm:pb-28")}>
         <Tinted
           tint="bg-mint-bg"
           accent="text-mint"
@@ -256,20 +322,29 @@ export default function EnterprisePage() {
         />
       </div>
 
-      {/* ─── Footer ───────────────────────────────────────────────────── */}
       <footer className="bg-foreground px-6 py-14 text-background">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10">
+        <div className={cn(PAGE, "flex flex-col gap-10")}>
           <div className="flex flex-wrap items-center justify-between gap-6">
             <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
-              <a href="#" className="text-background/70 hover:text-background">Enterprise</a>
-              <a href="#" className="text-background/70 hover:text-background">Benchmarks</a>
-              <a href="#" className="text-background/70 hover:text-background">Pricing</a>
-              <a href="#" className="text-background/70 hover:text-background">FAQ</a>
+              <a href="#" className="text-background/70 hover:text-background">
+                Enterprise
+              </a>
+              <a href="#" className="text-background/70 hover:text-background">
+                Benchmarks
+              </a>
+              <a href="#" className="text-background/70 hover:text-background">
+                Pricing
+              </a>
+              <a href="#" className="text-background/70 hover:text-background">
+                FAQ
+              </a>
             </div>
             <div className="flex items-center gap-5 text-background/70">
               {social.map((s) => (
                 <a key={s.label} href="#" aria-label={s.label} className="hover:text-background">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden><path d={s.path} /></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden>
+                    <path d={s.path} />
+                  </svg>
                 </a>
               ))}
             </div>
@@ -277,8 +352,12 @@ export default function EnterprisePage() {
           <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-background/60">
             <p>© 2026 Aligned AI Inc. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="underline-offset-4 hover:text-background hover:underline">Privacy Policy</a>
-              <a href="#" className="underline-offset-4 hover:text-background hover:underline">Terms of Service</a>
+              <a href="#" className="underline-offset-4 hover:text-background hover:underline">
+                Privacy Policy
+              </a>
+              <a href="#" className="underline-offset-4 hover:text-background hover:underline">
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>
