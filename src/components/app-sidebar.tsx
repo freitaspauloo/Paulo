@@ -13,6 +13,7 @@ import {
   LayoutGrid,
   MessagesSquare,
   Palette,
+  Rocket,
 } from "lucide-react";
 
 import {
@@ -29,6 +30,7 @@ import {
 
 const navItems = [
   { title: "Home", href: "/", icon: Home },
+  { title: "Aligned landing", href: "/aligned", icon: Rocket },
   { title: "Design tokens", href: "/tokens", icon: Palette },
   { title: "Components", href: "/components", icon: Component },
   { title: "Library", href: "/library", icon: LayoutGrid },
