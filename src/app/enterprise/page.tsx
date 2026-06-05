@@ -1,13 +1,17 @@
-// 🏢 Aligned for Enterprise — rebuilt to match the Aligned AI landing-page
-// design system: soft gradient hero + floating product window, white bordered
-// feature cards with colored icons, big pastel-tinted alternating sections
-// (purple/cyan/mint/orange bg tokens), bar-chart comparison cards, dark footer.
+// 🏢 Aligned for Enterprise — built to match the Aligned AI landing page's
+// design language (sampled from the source PDF): strong cyan gradient hero with
+// a floating product window, tall feature cards with colored icons in a
+// carousel, big pastel-tinted alternating sections with floating UI mockups, a
+// full-width "fraction of the cost" section with vertical bar charts, and a
+// dark footer.
 
 import {
   ArrowRight,
   BadgeCheck,
   Building2,
   Check,
+  ChevronLeft,
+  ChevronRight,
   Code2,
   DollarSign,
   Gauge,
@@ -35,20 +39,50 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
-// — Capability cards (the "Whatever you bring to it" row) -------------------
+// ── Data ───────────────────────────────────────────────────────────────────
+
 const capabilities = [
-  { title: "Reasoning", body: "Frontier-level on GPQA, DROP, and BIG-Bench Hard.", icon: Sparkles, color: "text-purple" },
-  { title: "Coding", body: "89.3% HumanEval pass@1 — ship faster, catch errors early.", icon: Code2, color: "text-cyan" },
-  { title: "Math", body: "91.2% MGSM, multilingual, reproducible on public sets.", icon: Sigma, color: "text-mint" },
-  { title: "Migration", body: "OpenAI-compatible — swap a base URL, keep your stack.", icon: GitBranch, color: "text-orange" },
-  { title: "Routing", body: "A compound system that swaps in the strongest model per task.", icon: Layers, color: "text-pink" },
-  { title: "Controls", body: "SOC 2-grade controls and audit logging, built in.", icon: ShieldCheck, color: "text-brown" },
+  { title: "Reasoning", body: "Frontier-level on GPQA, DROP, and BIG-Bench Hard — the evals that decide real work.", icon: Sparkles, color: "text-purple" },
+  { title: "Coding", body: "89.3% HumanEval pass@1. Write, debug, and ship faster with errors caught early.", icon: Code2, color: "text-cyan" },
+  { title: "Math", body: "91.2% MGSM, multilingual, every result reproducible on public datasets.", icon: Sigma, color: "text-mint" },
+  { title: "Migration", body: "OpenAI-compatible endpoints — swap a base URL and keep your whole stack.", icon: GitBranch, color: "text-orange" },
+  { title: "Routing", body: "A compound system that swaps in the strongest model for each task.", icon: Layers, color: "text-pink" },
+  { title: "Controls", body: "SOC 2-grade access controls and audit logging, built into the platform.", icon: ShieldCheck, color: "text-brown" },
 ];
 
-const stats = [
-  { value: "Top 3", label: "accuracy across 13 deployed models, and #1 on accuracy per dollar", icon: Gauge },
-  { value: "20–80x", label: "lower cost per chat than frontier APIs, at comparable accuracy", icon: DollarSign },
-  { value: "100% US", label: "hosted inference, inside a boundary you can name in a contract", icon: MapPin },
+// Vertical bar-chart cards for the "fraction of the cost" section.
+// `lowerBetter` just flips the framing in the caption.
+const charts = [
+  {
+    title: "Cost per chat",
+    caption: "Lower is better",
+    unit: "$",
+    bars: [
+      { label: "Aligned", value: "$0.006", pct: 6, lead: true },
+      { label: "Top 3", value: "$0.12", pct: 40, lead: false },
+      { label: "Other", value: "$0.50", pct: 100, lead: false },
+    ],
+  },
+  {
+    title: "General accuracy",
+    caption: "Higher is better",
+    unit: "%",
+    bars: [
+      { label: "Aligned", value: "88.4%", pct: 96, lead: true },
+      { label: "Top 3", value: "85.5%", pct: 90, lead: false },
+      { label: "Other", value: "83.0%", pct: 84, lead: false },
+    ],
+  },
+  {
+    title: "Accuracy per $",
+    caption: "Higher is better",
+    unit: "×",
+    bars: [
+      { label: "Aligned", value: "#1", pct: 100, lead: true },
+      { label: "Top 3", value: "0.4×", pct: 40, lead: false },
+      { label: "Other", value: "0.1×", pct: 12, lead: false },
+    ],
+  },
 ];
 
 const benchmarks = [
@@ -78,36 +112,35 @@ const controls = [
   "Built on SOC 2-compliant infrastructure",
 ];
 
-// — Reusable bits -----------------------------------------------------------
+const stats = [
+  { value: "Top 3", label: "accuracy across 13 deployed models, and #1 on accuracy per dollar", icon: Gauge },
+  { value: "20–80x", label: "lower cost per chat than frontier APIs, at comparable accuracy", icon: DollarSign },
+  { value: "100% US", label: "hosted inference, inside a boundary you can name in a contract", icon: MapPin },
+];
 
-function Eyebrow({ className, children }: { className?: string; children: React.ReactNode }) {
+// ── Reusable bits ────────────────────────────────────────────────────────────
+
+// Subtle light chip used as a section eyebrow (matches "Alignment" / "Family").
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className={cn("text-sm font-medium", className)}>{children}</span>
+    <span className="inline-flex w-fit items-center rounded-full bg-card px-3 py-1 text-xs font-medium text-muted-foreground ring-1 ring-foreground/10">
+      {children}
+    </span>
   );
 }
 
-// A horizontal mini bar used inside the comparison chart cards.
-function Bar({ label, value, pct, lead }: { label: string; value: string; pct: number; lead?: boolean }) {
+// A floating white "product window" card to sit on the tinted sections.
+function MockCard({ className, children }: { className?: string; children: React.ReactNode }) {
   return (
-    <div className="space-y-1.5">
-      <div className="flex items-baseline justify-between text-xs">
-        <span className={cn(lead ? "font-medium text-foreground" : "text-muted-foreground")}>{label}</span>
-        <span className={cn("tabular-nums", lead ? "font-medium" : "text-muted-foreground")}>{value}</span>
-      </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-        <div
-          className={cn("h-full rounded-full", lead ? "bg-progress" : "bg-foreground/20")}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
+    <div className={cn("rounded-2xl bg-card p-5 text-sm shadow-2xl ring-1 ring-foreground/10", className)}>
+      {children}
     </div>
   );
 }
 
-// A big pastel-tinted section: text on one side, a product mockup on the other.
+// Big pastel-tinted section: text on one side, a floating mockup on the other.
 function TintedSection({
   tint,
-  accent,
   eyebrow,
   title,
   body,
@@ -115,7 +148,6 @@ function TintedSection({
   visual,
 }: {
   tint: string;
-  accent: string;
   eyebrow: string;
   title: string;
   body: string;
@@ -123,28 +155,19 @@ function TintedSection({
   visual: React.ReactNode;
 }) {
   return (
-    <section className={cn("rounded-4xl px-6 py-10 sm:px-12 sm:py-14", tint)}>
+    <section className={cn("rounded-[2.5rem] px-6 py-12 sm:px-14 sm:py-16", tint)}>
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div className={cn("space-y-5", reverse && "md:order-2")}>
-          <Eyebrow className={accent}>{eyebrow}</Eyebrow>
-          <h2 className="text-balance text-3xl font-semibold tracking-tight">{title}</h2>
-          <p className="text-pretty text-muted-foreground">{body}</p>
-          <Button variant="default" render={<a href="mailto:enterprise@joinaligned.ai" />}>
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em]">{title}</h2>
+          <p className="max-w-md text-pretty leading-relaxed text-muted-foreground">{body}</p>
+          <Button size="lg" render={<a href="mailto:enterprise@joinaligned.ai" />}>
             Talk to our team
           </Button>
         </div>
-        <div className={cn(reverse && "md:order-1")}>{visual}</div>
+        <div className={cn("relative", reverse && "md:order-1")}>{visual}</div>
       </div>
     </section>
-  );
-}
-
-// A little white "product window" card to float inside tinted sections.
-function MockCard({ className, children }: { className?: string; children: React.ReactNode }) {
-  return (
-    <div className={cn("rounded-2xl bg-card p-5 shadow-xl ring-1 ring-foreground/10", className)}>
-      {children}
-    </div>
   );
 }
 
@@ -152,16 +175,16 @@ export default function EnterprisePage() {
   return (
     <main className="w-full">
       {/* ─── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-cyan-bg via-cyan-bg/30 to-background px-6 pb-20 pt-16 text-center">
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#bfeaf6_0%,#d8f2fa_30%,var(--background)_75%)] px-6 pb-24 pt-16 text-center">
         <div className="mx-auto max-w-3xl space-y-6">
           <Badge variant="secondary" className="mx-auto gap-1.5 bg-card">
             <Building2 className="size-3" />
             Aligned for Enterprise
           </Badge>
-          <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="text-balance text-5xl font-semibold tracking-[-0.02em] sm:text-6xl">
             Frontier-class AI, hosted in the US, at a fraction of the cost.
           </h1>
-          <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
             Aligned matches the pioneer models on the benchmarks that decide real
             work — and adds what they will not: US-hosted inference, 10–50x lower
             costs, and safety built into the architecture.
@@ -178,7 +201,7 @@ export default function EnterprisePage() {
         </div>
 
         {/* Floating product window */}
-        <div className="mx-auto mt-12 max-w-3xl overflow-hidden rounded-2xl bg-card text-left shadow-2xl ring-1 ring-foreground/10">
+        <div className="mx-auto mt-14 max-w-3xl overflow-hidden rounded-2xl bg-card text-left shadow-2xl ring-1 ring-foreground/10">
           <div className="flex items-center gap-2 border-b px-4 py-2.5">
             <span className="size-2.5 rounded-full bg-destructive/70" />
             <span className="size-2.5 rounded-full bg-warning/70" />
@@ -198,7 +221,7 @@ export default function EnterprisePage() {
           </div>
           <Separator />
           <div className="space-y-3 px-4 py-4 text-sm">
-            <Eyebrow className="text-cyan">Live chat — migration pilot</Eyebrow>
+            <span className="text-xs font-medium text-cyan">Live chat — migration pilot</span>
             <div className="max-w-[85%] rounded-2xl bg-secondary px-4 py-2.5">
               How do we migrate 12M support chats to the US-hosted lane without downtime?
             </div>
@@ -210,137 +233,235 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-24 px-6 py-24">
-        {/* ─── Stats ──────────────────────────────────────────────────── */}
+      {/* ─── Stats ────────────────────────────────────────────────────── */}
+      <div className="mx-auto max-w-6xl px-6 pt-20">
         <section className="grid gap-4 sm:grid-cols-3">
           {stats.map((s) => (
-            <div key={s.value} className="space-y-3 rounded-2xl bg-card p-6 ring-1 ring-foreground/10">
+            <div key={s.value} className="space-y-3 rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10">
               <s.icon className="size-5 text-muted-foreground" />
               <div className="text-3xl font-semibold tracking-tight">{s.value}</div>
               <p className="text-sm text-muted-foreground">{s.label}</p>
             </div>
           ))}
         </section>
-
-        {/* ─── Capability cards row ───────────────────────────────────── */}
-        <section className="space-y-10">
-          <div className="mx-auto max-w-2xl space-y-3 text-center">
-            <h2 className="text-balance text-3xl font-semibold tracking-tight">
-              Put a frontier-class model to work, without the trade-offs
-            </h2>
-            <p className="text-muted-foreground">
-              The same caliber of output the pioneer models give you — on the
-              evaluations enterprises actually run.
-            </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((c) => (
-              <div key={c.title} className="space-y-2 rounded-2xl bg-card p-5 ring-1 ring-foreground/10">
-                <c.icon className={cn("size-5", c.color)} />
-                <h3 className="font-medium">{c.title}</h3>
-                <p className="text-sm leading-6 text-muted-foreground">{c.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
 
-      {/* ─── Tinted alternating sections ──────────────────────────────── */}
-      <div className="mx-auto max-w-6xl space-y-6 px-6 pb-24">
+      {/* ─── Capability cards (carousel) ──────────────────────────────── */}
+      <section className="py-24">
+        <div className="mx-auto max-w-2xl space-y-3 px-6 text-center">
+          <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+            Put a frontier-class model to work, without the trade-offs
+          </h2>
+          <p className="text-muted-foreground">
+            The same caliber of output the pioneer models give you — on the
+            evaluations enterprises actually run.
+          </p>
+        </div>
+
+        <div className="mt-12 flex snap-x gap-5 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {capabilities.map((c) => (
+            <div
+              key={c.title}
+              className="flex h-64 w-[17rem] shrink-0 snap-start flex-col rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10"
+            >
+              <c.icon className={cn("size-7", c.color)} />
+              <div className="mt-auto space-y-1.5">
+                <h3 className="text-lg font-semibold">{c.title}</h3>
+                <p className="text-sm leading-6 text-muted-foreground">{c.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex items-center justify-center gap-2">
+          <Button variant="outline" size="icon" className="rounded-full" aria-label="Previous">
+            <ChevronLeft />
+          </Button>
+          <Button variant="outline" size="icon" className="rounded-full" aria-label="Next">
+            <ChevronRight />
+          </Button>
+        </div>
+      </section>
+
+      {/* ─── Tinted sections A & B ────────────────────────────────────── */}
+      <div className="mx-auto max-w-6xl space-y-6 px-6">
         <TintedSection
           tint="bg-purple-bg"
-          accent="text-purple"
-          eyebrow="Cost"
+          eyebrow="Do more"
           title="Do more, for less."
           body="Run the workloads you have been rationing because of cost. At $0.006 per chat against $0.12–$0.50 for frontier APIs, the budget that bought one workload now buys ten."
           visual={
-            <MockCard>
-              <p className="mb-4 text-xs font-medium text-muted-foreground">Avg. cost per chat</p>
-              <div className="space-y-3">
-                <Bar label="Aligned AI" value="$0.006" pct={4} lead />
-                <Bar label="GPT-4o mini" value="$0.045" pct={28} />
-                <Bar label="Gemini 3.1 Pro" value="$0.29" pct={70} />
-                <Bar label="GPT-5.2" value="$0.50" pct={100} />
-              </div>
-            </MockCard>
+            <div className="relative mx-auto max-w-sm">
+              <MockCard className="space-y-3">
+                <p className="text-xs font-medium text-muted-foreground">Monthly spend — 5M chats</p>
+                <div className="flex items-end gap-2 text-foreground">
+                  <span className="text-3xl font-semibold">$30k</span>
+                  <span className="mb-1 text-sm text-success">↓ from $600k</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-muted">
+                  <div className="h-full w-[6%] rounded-full bg-progress" />
+                </div>
+                <p className="text-xs text-muted-foreground">95% lower than frontier APIs at the same volume.</p>
+              </MockCard>
+              <MockCard className="absolute -bottom-8 -right-2 w-44">
+                <p className="text-xs text-muted-foreground">Per chat</p>
+                <p className="text-xl font-semibold">$0.006</p>
+              </MockCard>
+            </div>
           }
         />
 
         <TintedSection
           tint="bg-cyan-bg"
-          accent="text-cyan"
           eyebrow="Accuracy"
           title="Capability without the trade-offs."
           body="Aligned performs at the level of the pioneer models on reasoning, coding, math, and instruction-following — all reproducible on public Hugging Face datasets and independent leaderboards."
           reverse
           visual={
-            <MockCard>
-              <p className="mb-4 text-xs font-medium text-muted-foreground">Aligned vs GPT-4o</p>
-              <div className="space-y-3">
-                <Bar label="GPQA Diamond — Aligned" value="58.2%" pct={58} lead />
-                <Bar label="GPQA Diamond — GPT-4o" value="53.6%" pct={54} />
-                <Bar label="MGSM — Aligned" value="91.2%" pct={91} lead />
-                <Bar label="MGSM — GPT-4o" value="85.5%" pct={86} />
-              </div>
-            </MockCard>
+            <div className="relative mx-auto max-w-sm">
+              <MockCard className="space-y-3">
+                <p className="text-xs font-medium text-muted-foreground">GPQA Diamond</p>
+                {[["Aligned", "58.2%", 58, true], ["GPT-4o", "53.6%", 54, false]].map(([l, v, p, lead]) => (
+                  <div key={l as string} className="space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className={cn(lead ? "font-medium" : "text-muted-foreground")}>{l}</span>
+                      <span className="tabular-nums">{v}</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-muted">
+                      <div className={cn("h-full rounded-full", lead ? "bg-progress" : "bg-foreground/20")} style={{ width: `${p}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </MockCard>
+              <MockCard className="absolute -bottom-8 -left-2 w-40">
+                <p className="text-xs text-muted-foreground">Arena Elo</p>
+                <p className="text-xl font-semibold">1268</p>
+              </MockCard>
+            </div>
           }
         />
+      </div>
 
+      {/* ─── "Fraction of the cost" — vertical bar charts ─────────────── */}
+      <section className="my-24 bg-[#eaf1fd] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-2xl space-y-3 text-center">
+            <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+              Just as good, a fraction of the cost.
+            </h2>
+            <p className="text-muted-foreground">
+              Top-3 accuracy across 13 deployed models, and #1 on accuracy per
+              dollar — with the benchmark named and the source public.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {charts.map((chart) => (
+              <div key={chart.title} className="rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10">
+                <div className="flex items-baseline justify-between">
+                  <h3 className="text-sm font-semibold">{chart.title}</h3>
+                  <span className="text-xs text-muted-foreground">{chart.caption}</span>
+                </div>
+                <div className="mt-6 flex h-44 items-end justify-around gap-3">
+                  {chart.bars.map((b) => (
+                    <div key={b.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
+                      <span className={cn("text-xs tabular-nums", b.lead ? "font-semibold text-foreground" : "text-muted-foreground")}>
+                        {b.value}
+                      </span>
+                      <div
+                        className={cn(
+                          "w-full rounded-t-md",
+                          b.lead ? "bg-gradient-to-t from-progress to-cyan" : "bg-foreground/10"
+                        )}
+                        style={{ height: `${Math.max(b.pct, 4)}%` }}
+                      />
+                      <span className="text-[0.7rem] text-muted-foreground">{b.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Legend + link */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Badge variant="secondary" className="gap-1.5 bg-card">
+              <span className="size-2 rounded-full bg-progress" /> Aligned AI
+            </Badge>
+            <Badge variant="secondary" className="gap-1.5 bg-card">
+              <span className="size-2 rounded-full bg-foreground/30" /> Top 3 frontier
+            </Badge>
+            <Badge variant="secondary" className="gap-1.5 bg-card">
+              <span className="size-2 rounded-full bg-foreground/15" /> Other frontier
+            </Badge>
+          </div>
+          <div className="mt-4 text-center">
+            <Button variant="link">
+              View Benchmarks <ArrowRight />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Tinted sections C & D ────────────────────────────────────── */}
+      <div className="mx-auto max-w-6xl space-y-6 px-6">
         <TintedSection
           tint="bg-mint-bg"
-          accent="text-mint"
           eyebrow="Residency"
           title="Your data stays in the United States."
-          body="Inference runs on US infrastructure with encrypted data in transit and at rest. Dedicated capacity and private deployment available, with data-flow diagrams under NDA."
+          body="Inference runs on US infrastructure with encrypted data in transit and at rest. Dedicated capacity and private deployment are available, with data-flow diagrams under NDA."
           visual={
-            <MockCard className="space-y-3">
-              <div className="flex items-center gap-2 text-sm">
-                <MapPin className="size-4 text-mint" />
-                <span className="font-medium">US boundary</span>
-                <Badge variant="secondary" className="ml-auto bg-mint-bg text-mint">SOC 2</Badge>
-              </div>
-              <Separator />
-              {["Encrypted in transit & at rest", "No training on your data by default", "Full audit logging with export"].map((t) => (
-                <div key={t} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <Check className="mt-0.5 size-4 shrink-0 text-success" />
-                  <span>{t}</span>
+            <div className="relative mx-auto max-w-sm">
+              <MockCard className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <MapPin className="size-4 text-mint" />
+                  <span className="font-medium">US boundary</span>
+                  <Badge variant="secondary" className="ml-auto bg-mint-bg text-mint">SOC 2</Badge>
                 </div>
-              ))}
-            </MockCard>
+                <Separator />
+                {["Encrypted in transit & at rest", "No training on your data by default", "Full audit logging with export"].map((t) => (
+                  <div key={t} className="flex items-start gap-2 text-muted-foreground">
+                    <Check className="mt-0.5 size-4 shrink-0 text-success" />
+                    <span>{t}</span>
+                  </div>
+                ))}
+              </MockCard>
+            </div>
           }
         />
 
         <TintedSection
           tint="bg-orange-bg"
-          accent="text-orange"
           eyebrow="Safety"
           title="Safety is the architecture, not a filter on top."
           body="Classification and verification wrap every call before and after inference. Independent red-team coverage and hallucination reduction are built into the stack — not promised around it."
           reverse
           visual={
-            <MockCard className="space-y-2 font-mono text-xs">
-              {[
-                ["input", "classify · policy gate"],
-                ["inference", "route → strongest model"],
-                ["output", "verify · hallucination check"],
-              ].map(([k, v], i) => (
-                <div key={k} className="flex items-center gap-2">
-                  <span className="flex size-5 items-center justify-center rounded bg-orange-bg text-orange">{i + 1}</span>
-                  <span className="font-medium text-foreground">{k}</span>
-                  <span className="text-muted-foreground">→ {v}</span>
-                </div>
-              ))}
-            </MockCard>
+            <div className="relative mx-auto max-w-sm">
+              <MockCard className="space-y-2 font-mono text-xs">
+                {[
+                  ["input", "classify · policy gate"],
+                  ["inference", "route → strongest model"],
+                  ["output", "verify · hallucination check"],
+                ].map(([k, v], i) => (
+                  <div key={k} className="flex items-center gap-2">
+                    <span className="flex size-5 items-center justify-center rounded bg-orange-bg text-orange">{i + 1}</span>
+                    <span className="font-medium text-foreground">{k}</span>
+                    <span className="text-muted-foreground">→ {v}</span>
+                  </div>
+                ))}
+              </MockCard>
+            </div>
           }
         />
       </div>
 
-      {/* ─── Benchmark comparison ─────────────────────────────────────── */}
-      <div className="mx-auto max-w-6xl space-y-24 px-6 pb-24">
+      {/* ─── Benchmark table · controls · plans ───────────────────────── */}
+      <div className="mx-auto max-w-6xl space-y-24 px-6 py-24">
         <section className="space-y-8">
           <div className="mx-auto max-w-2xl space-y-3 text-center">
-            <Eyebrow className="text-progress">Benchmarks</Eyebrow>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight">
+            <Eyebrow>Benchmarks</Eyebrow>
+            <h2 className="text-balance text-4xl font-semibold tracking-[-0.02em]">
               Compare us to the models you are already evaluating.
             </h2>
             <p className="text-muted-foreground">
@@ -372,18 +493,12 @@ export default function EnterprisePage() {
               </TableBody>
             </Table>
           </div>
-          <p className="text-center text-xs text-muted-foreground">
-            Benchmarks current as of May 2026, report v0.1. Datasets public on
-            Hugging Face; results tracked by the Open LLM Leaderboard, Artificial
-            Analysis, LMSYS Arena, and Stanford HELM.
-          </p>
         </section>
 
-        {/* ─── Deploy with confidence ─────────────────────────────────── */}
-        <section className="grid gap-8 rounded-4xl bg-secondary p-8 ring-1 ring-foreground/10 sm:p-12 md:grid-cols-[1fr_1.2fr]">
+        <section className="grid gap-8 rounded-[2.5rem] bg-secondary p-8 ring-1 ring-foreground/10 sm:p-14 md:grid-cols-[1fr_1.2fr]">
           <div className="space-y-4">
             <Lock className="size-6 text-muted-foreground" />
-            <h2 className="text-2xl font-semibold tracking-tight">Deploy with confidence.</h2>
+            <h2 className="text-3xl font-semibold tracking-[-0.02em]">Deploy with confidence.</h2>
             <p className="text-muted-foreground">
               Enterprise-grade access controls, and we never train our models on
               your data unless you opt in.
@@ -403,13 +518,12 @@ export default function EnterprisePage() {
           </ul>
         </section>
 
-        {/* ─── Engagement plans ───────────────────────────────────────── */}
         <section className="space-y-8">
-          <h2 className="text-center text-3xl font-semibold tracking-tight">Choose how you engage.</h2>
+          <h2 className="text-center text-4xl font-semibold tracking-[-0.02em]">Choose how you engage.</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="flex flex-col gap-4 rounded-2xl bg-card p-6 ring-1 ring-foreground/10">
+            <div className="flex flex-col gap-4 rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10">
               <Sparkles className="size-5 text-cyan" />
-              <h3 className="text-lg font-medium">Enterprise API</h3>
+              <h3 className="text-lg font-semibold">Enterprise API</h3>
               <p className="text-sm leading-6 text-muted-foreground">
                 Frontier-class output through OpenAI-compatible endpoints. Billed
                 in messages with volume pricing. Custom terms available; minimums
@@ -419,9 +533,9 @@ export default function EnterprisePage() {
                 Talk to our team
               </Button>
             </div>
-            <div className="flex flex-col gap-4 rounded-2xl bg-card p-6 ring-1 ring-foreground/10">
+            <div className="flex flex-col gap-4 rounded-2xl bg-card p-6 shadow-sm ring-1 ring-foreground/10">
               <Network className="size-5 text-purple" />
-              <h3 className="text-lg font-medium">Dedicated &amp; private deployment</h3>
+              <h3 className="text-lg font-semibold">Dedicated &amp; private deployment</h3>
               <p className="text-sm leading-6 text-muted-foreground">
                 For strict residency, security, or scale needs. Dedicated
                 capacity, custom data-flow, a named account team, and tailored
