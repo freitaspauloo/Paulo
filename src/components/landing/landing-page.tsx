@@ -132,61 +132,63 @@ export function LandingPage() {
 
   return (
     <main className="w-full overflow-x-hidden bg-white text-foreground">
-      {/* Hero — nav on white; headline + mockup inside rounded gradient frame */}
-      <section className="bg-white px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-5">
-        <nav className={cn(landing.page, "flex h-[4.25rem] items-center justify-between")}>
-          <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold">
-            <span className="flex size-7 items-center justify-center rounded-[8px] bg-[#202020] text-[0.7rem] font-bold text-white">
-              λ
-            </span>
-            Aligned AI
-          </span>
-          <div className="flex items-center gap-1">
-            <LandingGhostButton>Log in</LandingGhostButton>
-            <LandingPrimaryButton
-              href="mailto:enterprise@joinaligned.ai"
-              className="h-9 px-5 text-[0.8125rem]"
-            >
-              Start for free
-            </LandingPrimaryButton>
-          </div>
-        </nav>
-
+      {/* Hero — nav + headline in one bordered frame (white gutter outside) */}
+      <section className="bg-white px-3 pb-8 pt-3 sm:px-5 sm:pb-10 sm:pt-4">
         <div
           className={cn(
             landing.page,
-            "relative mt-3 overflow-hidden border border-black/[0.08] bg-[radial-gradient(ellipse_120%_90%_at_50%_0%,#b8e4f4_0%,#dff3fa_42%,#f5fbfe_78%,#ffffff_100%)] px-4 pb-16 pt-10 sm:mt-4 sm:px-8 sm:pb-20 sm:pt-14",
             landing.heroFrame,
+            "overflow-hidden border border-[#c5d5df] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
           )}
         >
-          <div className="mx-auto max-w-[44rem] space-y-6 text-center">
-            <span
-              className={cn(
-                "mx-auto inline-flex items-center gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]",
-                landing.capsule,
-              )}
-            >
-              <Building2 className="size-3.5" />
-              Aligned for Enterprise
+          <nav className="flex h-[4.25rem] items-center justify-between border-b border-[#d8e3ea] px-5 sm:px-8">
+            <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold">
+              <span className="flex size-7 items-center justify-center rounded-[8px] bg-[#202020] text-[0.7rem] font-bold text-white">
+                λ
+              </span>
+              Aligned AI
             </span>
-            <h1 className="text-balance text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
-              Frontier-class AI, hosted in the US, at a fraction of the cost.
-            </h1>
-            <p className="mx-auto max-w-[36rem] text-pretty text-base leading-7 text-[#646464] sm:text-[1.0625rem]">
-              Aligned matches the pioneer models on the benchmarks that decide real
-              work — and adds what they will not: US-hosted inference, 10–50x lower
-              costs, and safety built into the architecture.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <LandingPrimaryButton href="mailto:enterprise@joinaligned.ai">
-                Talk to our team <ArrowRight className="ml-1 size-4" />
+            <div className="flex items-center gap-1">
+              <LandingGhostButton>Log in</LandingGhostButton>
+              <LandingPrimaryButton
+                href="mailto:enterprise@joinaligned.ai"
+                className="h-9 px-5 text-[0.8125rem]"
+              >
+                Start for free
               </LandingPrimaryButton>
-              <LandingGhostButton>Start for free</LandingGhostButton>
             </div>
-          </div>
+          </nav>
 
-          <div className="mt-12 px-1 sm:mt-14">
-            <HeroWindow />
+          <div className="relative bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)] px-4 pb-16 pt-10 sm:px-8 sm:pb-20 sm:pt-14">
+            <div className="mx-auto max-w-[44rem] space-y-6 text-center">
+              <span
+                className={cn(
+                  "mx-auto inline-flex items-center gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]",
+                  landing.capsule,
+                )}
+              >
+                <Building2 className="size-3.5" />
+                Aligned for Enterprise
+              </span>
+              <h1 className="text-balance text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+                Frontier-class AI, hosted in the US, at a fraction of the cost.
+              </h1>
+              <p className="mx-auto max-w-[36rem] text-pretty text-base leading-7 text-[#646464] sm:text-[1.0625rem]">
+                Aligned matches the pioneer models on the benchmarks that decide real
+                work — and adds what they will not: US-hosted inference, 10–50x lower
+                costs, and safety built into the architecture.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <LandingPrimaryButton href="mailto:enterprise@joinaligned.ai">
+                  Talk to our team <ArrowRight className="ml-1 size-4" />
+                </LandingPrimaryButton>
+                <LandingGhostButton>Start for free</LandingGhostButton>
+              </div>
+            </div>
+
+            <div className="mt-12 px-1 sm:mt-14">
+              <HeroWindow />
+            </div>
           </div>
         </div>
       </section>
