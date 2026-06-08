@@ -7,17 +7,15 @@ import { cn } from "@/lib/utils";
 
 function HeroUserMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex justify-end">
-      <div className="max-w-[85%] rounded-2xl bg-secondary px-4 py-2.5 text-sm leading-6 text-foreground">
-        {children}
-      </div>
+    <div className="w-full rounded-2xl bg-secondary px-4 py-2.5 text-sm leading-6 text-foreground sm:px-5 sm:py-3">
+      {children}
     </div>
   );
 }
 
 function HeroAgentMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-3">
+    <div className="flex w-full gap-3 sm:gap-3.5">
       <Avatar agent="nova" size="sm" className="mt-0.5 shrink-0" />
       <div className="min-w-0 flex-1 space-y-2 text-sm leading-6">{children}</div>
     </div>
@@ -38,7 +36,7 @@ export function HeroWindow() {
           landing.shadowHero,
         )}
       >
-        <div className="flex h-11 shrink-0 items-center gap-2 border-b border-black/[0.06] px-4">
+        <div className="flex h-11 shrink-0 items-center gap-2 border-b border-black/[0.06] px-5 sm:px-6">
           <span className="size-2.5 shrink-0 rounded-full bg-[#ff5f57]" />
           <span className="size-2.5 shrink-0 rounded-full bg-[#febc2e]" />
           <span className="size-2.5 shrink-0 rounded-full bg-[#28c840]" />
@@ -61,29 +59,27 @@ export function HeroWindow() {
           <p>→ dry-run complete · no writes</p>
         </div>
 
-        <div className="px-4 py-5 sm:px-5 sm:py-6">
-          <div className="mx-auto flex max-w-2xl flex-col gap-4">
-            <HeroUserMessage>
-              How do we migrate 12M support chats to the US-hosted lane without
-              downtime?
-            </HeroUserMessage>
-            <HeroAgentMessage>
-              <p>
-                Run a 10% shadow cutover, compare hallucination and cost vs your
-                current provider, then flip by policy ring.
-              </p>
-              <p className="text-muted-foreground">
-                Est. 22x lower cost on pilot volume; all data stays inside the US
-                boundary.
-              </p>
-            </HeroAgentMessage>
-          </div>
+        <div className="flex w-full flex-col gap-4 px-5 py-5 sm:px-6 sm:py-6">
+          <HeroUserMessage>
+            How do we migrate 12M support chats to the US-hosted lane without
+            downtime?
+          </HeroUserMessage>
+          <HeroAgentMessage>
+            <p>
+              Run a 10% shadow cutover, compare hallucination and cost vs your
+              current provider, then flip by policy ring.
+            </p>
+            <p className="text-muted-foreground">
+              Est. 22x lower cost on pilot volume; all data stays inside the US
+              boundary.
+            </p>
+          </HeroAgentMessage>
         </div>
 
-        <div className="shrink-0 border-t border-black/[0.06] p-4 sm:p-5">
+        <div className="shrink-0 px-5 pb-5 sm:px-6 sm:pb-6">
           <AlignedComposer
             status="Live chat — migration pilot"
-            className="mx-auto w-full max-w-2xl"
+            className="w-full max-w-none"
             placeholder="Ask about migration, policy, or cost…"
           />
         </div>
