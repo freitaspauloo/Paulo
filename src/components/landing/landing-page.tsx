@@ -1,11 +1,6 @@
-"use client";
-
-import { useRef } from "react";
 import {
   ArrowRight,
   Building2,
-  ChevronLeft,
-  ChevronRight,
   Code2,
   DollarSign,
   Gauge,
@@ -117,14 +112,8 @@ function StorySection({
 }
 
 export function LandingPage() {
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  const scrollCarousel = (dir: -1 | 1) => {
-    carouselRef.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
-  };
-
   return (
-    <main className="w-full overflow-x-hidden bg-white text-foreground">
+    <main className="w-full bg-white text-foreground">
       {/* Hero — nav on white; gradient frame below (no border) */}
       <section className="bg-white pb-8 pt-3 sm:pb-10 sm:pt-4">
         <nav
@@ -211,7 +200,7 @@ export function LandingPage() {
       </section>
 
       {/* Capabilities */}
-      <section className={cn(landing.page, "px-6 py-20 sm:py-28")}>
+      <section className={cn(landing.page, "min-w-0 px-6 py-20 sm:py-28")}>
         <div className="mx-auto max-w-[40rem] space-y-3 text-center">
           <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
             Put a frontier-class model to work, without the trade-offs
@@ -222,40 +211,12 @@ export function LandingPage() {
           </p>
         </div>
 
-        <div
-          ref={carouselRef}
-          className="-mx-6 mt-12 snap-x snap-mandatory overflow-x-auto px-6 py-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          <div className="flex w-max gap-4 pr-6 sm:gap-5">
+        <div className="mt-12 min-w-0 max-w-full overflow-x-auto overscroll-x-contain py-2 pb-4 snap-x snap-mandatory [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden">
+          <div className="flex w-max gap-4 sm:gap-5">
             {capabilities.map((c) => (
               <CapabilityCard key={c.title} capability={c} />
             ))}
           </div>
-        </div>
-
-        <div className="mt-8 flex items-center justify-center gap-2">
-          <button
-            type="button"
-            aria-label="Previous"
-            onClick={() => scrollCarousel(-1)}
-            className={cn(
-              "flex size-9 items-center justify-center border border-black/[0.1] bg-white text-foreground transition-colors hover:bg-black/[0.03]",
-              landing.capsule,
-            )}
-          >
-            <ChevronLeft className="size-4" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next"
-            onClick={() => scrollCarousel(1)}
-            className={cn(
-              "flex size-9 items-center justify-center border border-black/[0.1] bg-white text-foreground transition-colors hover:bg-black/[0.03]",
-              landing.capsule,
-            )}
-          >
-            <ChevronRight className="size-4" />
-          </button>
         </div>
       </section>
 
