@@ -147,7 +147,7 @@ export function LandingPageV4() {
           kicker="Data residency and compliance"
           accent={sectionTagAccent}
           title="Your data stays in the United States, inside a boundary you can name."
-          body="Inference runs inside a perimeter you can write into a contract and point to in an audit. Nothing is sent offshore, and nothing reaches a third-party model you did not approve, so you can say exactly where your data goes, which most providers cannot. The platform runs on SOC 2-compliant infrastructure with certification underway, and for strict residency needs, dedicated and private deployment are available. A complete data-flow diagram is available under NDA."
+          body="Inference runs inside a perimeter you can contract and audit. Nothing goes offshore or to unapproved third-party models, so you can name exactly where your data goes—unlike most providers. SOC 2-compliant infrastructure with certification underway; dedicated and private deployment for strict residency. Data-flow diagram available under NDA."
           reverse
           visual={<PowerfulVisual />}
         />
