@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
+import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
 import { landing } from "@/components/landing/landing-primitives";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -175,19 +176,19 @@ function BenchmarkBarChart({
 
 export function ChartsSection({
   frameGradient = landing.heroGradient,
+  animatedLimeFrame = false,
 }: {
   frameGradient?: string;
+  animatedLimeFrame?: boolean;
 }) {
-  return (
-    <section className="bg-white py-12 sm:py-16">
-      <div
-        className={cn(
-          landing.heroMargin,
-          landing.heroFrame,
-          frameGradient,
-          "overflow-hidden px-4 py-12 sm:px-8 sm:py-16",
-        )}
-      >
+  const frameClassName = cn(
+    landing.heroMargin,
+    landing.heroFrame,
+    !animatedLimeFrame && frameGradient,
+    "overflow-hidden px-4 py-12 sm:px-8 sm:py-16",
+  );
+
+  const content = (
         <div className="mx-auto w-full max-w-[58rem]">
           <div className="mx-auto max-w-[40rem] space-y-3 text-center">
             <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
@@ -246,7 +247,17 @@ export function ChartsSection({
             </Button>
           </div>
         </div>
-      </div>
+  );
+
+  return (
+    <section className="bg-white py-12 sm:py-16">
+      {animatedLimeFrame ? (
+        <HeroGradientLimeFrame className={frameClassName}>
+          {content}
+        </HeroGradientLimeFrame>
+      ) : (
+        <div className={frameClassName}>{content}</div>
+      )}
     </section>
   );
 }
