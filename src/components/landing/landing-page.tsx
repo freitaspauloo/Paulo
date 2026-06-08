@@ -1,16 +1,6 @@
-import {
-  ArrowRight,
-  Code2,
-  DollarSign,
-  Gauge,
-  GitBranch,
-  Layers,
-  MapPin,
-  ShieldCheck,
-  Sigma,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, DollarSign, Gauge, MapPin } from "lucide-react";
 
+import { CapabilitiesSection } from "@/components/landing/capabilities-section";
 import { ChartsSection } from "@/components/landing/charts-section";
 import {
   BenchmarksSection,
@@ -32,15 +22,6 @@ import {
 } from "@/components/landing/section-visuals";
 import { cn } from "@/lib/utils";
 
-const capabilities = [
-  { title: "Reasoning", body: "Frontier-level on GPQA, DROP, and BIG-Bench Hard — the evals that decide real work.", icon: Sparkles, color: "text-purple" },
-  { title: "Coding", body: "89.3% HumanEval pass@1. Write, debug, and ship faster with errors caught early.", icon: Code2, color: "text-cyan" },
-  { title: "Math", body: "91.2% MGSM, multilingual, every result reproducible on public datasets.", icon: Sigma, color: "text-mint" },
-  { title: "Migration", body: "OpenAI-compatible endpoints — swap a base URL and keep your whole stack.", icon: GitBranch, color: "text-orange" },
-  { title: "Routing", body: "A compound system that swaps in the strongest model for each task.", icon: Layers, color: "text-pink" },
-  { title: "Controls", body: "SOC 2-grade access controls and audit logging, built into the platform.", icon: ShieldCheck, color: "text-brown" },
-];
-
 const stats = [
   { value: "Top 3", label: "accuracy across 13 deployed models, and #1 on accuracy per dollar", icon: Gauge },
   { value: "20–80x", label: "lower cost per chat than frontier APIs, at comparable accuracy", icon: DollarSign },
@@ -53,30 +34,6 @@ const social = [
   { label: "GitHub", path: "M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z" },
   { label: "Instagram", path: "M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 5.84a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2zm5.11-6.76a.93.93 0 1 1-1.87 0 .93.93 0 0 1 1.87 0z" },
 ];
-
-function CapabilityCard({
-  capability: c,
-}: {
-  capability: (typeof capabilities)[number];
-}) {
-  return (
-    <article
-      className={cn(
-        "flex h-full min-h-[15.5rem] flex-col justify-between border border-black/[0.06] bg-white p-5 sm:min-h-[16.5rem] sm:p-6",
-        landing.cardMd,
-        landing.shadowDrop,
-      )}
-    >
-      <c.icon className={cn("size-7 sm:size-8", c.color)} strokeWidth={1.75} />
-      <div className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-[-0.01em] sm:text-xl">
-          {c.title}
-        </h3>
-        <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
-      </div>
-    </article>
-  );
-}
 
 function StorySection({
   eyebrow,
@@ -200,24 +157,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* Capabilities */}
-      <section className={cn(landing.page, "px-6 py-20 sm:py-28")}>
-        <div className="mx-auto max-w-[40rem] space-y-3 text-center">
-          <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
-            Put a frontier-class model to work, without the trade-offs
-          </h2>
-          <p className="text-base text-[#646464]">
-            The same caliber of output the pioneer models give you — on the
-            evaluations enterprises actually run.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-          {capabilities.map((c) => (
-            <CapabilityCard key={c.title} capability={c} />
-          ))}
-        </div>
-      </section>
+      <CapabilitiesSection />
 
       {/* Story sections with layered visuals */}
       <div className={cn(landing.page, "space-y-20 px-6 pb-8 sm:space-y-24")}>
