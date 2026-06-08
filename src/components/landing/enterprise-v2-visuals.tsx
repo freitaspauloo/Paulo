@@ -79,11 +79,11 @@ export function CompoundVisual() {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
+        "relative h-full overflow-hidden rounded-[24px] p-4 sm:p-6",
         landing.sectionVisualFrame,
       )}
     >
-      <div className="relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]">
+      <div className="relative mx-auto h-full min-h-[22rem] w-full sm:min-h-[26rem]">
         <div
           className={cn(
             "absolute inset-0 flex flex-col justify-center gap-4 border border-black/[0.06] bg-white p-6 sm:p-8",
@@ -125,13 +125,13 @@ export function CostSplitVisual() {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
+        "relative h-full overflow-hidden rounded-[24px] p-4 sm:p-6",
         landing.sectionVisualFrame,
       )}
     >
       <div
         className={cn(
-          "flex flex-col gap-6 border border-black/[0.06] bg-white px-6 py-8 sm:gap-7 sm:px-9 sm:py-10",
+          "flex h-full min-h-[22rem] flex-col justify-center gap-6 border border-black/[0.06] bg-white px-6 py-8 sm:min-h-[26rem] sm:gap-7 sm:px-9 sm:py-10",
           landing.cardLg,
           landing.shadowDrop,
         )}

@@ -54,7 +54,7 @@ export function SplitSection({
   const compactCopy = subCardsVariant === "inline";
 
   return (
-    <section className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+    <section className="grid items-stretch gap-10 md:grid-cols-2 md:gap-14">
       <div
         className={cn(
           compactCopy ? "space-y-4" : "space-y-5",
@@ -109,7 +109,7 @@ export function SplitSection({
           <LandingPrimaryButton href={cta}>{ctaLabel}</LandingPrimaryButton>
         ) : null}
       </div>
-      <div className={cn(reverse && "md:order-1")}>{visual}</div>
+      <div className={cn("h-full min-h-0", reverse && "md:order-1")}>{visual}</div>
     </section>
   );
 }
