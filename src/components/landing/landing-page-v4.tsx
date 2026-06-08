@@ -16,7 +16,7 @@ import {
 } from "@/components/landing/enterprise-v2-visuals";
 import { AlignedNavBrand } from "@/components/landing/aligned-nav-brand";
 import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
-import { LandingFooterSocial } from "@/components/landing/landing-footer-social";
+import { LandingFooter } from "@/components/landing/landing-footer";
 import { HeroCommitmentsStrip } from "@/components/landing/hero-commitments-strip";
 import { HeroWindow } from "@/components/landing/hero-window";
 import {
@@ -158,25 +158,7 @@ export function LandingPageV4() {
         <ClosingContactSection />
       </div>
 
-      <footer className="bg-[#202020] px-6 py-14">
-        <div className={cn(landing.page, "flex flex-col items-center gap-5")}>
-          <LandingFooterSocial />
-          <div className="flex items-center gap-6 text-xs text-[#a3a3a3]">
-            <a
-              href="#"
-              className="underline underline-offset-[3px] transition-colors hover:text-[#d4d4d4]"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="underline underline-offset-[3px] transition-colors hover:text-[#d4d4d4]"
-            >
-              Terms of Service
-            </a>
-          </div>
-        </div>
-      </footer>
+      <LandingFooter />
     </main>
   );
 }
