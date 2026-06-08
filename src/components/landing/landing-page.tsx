@@ -188,7 +188,7 @@ export function LandingPage() {
           className={cn(
             landing.heroMargin,
             landing.heroFrame,
-            "overflow-hidden bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)] px-4 pb-16 pt-10 sm:px-8 sm:pb-20 sm:pt-14",
+            "overflow-hidden bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)] px-4 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14",
           )}
         >
           <div className="mx-auto max-w-[44rem] space-y-6 text-center">
@@ -217,29 +217,29 @@ export function LandingPage() {
             </div>
           </div>
 
-          <div className="mt-12 px-1 sm:mt-14">
+          <div className="mx-auto mt-12 w-full max-w-[58rem] px-1 sm:mt-14">
             <HeroWindow />
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className={cn(landing.page, "px-6 pt-16 sm:pt-20")}>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {stats.map((s) => (
-            <div
-              key={s.value}
-              className={cn(
-                "space-y-3 border border-black/[0.06] bg-white p-6",
-                landing.cardMd,
-                landing.shadowCard,
-              )}
-            >
-              <s.icon className="size-5 text-[#646464]" strokeWidth={1.75} />
-              <div className="text-3xl font-semibold tracking-tight">{s.value}</div>
-              <p className="text-sm leading-6 text-[#646464]">{s.label}</p>
+            <div className="mt-4 grid gap-3 sm:mt-5 sm:grid-cols-3 sm:gap-4">
+              {stats.map((s) => (
+                <div
+                  key={s.value}
+                  className={cn(
+                    "space-y-1.5 border border-black/[0.06] bg-white p-4 sm:p-4",
+                    landing.cardSm,
+                    landing.shadowDrop,
+                  )}
+                >
+                  <s.icon className="size-4 text-[#646464]" strokeWidth={1.75} />
+                  <div className="text-xl font-semibold tracking-tight sm:text-[1.35rem]">
+                    {s.value}
+                  </div>
+                  <p className="text-[0.7rem] leading-5 text-[#646464] sm:text-xs sm:leading-5">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
