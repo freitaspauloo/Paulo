@@ -17,6 +17,11 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import {
+  BenchmarksSection,
+  ControlsSection,
+  PlansSection,
+} from "@/components/landing/enterprise-sections";
 import { HeroWindow } from "@/components/landing/hero-window";
 import {
   LandingEyebrow,
@@ -138,7 +143,10 @@ export function LandingPage() {
           </span>
           <div className="flex items-center gap-1">
             <LandingGhostButton>Log in</LandingGhostButton>
-            <LandingPrimaryButton className="h-9 px-5 text-[0.8125rem]">
+            <LandingPrimaryButton
+              href="mailto:enterprise@joinaligned.ai"
+              className="h-9 px-5 text-[0.8125rem]"
+            >
               Start for free
             </LandingPrimaryButton>
           </div>
@@ -372,6 +380,12 @@ export function LandingPage() {
           reverse
           visual={<FamilyVisual />}
         />
+      </div>
+
+      <div className={cn(landing.page, "space-y-20 px-6 py-20 sm:space-y-24 sm:py-24")}>
+        <BenchmarksSection />
+        <ControlsSection />
+        <PlansSection />
       </div>
 
       <footer className="bg-[#202020] px-6 py-14 text-white">

@@ -1,156 +1,58 @@
 "use client";
 
-import {
-  ChevronDown,
-  Mic,
-  PanelLeft,
-  Plus,
-  Share2,
-  UserPlus,
-  Waves,
-} from "lucide-react";
-
 import { landing } from "@/components/landing/landing-primitives";
 import { cn } from "@/lib/utils";
-
-function NavItem({
-  active,
-  children,
-}: {
-  active?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <div
-      className={cn(
-        "rounded-[8px] px-2.5 py-1.5 text-[13px]",
-        active
-          ? "bg-[#f2f2f2] font-medium text-foreground"
-          : "text-[#646464]",
-      )}
-    >
-      {children}
-    </div>
-  );
-}
 
 export function HeroWindow() {
   return (
     <div className="relative mx-auto w-full max-w-[58rem]">
-      {/* Ambient glow behind the window (Figma depth) */}
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-x-8 -top-6 bottom-0 rounded-[32px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(135,206,235,0.45),transparent_68%)] blur-2xl"
       />
       <div
         className={cn(
-          "relative overflow-hidden border border-black/[0.08] bg-white",
+          "relative overflow-hidden border border-black/[0.08] bg-white text-left",
           landing.cardLg,
           landing.shadowHero,
         )}
       >
-        <div className="flex min-h-[26rem] sm:min-h-[30rem]">
-          {/* Sidebar */}
-          <aside className="hidden w-[15.5rem] shrink-0 flex-col border-r border-black/[0.06] bg-[#fafafa] p-3 sm:flex">
-            <div className="mb-3 flex items-center justify-between px-1">
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <span className="flex size-7 items-center justify-center rounded-[8px] bg-[#202020] text-xs text-white">
-                  λ
-                </span>
-                Aligned AI Workspace
-              </div>
-              <PanelLeft className="size-4 text-[#646464]" />
-            </div>
-            <div className="space-y-0.5 text-[13px] text-[#646464]">
-              <NavItem>+ New Chat</NavItem>
-              <NavItem>Search</NavItem>
-              <NavItem>Projects</NavItem>
-              <NavItem>Notes</NavItem>
-              <NavItem>Family</NavItem>
-            </div>
-            <p className="mb-1 mt-5 px-2.5 text-[11px] font-medium uppercase tracking-wide text-[#646464]/80">
-              Chats
+        <div className="flex items-center gap-2 border-b border-black/[0.06] px-4 py-2.5">
+          <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="size-2.5 rounded-full bg-[#febc2e]" />
+          <span className="size-2.5 rounded-full bg-[#28c840]" />
+          <span className="ml-2 font-mono text-xs text-[#646464]">
+            AAI Terminal — supervised · policy: aligned-default
+          </span>
+        </div>
+
+        <div className="space-y-1.5 px-4 py-4 font-mono text-xs leading-relaxed text-[#646464]">
+          <p>
+            <span className="text-[#22a06b]">operator@aligned</span>:
+            <span className="text-cyan">~/workspace</span>${" "}
+            <span className="text-foreground">
+              aai train --playbook ./agents/policy.yaml --dry-run
+            </span>
+          </p>
+          <p className="pl-4">→ checkpoint: waiting for operator confirm (no silent deploy)</p>
+          <p className="pl-4">→ dry-run complete · no writes</p>
+        </div>
+
+        <div className="border-t border-black/[0.06]" />
+
+        <div className="space-y-3 px-4 py-4 text-sm">
+          <span className="text-xs font-medium text-cyan">Live chat — migration pilot</span>
+          <div className="max-w-[85%] rounded-[16px] bg-[#f2f2f2] px-4 py-2.5 leading-6">
+            How do we migrate 12M support chats to the US-hosted lane without downtime?
+          </div>
+          <div className="ml-auto max-w-[85%] space-y-2 rounded-[16px] border border-black/[0.06] bg-[#fafafa] px-4 py-2.5 leading-6">
+            <p>
+              Run a 10% shadow cutover, compare hallucination and cost vs your current
+              provider, then flip by policy ring.
             </p>
-            <div className="space-y-0.5">
-              <NavItem active>Migration pilot</NavItem>
-              <NavItem>US residency review</NavItem>
-              <NavItem>Policy ring rollout</NavItem>
-            </div>
-            <div className="mt-auto flex items-center gap-2 border-t border-black/[0.06] pt-3">
-              <span className="flex size-8 items-center justify-center rounded-full bg-[#202020] text-xs font-semibold text-white">
-                JD
-              </span>
-              <div className="min-w-0 leading-tight">
-                <p className="truncate text-sm font-medium">John Doe</p>
-                <p className="truncate text-xs text-[#646464]">john@example.com</p>
-              </div>
-              <ChevronDown className="ml-auto size-4 shrink-0 text-[#646464]" />
-            </div>
-          </aside>
-
-          {/* Chat column */}
-          <div className="flex min-w-0 flex-1 flex-col">
-            <header className="flex h-12 items-center justify-between border-b border-black/[0.06] px-4 sm:px-5">
-              <span className="text-sm font-semibold">Migration pilot</span>
-              <div className="flex items-center gap-3 text-[#646464]">
-                <Share2 className="size-4" />
-                <UserPlus className="size-4" />
-              </div>
-            </header>
-
-            <div className="flex-1 space-y-5 overflow-hidden px-4 py-5 sm:px-6">
-              <div className="flex justify-end">
-                <p className="max-w-[85%] rounded-[12px] bg-[#f2f2f2] px-4 py-2.5 text-sm leading-6">
-                  How do we migrate 12M support chats to the US-hosted lane without
-                  downtime?
-                </p>
-              </div>
-              <div className="space-y-2 text-sm leading-6">
-                <p>
-                  Run a 10% shadow cutover, compare hallucination and cost vs your
-                  current provider, then flip by policy ring.
-                </p>
-                <p className="text-[#646464]">
-                  Est. 22x lower cost on pilot volume; all data stays inside the US
-                  boundary.
-                </p>
-                <p className="text-xs text-[#646464]">Streaming…</p>
-              </div>
-            </div>
-
-            <div className="border-t border-black/[0.06] p-3 sm:p-4">
-              <div
-                className={cn(
-                  "flex items-center gap-2 border border-black/[0.1] bg-white px-3 py-2",
-                  landing.capsule,
-                )}
-              >
-                <button
-                  type="button"
-                  aria-label="Attach"
-                  className="flex size-8 shrink-0 items-center justify-center rounded-full border border-black/[0.08] text-[#646464]"
-                >
-                  <Plus className="size-4" />
-                </button>
-                <span className="flex-1 text-sm text-[#646464]">
-                  Ask about migration, routing, or controls…
-                </span>
-                <span className="hidden items-center gap-1 rounded-full bg-[#f9f9f9] px-2.5 py-1 text-xs text-[#646464] sm:inline-flex">
-                  Auto <ChevronDown className="size-3" />
-                </span>
-                <span className="hidden rounded-full bg-[#f9f9f9] px-2.5 py-1 text-xs text-[#646464] sm:inline-block">
-                  Production
-                </span>
-                <Mic className="size-4 shrink-0 text-[#646464]" />
-                <button
-                  type="button"
-                  aria-label="Send"
-                  className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#202020] text-white"
-                >
-                  <Waves className="size-4" />
-                </button>
-              </div>
-            </div>
+            <p className="text-[#646464]">
+              Est. 22x lower cost on pilot volume; all data stays inside the US boundary.
+            </p>
           </div>
         </div>
       </div>
