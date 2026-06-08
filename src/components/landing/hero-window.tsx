@@ -33,7 +33,7 @@ export function HeroWindow() {
       />
       <div
         className={cn(
-          "relative flex flex-col overflow-hidden border border-black/[0.08] bg-card text-left",
+          "relative flex flex-col overflow-hidden border border-black/[0.08] bg-white text-left",
           landing.cardLg,
           landing.shadowHero,
         )}
@@ -81,7 +81,7 @@ export function HeroWindow() {
         <div className="shrink-0 px-5 pb-5 sm:px-6 sm:pb-6">
           <AlignedComposer
             status="Live chat — migration pilot"
-            className="w-full max-w-none"
+            className="w-full max-w-none bg-white"
             placeholder="Ask about migration, policy, or cost…"
           />
         </div>
