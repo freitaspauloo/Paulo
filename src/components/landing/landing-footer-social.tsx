@@ -1,120 +1,130 @@
 import { cn } from "@/lib/utils";
 
-/** size-5 (20px) + 25% */
-const iconClass = "size-[1.5625rem] shrink-0";
+const iconClass = "size-[22px] shrink-0";
 
-function SocialInstagram({ className }: { className?: string }) {
+/** Tabler outline brand icons — matches joinaligned.ai dev landing footer */
+function IconBrandInstagram({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={cn(iconClass, className)}
       aria-hidden
     >
-      <defs>
-        <radialGradient
-          id="footer-ig-gradient"
-          cx="30%"
-          cy="107%"
-          r="150%"
-        >
-          <stop offset="0%" stopColor="#fdf497" />
-          <stop offset="5%" stopColor="#fdf497" />
-          <stop offset="45%" stopColor="#fd5949" />
-          <stop offset="60%" stopColor="#d6249f" />
-          <stop offset="90%" stopColor="#285aeb" />
-        </radialGradient>
-      </defs>
-      <rect width="24" height="24" rx="6" fill="url(#footer-ig-gradient)" />
-      <rect
-        x="7"
-        y="7"
-        width="10"
-        height="10"
-        rx="3"
-        fill="none"
-        stroke="white"
-        strokeWidth="1.75"
-      />
-      <circle cx="12" cy="12" r="2.4" fill="none" stroke="white" strokeWidth="1.75" />
-      <circle cx="16.8" cy="7.2" r="1" fill="white" />
+      <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" />
+      <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+      <path d="M16.5 7.5v.01" />
     </svg>
   );
 }
 
-function SocialLinkedIn({ className }: { className?: string }) {
+function IconBrandLinkedIn({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={cn(iconClass, className)}
       aria-hidden
     >
-      <path
-        fill="#0a66c2"
-        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-      />
+      <path d="M8 11v5" />
+      <path d="M8 8v.01" />
+      <path d="M12 16v-5" />
+      <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+      <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" />
     </svg>
   );
 }
 
-function SocialX({ className }: { className?: string }) {
+function IconBrandX({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={cn(iconClass, className)}
       aria-hidden
     >
-      <path
-        fill="white"
-        d="M13.67 10.55 19.9 3h-1.48l-5.4 6.55L8.55 3H3.2l6.53 9.51L3.2 21h1.48l5.71-6.93 4.56 6.93h5.35l-6.83-9.85Zm-2.1 2.55-.66-.94-5.3-7.58h2.28l4.27 6.1.66.94 5.56 7.95h-2.28l-4.53-6.47Z"
-      />
+      <path d="M4 4l11.733 16h4.267l-11.733 -16l-4.267 0" />
+      <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
     </svg>
   );
 }
 
-function SocialTikTok({ className }: { className?: string }) {
+function IconBrandTikTok({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={cn(iconClass, className)}
       aria-hidden
     >
-      <path
-        fill="#25f4ee"
-        d="M15.6 4.5c.55 1.9 1.95 3.35 3.9 3.65v2.65a6.9 6.9 0 0 1-3.9-1.15v6.45a5.35 5.35 0 1 1-5.35-5.35c.2 0 .4.02.6.05v2.75a2.6 2.6 0 1 0 1.85 2.5V4.5h2.9Z"
-        transform="translate(-0.35 -0.35)"
-      />
-      <path
-        fill="#fe2c55"
-        d="M15.6 4.5c.55 1.9 1.95 3.35 3.9 3.65v2.65a6.9 6.9 0 0 1-3.9-1.15v6.45a5.35 5.35 0 1 1-5.35-5.35c.2 0 .4.02.6.05v2.75a2.6 2.6 0 1 0 1.85 2.5V4.5h2.9Z"
-        transform="translate(0.35 0.35)"
-      />
-      <path
-        fill="white"
-        d="M15.6 4.5c.55 1.9 1.95 3.35 3.9 3.65v2.65a6.9 6.9 0 0 1-3.9-1.15v6.45a5.35 5.35 0 1 1-5.35-5.35c.2 0 .4.02.6.05v2.75a2.6 2.6 0 1 0 1.85 2.5V4.5h2.9Z"
-      />
+      <path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917" />
     </svg>
   );
 }
 
-const linkClass = cn(
-  "flex items-center justify-center transition-opacity hover:opacity-80",
+export const LANDING_FOOTER_SOCIAL_LINKS = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/joinaligned.ai?igsh=eGE4cDJ4M2RrOWs1",
+    Icon: IconBrandInstagram,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/join-aligned-ai/",
+    Icon: IconBrandLinkedIn,
+  },
+  {
+    label: "X",
+    href: "https://x.com/joinalignedai?s=21",
+    Icon: IconBrandX,
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@joinalignedai?_r=1&_t=ZT-972aZhQmO8z",
+    Icon: IconBrandTikTok,
+  },
+] as const;
+
+const socialLinkClass = cn(
+  "inline-flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2",
+  "text-white/55 transition-colors hover:bg-white/[0.08] hover:text-white",
 );
 
 export function LandingFooterSocial({ className }: { className?: string }) {
   return (
-    <div className={cn("flex items-center gap-5", className)}>
-      <a href="#" aria-label="Instagram" className={linkClass}>
-        <SocialInstagram />
-      </a>
-      <a href="#" aria-label="LinkedIn" className={linkClass}>
-        <SocialLinkedIn />
-      </a>
-      <a href="#" aria-label="X" className={linkClass}>
-        <SocialX />
-      </a>
-      <a href="#" aria-label="TikTok" className={linkClass}>
-        <SocialTikTok />
-      </a>
+    <div
+      className={cn("flex shrink-0 items-center gap-[22px] text-white/55", className)}
+      aria-label="Social"
+    >
+      {LANDING_FOOTER_SOCIAL_LINKS.map(({ label, href, Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={label}
+          aria-label={label}
+          className={socialLinkClass}
+        >
+          <Icon />
+        </a>
+      ))}
     </div>
   );
 }

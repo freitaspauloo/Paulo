@@ -1,42 +1,72 @@
 import { LandingFooterSocial } from "@/components/landing/landing-footer-social";
-import { landing } from "@/components/landing/landing-primitives";
 import { cn } from "@/lib/utils";
 
-const NAV_LINKS = ["Enterprise", "Benchmarks", "Pricing", "FAQ"] as const;
+/** Matches joinaligned.ai dev landing footer (09-footer) */
+const SITE = "https://joinaligned.ai";
+
+const NAV_LINKS = [
+  { label: "Enterprise", href: `${SITE}/org/enterprise` },
+  { label: "Benchmarks", href: `${SITE}/documentation/benchmarks` },
+  { label: "Pricing", href: `${SITE}/choose-plan` },
+] as const;
+
+const LEGAL_LINKS = [
+  { label: "Privacy Policy", href: `${SITE}/legal/privacy-policy` },
+  { label: "Terms of Service", href: `${SITE}/legal/terms` },
+] as const;
 
 export function LandingFooter() {
   return (
-    <footer className="bg-[#202020] px-6 py-14 text-white">
-      <div className={cn(landing.page, "flex flex-col gap-10")}>
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-white/70 transition-colors hover:text-white"
-              >
-                {link}
-              </a>
-            ))}
+    <footer
+      data-dl="section"
+      data-dl-footer="true"
+      className="flex w-full justify-center bg-[#171717] py-9"
+    >
+      <div className="box-border w-full max-w-[1320px] px-6">
+        <div className="flex w-full flex-col items-stretch gap-6">
+          <div className="flex w-full flex-col items-stretch gap-[18px] min-[721px]:flex-row min-[721px]:items-center min-[721px]:justify-between min-[721px]:gap-6">
+            <nav
+              aria-label="Footer"
+              className="flex w-full flex-wrap items-center justify-evenly gap-x-1.5 gap-y-1.5 min-[721px]:w-auto min-[721px]:flex-nowrap min-[721px]:justify-start min-[721px]:gap-x-9"
+            >
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={cn(
+                    "whitespace-nowrap text-xs font-medium leading-5 text-white/[0.72]",
+                    "transition-colors hover:text-white",
+                    "min-[721px]:text-sm min-[721px]:leading-5",
+                  )}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            <LandingFooterSocial className="justify-center min-[721px]:justify-end" />
           </div>
-          <LandingFooterSocial />
-        </div>
-        <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-white/60">
-          <p>© 2026 Aligned AI Inc. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="underline underline-offset-[3px] transition-colors hover:text-white"
+
+          <div className="flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-2.5">
+            <p className="m-0 min-w-0 flex-[1_1_auto] text-[13px] font-normal leading-[18px] text-white/[0.48]">
+              © 2026 Aligned AI Inc. All rights reserved.
+            </p>
+            <div
+              aria-label="Legal"
+              className="flex shrink-0 flex-wrap items-center gap-4 min-[721px]:gap-5"
             >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="underline underline-offset-[3px] transition-colors hover:text-white"
-            >
-              Terms of Service
-            </a>
+              {LEGAL_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={cn(
+                    "whitespace-nowrap text-[13px] font-normal leading-[18px] text-white/[0.48]",
+                    "underline decoration-1 underline-offset-[3px] transition-colors hover:text-white",
+                  )}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
