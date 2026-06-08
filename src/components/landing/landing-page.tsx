@@ -217,8 +217,8 @@ export function LandingPage() {
       </section>
 
       {/* Capabilities */}
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-[40rem] space-y-3 px-6 text-center">
+      <section className={cn(landing.page, "px-6 py-20 sm:py-28")}>
+        <div className="mx-auto max-w-[40rem] space-y-3 text-center">
           <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
             Put a frontier-class model to work, without the trade-offs
           </h2>
@@ -230,24 +230,26 @@ export function LandingPage() {
 
         <div
           ref={carouselRef}
-          className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:gap-5 sm:px-[max(1.5rem,calc((100%-72rem)/2+1.5rem))] [&::-webkit-scrollbar]:hidden"
+          className="mt-12 overflow-x-auto py-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {capabilities.map((c) => (
-            <article
-              key={c.title}
-              className={cn(
-                "flex min-h-[19rem] w-[18.5rem] shrink-0 snap-start flex-col justify-between border border-black/[0.06] bg-white p-7",
-                landing.cardMd,
-                landing.shadowCard,
-              )}
-            >
-              <c.icon className={cn("size-8", c.color)} strokeWidth={1.75} />
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold tracking-[-0.01em]">{c.title}</h3>
-                <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
-              </div>
-            </article>
-          ))}
+          <div className="mx-auto flex w-max max-w-full snap-x snap-mandatory gap-4 sm:gap-5">
+            {capabilities.map((c) => (
+              <article
+                key={c.title}
+                className={cn(
+                  "flex min-h-[19rem] w-[18.5rem] shrink-0 snap-start flex-col justify-between border border-black/[0.06] bg-white p-7",
+                  landing.cardMd,
+                  landing.shadowDrop,
+                )}
+              >
+                <c.icon className={cn("size-8", c.color)} strokeWidth={1.75} />
+                <div className="space-y-2">
+                  <h3 className="text-xl font-semibold tracking-[-0.01em]">{c.title}</h3>
+                  <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className="mt-8 flex items-center justify-center gap-2">
