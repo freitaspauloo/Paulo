@@ -175,23 +175,30 @@ export function LandingPage() {
 
           <div className="mx-auto mt-12 w-full max-w-[58rem] px-1 sm:mt-14">
             <HeroWindow />
-            <div className="mt-4 grid gap-3 sm:mt-5 sm:grid-cols-3 sm:gap-4">
+            <div
+              className={cn(
+                "mt-4 flex flex-col divide-y divide-black/[0.06] border border-black/[0.06] bg-white sm:mt-5 sm:flex-row sm:divide-x sm:divide-y-0",
+                landing.cardSm,
+                landing.shadowDrop,
+              )}
+            >
               {stats.map((s) => (
                 <div
                   key={s.value}
-                  className={cn(
-                    "space-y-1.5 border border-black/[0.06] bg-white p-4 sm:p-4",
-                    landing.cardSm,
-                    landing.shadowDrop,
-                  )}
+                  className="flex flex-1 items-start gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5"
                 >
-                  <s.icon className="size-4 text-[#646464]" strokeWidth={1.75} />
-                  <div className="text-xl font-semibold tracking-tight sm:text-[1.35rem]">
-                    {s.value}
+                  <s.icon
+                    className="mt-0.5 size-3.5 shrink-0 text-[#646464]"
+                    strokeWidth={1.75}
+                  />
+                  <div className="min-w-0 space-y-0.5">
+                    <div className="text-base font-semibold tracking-tight sm:text-lg">
+                      {s.value}
+                    </div>
+                    <p className="text-[0.65rem] leading-4 text-[#646464] sm:text-[0.7rem] sm:leading-[1.125rem]">
+                      {s.label}
+                    </p>
                   </div>
-                  <p className="text-[0.7rem] leading-5 text-[#646464] sm:text-xs sm:leading-5">
-                    {s.label}
-                  </p>
                 </div>
               ))}
             </div>
