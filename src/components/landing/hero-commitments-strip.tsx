@@ -14,7 +14,7 @@ export function HeroCommitmentsStrip({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-[50rem] overflow-hidden border border-black/[0.08] bg-white text-[#202020]",
+        "w-full overflow-hidden border border-black/[0.08] bg-white text-[#202020]",
         landing.cardSm,
         landing.shadowDrop,
         className,
