@@ -18,11 +18,13 @@ function PhotoScene({
   image,
   alt,
   tint,
+  overlayClassName = "from-black/30 via-black/5 to-transparent",
   children,
 }: {
   image: string;
   alt: string;
   tint: string;
+  overlayClassName?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -40,7 +42,12 @@ function PhotoScene({
             alt={alt}
             className="size-full object-cover motion-safe:scale-100 motion-safe:transition-transform motion-safe:duration-[2s] motion-safe:ease-out hover:motion-safe:scale-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-black/0" />
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-t",
+              overlayClassName,
+            )}
+          />
         </div>
         {children}
       </div>
@@ -112,8 +119,9 @@ export function PrivateVisual() {
   return (
     <PhotoScene
       image={photos.cost}
-      alt="Professional reviewing cost analytics"
-      tint="bg-purple-bg"
+      alt="Enterprise team in a modern corporate workspace"
+      tint="bg-[#eef1f4]"
+      overlayClassName="from-black/40 via-black/15 to-transparent"
     >
       <OverlayCard
         className="right-2 top-6 w-[min(100%,16.5rem)] sm:right-8 sm:w-[18rem]"
