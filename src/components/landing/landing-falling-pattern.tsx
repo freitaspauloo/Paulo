@@ -8,15 +8,16 @@ export type LandingPatternVariant = "cyan" | "lime";
 /** Tuned to match each frame palette — uses full halftone blur overlay like the 21st demo */
 const FRAME_PRESETS: Record<
   LandingPatternVariant,
-  { backgroundColor: string; color: string }
+  { backgroundColor: string; color: string; blurIntensity?: string }
 > = {
   cyan: {
     backgroundColor: "#f6fbfe",
     color: "rgba(16, 125, 152, 0.55)",
   },
   lime: {
-    backgroundColor: "#f0faf4",
-    color: "rgba(28, 145, 88, 0.72)",
+    backgroundColor: "#e4f6ea",
+    color: "rgba(16, 120, 68, 0.9)",
+    blurIntensity: "0.75em",
   },
 };
 
@@ -36,7 +37,7 @@ export function LandingFallingPattern({
       backgroundColor={preset.backgroundColor}
       color={preset.color}
       duration={150}
-      blurIntensity="1em"
+      blurIntensity={preset.blurIntensity ?? "1em"}
       density={1}
       showOverlay
     />
