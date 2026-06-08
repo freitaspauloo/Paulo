@@ -173,14 +173,18 @@ function BenchmarkBarChart({
   );
 }
 
-export function ChartsSection() {
+export function ChartsSection({
+  frameGradient = landing.heroGradient,
+}: {
+  frameGradient?: string;
+}) {
   return (
     <section className="bg-white py-12 sm:py-16">
       <div
         className={cn(
           landing.heroMargin,
           landing.heroFrame,
-          landing.heroGradient,
+          frameGradient,
           "overflow-hidden px-4 py-12 sm:px-8 sm:py-16",
         )}
       >

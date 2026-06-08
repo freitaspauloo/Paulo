@@ -147,7 +147,7 @@ export function LandingPageV3() {
             landing.heroMargin,
             landing.heroFrame,
             "overflow-hidden px-4 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14",
-            landing.heroGradient,
+            landing.heroGradientLime,
           )}
         >
           <div className="mx-auto max-w-[44rem] space-y-6 text-center">
@@ -238,7 +238,7 @@ export function LandingPageV3() {
         />
       </div>
 
-      <ChartsSection />
+      <ChartsSection frameGradient={landing.heroGradientLime} />
 
       <div className={cn(landing.page, "space-y-20 px-6 pb-24 sm:space-y-24 sm:pb-28")}>
         <StorySection
