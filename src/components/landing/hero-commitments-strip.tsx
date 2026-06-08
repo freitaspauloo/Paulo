@@ -14,25 +14,25 @@ export function HeroCommitmentsStrip({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "w-full overflow-hidden border border-black/[0.08] bg-white text-[#202020]",
-        landing.cardSm,
-        landing.shadowDrop,
+        "flex w-full flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3",
         className,
       )}
     >
-      <div className="grid divide-y divide-black/[0.08] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-        {COMMITMENT_ITEMS.map((item) => (
-          <div
-            key={item.label}
-            className="flex flex-col items-center gap-2 px-4 py-4 text-center sm:px-5 sm:py-4"
-          >
-            <item.icon className="size-4 text-[#202020]" strokeWidth={1.75} />
-            <p className="text-[0.8125rem] font-medium leading-5 text-[#202020] sm:whitespace-nowrap">
-              {item.label}
-            </p>
-          </div>
-        ))}
-      </div>
+      {COMMITMENT_ITEMS.map((item) => (
+        <div
+          key={item.label}
+          className={cn(
+            "inline-flex items-center justify-center gap-2 border border-black/[0.08] bg-white px-4 py-2.5 text-[#202020] sm:px-5 sm:py-3",
+            landing.capsule,
+            landing.shadowDrop,
+          )}
+        >
+          <item.icon className="size-4 shrink-0 text-[#202020]" strokeWidth={1.75} />
+          <p className="text-center text-[0.8125rem] font-medium leading-5 sm:whitespace-nowrap">
+            {item.label}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
