@@ -445,7 +445,7 @@ export function PlatformTabsSection() {
           landing.shadowCard,
         )}
       >
-        <ul className="grid gap-2 sm:grid-cols-2">
+        <ul className="grid gap-y-5 gap-x-8 sm:grid-cols-2 sm:gap-y-6 sm:gap-x-10">
           {panel.tasks.map((task) => (
             <li
               key={task}
