@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { Check, MapPin } from "lucide-react";
 
 import { landing } from "@/components/landing/landing-primitives";
+import {
+  SectionVisualShell,
+  sectionVisualStageClass,
+  type SectionVisualFrame,
+} from "@/components/landing/section-visual-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -18,16 +23,18 @@ function PhotoScene({
   image,
   alt,
   overlayClassName = "from-black/30 via-black/5 to-transparent",
+  frame = "gray",
   children,
 }: {
   image: string;
   alt: string;
   overlayClassName?: string;
+  frame?: SectionVisualFrame;
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn(landing.sectionVisualShell, landing.sectionVisualFrame)}>
-      <div className={landing.sectionVisualStage}>
+    <SectionVisualShell frame={frame}>
+      <div className={sectionVisualStageClass(frame)}>
         <div
           className={cn(
             "absolute inset-0 overflow-hidden",
@@ -49,7 +56,7 @@ function PhotoScene({
         </div>
         {children}
       </div>
-    </div>
+    </SectionVisualShell>
   );
 }
 
@@ -191,11 +198,12 @@ export function AnswersVisual() {
   );
 }
 
-export function PowerfulVisual() {
+export function PowerfulVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
     <PhotoScene
       image={photos.residency}
       alt="US data center infrastructure"
+      frame={frame}
     >
       <OverlayCard
         className="right-3 top-8 w-[min(100%,18rem)] sm:right-10 sm:w-[19rem]"
@@ -231,11 +239,12 @@ export function PowerfulVisual() {
   );
 }
 
-export function FamilyVisual() {
+export function FamilyVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
     <PhotoScene
       image={photos.safety}
       alt="Security and safety architecture review"
+      frame={frame}
     >
       <OverlayCard
         className="left-1/2 top-8 w-fit max-w-[calc(100%-1.5rem)] -translate-x-1/2"

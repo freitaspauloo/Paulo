@@ -4,6 +4,11 @@ import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
 import { landing } from "@/components/landing/landing-primitives";
 import {
+  SectionVisualShell,
+  sectionVisualStageClass,
+  type SectionVisualFrame,
+} from "@/components/landing/section-visual-shell";
+import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -75,10 +80,10 @@ function CostBarShape({ x = 0, y = 0, width = 0, height = 0, fill, payload }: Ba
   );
 }
 
-export function CompoundVisual() {
+export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
-    <div className={cn(landing.sectionVisualShell, landing.sectionVisualFrame)}>
-      <div className={landing.sectionVisualStage}>
+    <SectionVisualShell frame={frame}>
+      <div className={sectionVisualStageClass(frame)}>
         <div
           className={cn(
             "absolute inset-0 flex flex-col justify-center gap-4 border border-black/[0.06] bg-white p-6 sm:p-8",
@@ -112,14 +117,14 @@ export function CompoundVisual() {
           </div>
         </div>
       </div>
-    </div>
+    </SectionVisualShell>
   );
 }
 
-export function CostSplitVisual() {
+export function CostSplitVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
-    <div className={cn(landing.sectionVisualShell, landing.sectionVisualFrame)}>
-      <div className={landing.sectionVisualStage}>
+    <SectionVisualShell frame={frame}>
+      <div className={sectionVisualStageClass(frame)}>
         <div
           className={cn(
             "absolute inset-0 flex flex-col justify-center gap-4 border border-black/[0.06] bg-white p-5 sm:gap-4 sm:p-6",
@@ -245,6 +250,6 @@ export function CostSplitVisual() {
           </div>
         </div>
       </div>
-    </div>
+    </SectionVisualShell>
   );
 }

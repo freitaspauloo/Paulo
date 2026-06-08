@@ -109,7 +109,7 @@ export function LandingPageV4() {
             label: "Read how the compound system works",
             href: "#",
           }}
-          visual={<CompoundVisual />}
+          visual={<CompoundVisual frame="lime" />}
         />
 
         <SplitSection
@@ -120,7 +120,7 @@ export function LandingPageV4() {
           cta={ENTERPRISE_MAIL}
           ctaLabel="Model your cost"
           reverse
-          visual={<CostSplitVisual />}
+          visual={<CostSplitVisual frame="lime" />}
         />
 
         <SplitSection
@@ -140,7 +140,7 @@ export function LandingPageV4() {
             },
           ]}
           bodyClose="Built for regulated, data-sensitive, and customer-facing work."
-          visual={<FamilyVisual />}
+          visual={<FamilyVisual frame="lime" />}
         />
 
         <SplitSection
@@ -149,7 +149,7 @@ export function LandingPageV4() {
           title="Your data stays in the United States, inside a boundary you can name."
           body="Inference runs inside a perimeter you can contract and audit. Nothing goes offshore or to unapproved third-party models, so you can name exactly where your data goes—unlike most providers. SOC 2-compliant infrastructure with certification underway; dedicated and private deployment for strict residency. Data-flow diagram available under NDA."
           reverse
-          visual={<PowerfulVisual />}
+          visual={<PowerfulVisual frame="lime" />}
         />
 
         <DataProtectionMatrixSection />
