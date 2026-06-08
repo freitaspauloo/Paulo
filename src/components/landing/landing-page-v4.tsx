@@ -15,7 +15,7 @@ import {
   CompoundVisual,
   CostSplitVisual,
 } from "@/components/landing/enterprise-v2-visuals";
-import { BrandedLambdaMark } from "@/components/landing/branded-lambda-mark";
+import { AlignedNavBrand } from "@/components/landing/aligned-nav-brand";
 import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
 import { LandingFooterSocial } from "@/components/landing/landing-footer-social";
 import { HeroWindow } from "@/components/landing/hero-window";
@@ -40,10 +40,7 @@ export function LandingPageV4() {
             "flex h-[4.25rem] items-center justify-between",
           )}
         >
-          <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold tracking-[-0.01em]">
-            <BrandedLambdaMark />
-            Aligned AI
-          </span>
+          <AlignedNavBrand />
           <div className="flex items-center gap-1">
             <LandingGhostButton>Log in</LandingGhostButton>
             <LandingPrimaryButton
