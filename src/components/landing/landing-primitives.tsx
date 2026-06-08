@@ -10,9 +10,9 @@ export const landing = {
   heroFrame: "rounded-[2.5rem]",
   heroGradient:
     "bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)]",
-  /** v3 — mint-tinted top → soft sage bottom */
+  /** v3 — mint-tinted top → lime bottom */
   heroGradientLime:
-    "bg-[linear-gradient(180deg,#f5faf7_0%,#eef7f2_24%,#dfece6_52%,#c2dbc8_82%,#b8d4c0_100%)]",
+    "bg-[linear-gradient(180deg,#f5faf7_0%,#ecf8f0_24%,#d8f2e0_50%,#9ee0b0_78%,#7ed99a_100%)]",
   /** ~10% gutter each side; clamps so margins never disappear on small screens */
   heroMargin: "mx-[clamp(1rem,10%,6rem)] w-[calc(100%-2*clamp(1rem,10%,6rem))]",
   /** Story-section photo frames — flat light grey, no tint gradient */

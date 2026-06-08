@@ -15,8 +15,8 @@ const FRAME_PRESETS: Record<
     color: "rgba(16, 125, 152, 0.55)",
   },
   lime: {
-    backgroundColor: "#f5faf7",
-    color: "rgba(34, 160, 107, 0.5)",
+    backgroundColor: "#f0faf4",
+    color: "rgba(28, 145, 88, 0.72)",
   },
 };
 
