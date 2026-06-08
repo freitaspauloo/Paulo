@@ -2,12 +2,27 @@
 
 import {
   ArrowDown,
+  Ban,
+  BarChart3,
   Check,
+  Clock,
+  EyeOff,
+  FileSearch,
+  HardDrive,
+  Key,
+  KeyRound,
   Link2,
+  Lock,
   MapPin,
+  MegaphoneOff,
+  ScrollText,
+  Server,
   Shield,
   ShieldCheck,
   Sparkles,
+  UserCog,
+  Users,
+  type LucideIcon,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -175,10 +190,17 @@ export function BenefitBlurbsSection() {
             "flex flex-col gap-3 border border-black/[0.06] bg-white p-6",
             landing.cardMd,
             landing.shadowCard,
-            blurb.emphasis && "ring-1 ring-black/[0.04]",
+            blurb.emphasis &&
+              "border-[#22a06b]/20 bg-[#22a06b]/[0.04] ring-2 ring-[#22a06b]/12",
           )}
         >
-          <blurb.icon className="size-5 text-[#646464]" strokeWidth={1.75} />
+          <blurb.icon
+            className={cn(
+              "size-5",
+              blurb.emphasis ? "text-[#22a06b]" : "text-[#646464]",
+            )}
+            strokeWidth={1.75}
+          />
           <h3 className="text-base font-semibold leading-snug">{blurb.title}</h3>
           <p className="text-sm leading-6 text-[#646464]">{blurb.body}</p>
         </article>
@@ -187,59 +209,59 @@ export function BenefitBlurbsSection() {
   );
 }
 
-const matrixGroups = [
+const matrixItems: {
+  icon: LucideIcon;
+  label: string;
+  body: string;
+  keystone?: boolean;
+}[] = [
   {
-    title: "Privacy",
-    items: [
-      {
-        label: "Never trained on",
-        body: "Your conversations never train our models unless you explicitly opt in, on any tier.",
-      },
-      {
-        label: "Never sold or shared",
-        body: "Your prompts and outputs are never sold, rented, or handed to a third party.",
-      },
-      {
-        label: "No ads, ever",
-        body: "We earn from subscriptions, not your attention, with no ad model on any plan.",
-      },
-    ],
+    icon: Ban,
+    label: "Never trained on",
+    body: "Your conversations never train our models unless you explicitly opt in, on any tier.",
   },
   {
-    title: "Encryption",
-    items: [
-      {
-        label: "Encrypted in transit",
-        body: "Every request and response is encrypted on the wire, by default, with no exceptions.",
-      },
-      {
-        label: "Encrypted at rest",
-        body: "Stored data is encrypted, with keys we can scope to your own environment.",
-      },
-      {
-        label: "US-hosted",
-        body: "Inference runs on US infrastructure, inside a boundary you can name in a contract.",
-      },
-    ],
+    icon: EyeOff,
+    label: "Never sold or shared",
+    body: "Your prompts and outputs are never sold, rented, or handed to a third party.",
   },
   {
-    title: "Control",
-    items: [
-      {
-        label: "No third-party leakage",
-        body: "Requests never reach an outside model that you have not explicitly approved.",
-      },
-      {
-        label: "You control retention",
-        body: "Set how long your data is kept, and delete any of it on demand.",
-      },
-      {
-        label: "Audited access",
-        body: "Every access to your data is logged, queryable, and exportable for your own review.",
-      },
-    ],
+    icon: MegaphoneOff,
+    label: "No ads, ever",
+    body: "We earn from subscriptions, not your attention, with no ad model on any plan.",
   },
-] as const;
+  {
+    icon: Lock,
+    label: "Encrypted in transit",
+    body: "Every request and response is encrypted on the wire, by default, with no exceptions.",
+  },
+  {
+    icon: HardDrive,
+    label: "Encrypted at rest",
+    body: "Stored data is encrypted, with keys we can scope to your own environment.",
+  },
+  {
+    icon: MapPin,
+    label: "US-hosted",
+    body: "Inference runs on US infrastructure, inside a boundary you can name in a contract.",
+    keystone: true,
+  },
+  {
+    icon: Shield,
+    label: "No third-party leakage",
+    body: "Requests never reach an outside model that you have not explicitly approved.",
+  },
+  {
+    icon: Clock,
+    label: "You control retention",
+    body: "Set how long your data is kept, and delete any of it on demand.",
+  },
+  {
+    icon: FileSearch,
+    label: "Audited access",
+    body: "Every access to your data is logged, queryable, and exportable for your own review.",
+  },
+];
 
 export function DataProtectionMatrixSection() {
   return (
@@ -262,22 +284,29 @@ export function DataProtectionMatrixSection() {
           landing.shadowCard,
         )}
       >
-        <div className="grid divide-y divide-black/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0">
-          {matrixGroups.map((group) => (
-            <div key={group.title} className="space-y-5 p-6 sm:p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#646464]">
-                {group.title}
-              </p>
-              <ul className="space-y-5">
-                {group.items.map((item) => (
-                  <li key={item.label} className="space-y-1.5">
-                    <p className="text-sm font-semibold leading-snug">{item.label}</p>
-                    <p className="text-sm leading-6 text-[#646464]">{item.body}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="grid gap-px bg-black/[0.06] sm:grid-cols-3">
+          {matrixItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article
+                key={item.label}
+                className={cn(
+                  "flex flex-col gap-2.5 bg-white p-5 sm:p-6",
+                  item.keystone && "bg-[#f4fbf7]",
+                )}
+              >
+                <Icon
+                  className={cn(
+                    "size-5",
+                    item.keystone ? "text-[#22a06b]" : "text-[#646464]",
+                  )}
+                  strokeWidth={1.75}
+                />
+                <p className="text-sm font-semibold leading-snug">{item.label}</p>
+                <p className="text-sm leading-6 text-[#646464]">{item.body}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -307,38 +336,39 @@ const weekStages = [
   },
 ] as const;
 
+const weekStageLabels = ["Evaluate", "Integrate", "Deploy"] as const;
+
 export function FirstWeekSection() {
   return (
     <section className="space-y-10">
       <h2 className="mx-auto max-w-[40rem] text-center text-balance text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
         Here is what you can stand up with Aligned in your first week.
       </h2>
-      <div className="grid gap-6 md:grid-cols-3">
-        {weekStages.map((stage, i) => (
-          <article
-            key={stage.title}
-            className={cn(
-              "space-y-4 border border-black/[0.06] bg-white p-6",
-              landing.cardMd,
-              landing.shadowCard,
-            )}
-          >
-            <div className="flex items-center gap-3">
-              <span className="flex size-8 items-center justify-center rounded-full bg-[#202020] text-xs font-semibold text-white">
-                {i + 1}
-              </span>
-              <h3 className="font-semibold">{stage.title}</h3>
-            </div>
-            <ul className="space-y-3">
-              {stage.items.map((item) => (
-                <li key={item} className="flex gap-2.5 text-sm leading-6 text-[#646464]">
-                  <Check className="mt-0.5 size-4 shrink-0 text-[#22a06b]" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
+      <div className="relative">
+        <div
+          aria-hidden
+          className="absolute top-5 right-[16.67%] left-[16.67%] hidden h-px bg-black/[0.08] md:block"
+        />
+        <div className="grid gap-8 md:grid-cols-3 md:gap-6">
+          {weekStages.map((stage, i) => (
+            <article key={stage.title} className="relative space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full border-4 border-white bg-[#22a06b] text-white shadow-sm">
+                  <Check className="size-4" strokeWidth={2.5} />
+                </span>
+                <h3 className="font-semibold">{weekStageLabels[i]}</h3>
+              </div>
+              <ul className="space-y-3 pl-[3.25rem] md:pl-0">
+                {stage.items.map((item) => (
+                  <li key={item} className="flex gap-2.5 text-sm leading-6 text-[#646464]">
+                    <Check className="mt-0.5 size-4 shrink-0 text-[#22a06b]/70" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -482,16 +512,19 @@ export function PlatformTabsSection() {
             </li>
           ))}
         </ul>
-        <div className="border-t border-black/[0.06] pt-4" />
-        <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
-          Example prompt
-        </p>
-        <p className="text-sm leading-6">{panel.prompt}</p>
-        <div className="border-t border-black/[0.06] pt-4">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#646464]">
+        <div className="space-y-3 border-t border-black/[0.06] pt-5">
+          <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
+            Example prompt
+          </p>
+          <div className="rounded-lg border border-black/[0.06] bg-[#fafafa] px-4 py-3 font-mono text-sm leading-6">
+            {panel.prompt}
+          </div>
+          <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
             Output
           </p>
-          <p className="text-sm leading-6 text-[#646464]">{panel.output}</p>
+          <div className="rounded-lg border border-black/[0.06] border-l-[3px] border-l-[#22a06b] bg-white px-4 py-3 text-sm leading-6 text-[#646464]">
+            {panel.output}
+          </div>
         </div>
       </div>
 
@@ -503,19 +536,48 @@ export function PlatformTabsSection() {
   );
 }
 
-const controlTiles = [
-  ["Single sign-on (SSO)", "[PLANNED: confirm availability]"],
-  ["Role-based access", "fine-grained permissioning [PLANNED: confirm]"],
-  ["Per-environment API keys", "self-serve issuance and revocation"],
-  ["Audit logging", "[PLACEHOLDER: scope, retention, export]"],
-  ["Usage and spend analytics", "billed in messages"],
-  ["Dedicated and private deployment", "for strict residency and scale needs"],
-  ["SCIM provisioning", "automated user lifecycle management [PLANNED: confirm]"],
-  [
-    "SOC 2",
-    "running on SOC 2-compliant infrastructure, certification in process",
-  ],
-] as const;
+const controlTiles: { icon: LucideIcon; title: string; body: string }[] = [
+  {
+    icon: KeyRound,
+    title: "Single sign-on (SSO)",
+    body: "[PLANNED: confirm availability]",
+  },
+  {
+    icon: Users,
+    title: "Role-based access",
+    body: "fine-grained permissioning [PLANNED: confirm]",
+  },
+  {
+    icon: Key,
+    title: "Per-environment API keys",
+    body: "self-serve issuance and revocation",
+  },
+  {
+    icon: ScrollText,
+    title: "Audit logging",
+    body: "[PLACEHOLDER: scope, retention, export]",
+  },
+  {
+    icon: BarChart3,
+    title: "Usage and spend analytics",
+    body: "billed in messages",
+  },
+  {
+    icon: Server,
+    title: "Dedicated and private deployment",
+    body: "for strict residency and scale needs",
+  },
+  {
+    icon: UserCog,
+    title: "SCIM provisioning",
+    body: "automated user lifecycle management [PLANNED: confirm]",
+  },
+  {
+    icon: ShieldCheck,
+    title: "SOC 2",
+    body: "running on SOC 2-compliant infrastructure, certification in process",
+  },
+];
 
 export function EnterpriseControlsGridSection() {
   return (
@@ -531,19 +593,23 @@ export function EnterpriseControlsGridSection() {
         </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {controlTiles.map(([title, body]) => (
-          <article
-            key={title}
-            className={cn(
-              "flex flex-col gap-2 border border-black/[0.06] bg-white p-5",
-              landing.cardMd,
-              landing.shadowCard,
-            )}
-          >
-            <h3 className="text-sm font-semibold">{title}</h3>
-            <p className="text-sm leading-6 text-[#646464]">{body}</p>
-          </article>
-        ))}
+        {controlTiles.map((tile) => {
+          const Icon = tile.icon;
+          return (
+            <article
+              key={tile.title}
+              className={cn(
+                "flex flex-col gap-2.5 border border-black/[0.06] bg-white p-5",
+                landing.cardMd,
+                landing.shadowCard,
+              )}
+            >
+              <Icon className="size-5 text-[#646464]" strokeWidth={1.75} />
+              <h3 className="text-sm font-semibold">{tile.title}</h3>
+              <p className="text-sm leading-6 text-[#646464]">{tile.body}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

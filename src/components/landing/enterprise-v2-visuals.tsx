@@ -1,6 +1,20 @@
 "use client";
 
-import { Brain, Code2, GitMerge, Sigma, Sparkles, type LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  Brain,
+  Code2,
+  GitMerge,
+  Lock,
+  MapPin,
+  MessageSquare,
+  Send,
+  Shield,
+  ShieldCheck,
+  Sigma,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -25,6 +39,32 @@ import { cn } from "@/lib/utils";
 const FRONTIER_COST = 0.5;
 const ALIGNED_COST = 0.006;
 const SAVINGS_MULTIPLIER = 50;
+const SAMPLE_ANNUAL_CHATS = 5_000_000;
+const FRONTIER_ANNUAL = 2_500_000;
+const ALIGNED_ANNUAL = 30_000;
+
+function ProductPanelChrome({ title }: { title: string }) {
+  return (
+    <div className="flex h-10 shrink-0 items-center gap-2 border-b border-black/[0.06] px-4">
+      <span className="size-2.5 shrink-0 rounded-full bg-[#ff5f57]" />
+      <span className="size-2.5 shrink-0 rounded-full bg-[#febc2e]" />
+      <span className="size-2.5 shrink-0 rounded-full bg-[#28c840]" />
+      <span className="truncate font-mono text-[0.6875rem] text-muted-foreground">
+        {title}
+      </span>
+    </div>
+  );
+}
+
+function FlowArrow() {
+  return (
+    <ArrowRight
+      className="mx-0.5 hidden size-3.5 shrink-0 text-black/20 sm:block"
+      strokeWidth={2}
+      aria-hidden
+    />
+  );
+}
 
 type CostDatum = {
   name: string;
@@ -233,28 +273,148 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
   );
 }
 
+export function SecurityFlowVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
+  return (
+    <SectionVisualShell frame={frame}>
+      <div className={sectionVisualStageClass(frame)}>
+        <Card
+          size="sm"
+          className={sectionVisualPanelClass(
+            "flex h-full flex-col gap-0 py-0 ring-black/[0.08]",
+          )}
+        >
+          <ProductPanelChrome title="Safety architecture" />
+          <CardContent className="flex flex-1 flex-col justify-center gap-4 px-4 py-4 sm:px-5 sm:py-5">
+            <div className="flex w-full items-center justify-between gap-1 overflow-x-auto sm:gap-0">
+              <div className="flex min-w-[3.25rem] flex-col items-center gap-1.5 text-center">
+                <div className="flex size-9 items-center justify-center rounded-lg border border-black/[0.08] bg-muted/40">
+                  <MessageSquare className="size-4 text-muted-foreground" strokeWidth={2} />
+                </div>
+                <span className="text-[0.625rem] font-medium leading-tight">Prompt</span>
+              </div>
+              <FlowArrow />
+              <div className="flex min-w-[3.75rem] flex-col items-center gap-1.5 text-center">
+                <div className="flex size-9 items-center justify-center rounded-lg border-2 border-[#22a06b]/50 bg-[#22a06b]/10 shadow-[0_0_0_1px_rgba(34,160,107,0.12)]">
+                  <Shield className="size-4 text-[#22a06b]" strokeWidth={2} />
+                </div>
+                <span className="text-[0.625rem] font-semibold leading-tight text-[#22a06b]">
+                  Classify
+                </span>
+              </div>
+              <FlowArrow />
+              <div className="flex min-w-[3.75rem] flex-col items-center gap-1.5 text-center">
+                <div className="flex size-9 items-center justify-center rounded-lg border border-black/[0.08] bg-white">
+                  <GitMerge className="size-4 text-muted-foreground" strokeWidth={2} />
+                </div>
+                <span className="text-[0.625rem] font-medium leading-tight">Compound</span>
+              </div>
+              <FlowArrow />
+              <div className="flex min-w-[3.75rem] flex-col items-center gap-1.5 text-center">
+                <div className="flex size-9 items-center justify-center rounded-lg border-2 border-[#22a06b]/50 bg-[#22a06b]/10 shadow-[0_0_0_1px_rgba(34,160,107,0.12)]">
+                  <ShieldCheck className="size-4 text-[#22a06b]" strokeWidth={2} />
+                </div>
+                <span className="text-[0.625rem] font-semibold leading-tight text-[#22a06b]">
+                  Verify
+                </span>
+              </div>
+              <FlowArrow />
+              <div className="flex min-w-[3.25rem] flex-col items-center gap-1.5 text-center">
+                <div className="flex size-9 items-center justify-center rounded-lg border border-black/[0.08] bg-muted/40">
+                  <Send className="size-4 text-muted-foreground" strokeWidth={2} />
+                </div>
+                <span className="text-[0.625rem] font-medium leading-tight">Response</span>
+              </div>
+            </div>
+            <p className="text-center text-[0.6875rem] leading-4 text-muted-foreground">
+              Gates are part of the architecture — not add-on filters
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </SectionVisualShell>
+  );
+}
+
+function UsMapOutline({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 200 120"
+      className={className}
+      aria-hidden
+      fill="none"
+    >
+      <path
+        d="M28 72 L42 38 L68 28 L98 22 L128 26 L158 34 L172 52 L168 78 L148 96 L118 104 L82 102 L48 92 Z"
+        className="fill-[#22a06b]/[0.06] stroke-[#22a06b]/25"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M158 34 L172 52 L178 44 L168 28 Z"
+        className="fill-[#22a06b]/[0.04] stroke-[#22a06b]/20"
+        strokeWidth="1.25"
+        strokeLinejoin="round"
+      />
+      <circle cx="108" cy="58" r="5" className="fill-[#22a06b]" />
+      <circle cx="108" cy="58" r="9" className="stroke-[#22a06b]/30" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+export function SovereignMapVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
+  return (
+    <SectionVisualShell frame={frame}>
+      <div className={sectionVisualStageClass(frame)}>
+        <Card
+          size="sm"
+          className={sectionVisualPanelClass(
+            "flex h-full flex-col gap-0 py-0 ring-black/[0.08]",
+          )}
+        >
+          <ProductPanelChrome title="Data boundary" />
+          <CardContent className="relative flex flex-1 flex-col items-center justify-center px-5 py-5">
+            <UsMapOutline className="h-auto w-full max-w-[14rem]" />
+            <div className="absolute left-1/2 top-[42%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+              <div className="flex size-8 items-center justify-center rounded-full border-2 border-white bg-[#22a06b] shadow-md">
+                <MapPin className="size-4 text-white" strokeWidth={2.5} />
+              </div>
+            </div>
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+              <Badge className="gap-1 border-transparent bg-[#22a06b]/10 text-[0.6875rem] text-[#22a06b] hover:bg-[#22a06b]/10">
+                <Lock className="size-3" strokeWidth={2} />
+                US perimeter
+              </Badge>
+              <Badge
+                variant="outline"
+                className="border-black/[0.08] bg-white text-[0.6875rem] font-medium text-[#646464]"
+              >
+                SOC 2 certification in progress
+              </Badge>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </SectionVisualShell>
+  );
+}
+
 export function CostSplitVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
     <SectionVisualShell frame={frame}>
       <div className={sectionVisualStageClass(frame)}>
         <div
           className={sectionVisualPanelClass(
-            "flex flex-col justify-center gap-3 p-5 sm:gap-3.5 sm:p-6",
+            "flex flex-col justify-center gap-3 p-4 ring-2 ring-[#22a06b]/15 sm:gap-3.5 sm:p-5",
           )}
         >
-          <div className="space-y-0.5 text-center">
-            <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
-              Cost per chat
-            </p>
-            <p className="text-[0.6875rem] text-[#646464]/80">
-              Hover each bar for exact pricing
-            </p>
-          </div>
+          <p className="text-center text-2xl font-semibold tracking-tight text-[#22a06b] sm:text-[1.75rem]">
+            Up to {SAVINGS_MULTIPLIER}× less
+          </p>
 
           <ChartContainer
             config={costChartConfig}
-            className="mx-auto aspect-auto h-[9.5rem] w-full max-w-[12.5rem] sm:h-[10.25rem]"
-            initialDimension={{ width: 200, height: 164 }}
+            className="mx-auto aspect-auto h-[8.5rem] w-full max-w-[13rem] sm:h-[9rem]"
+            initialDimension={{ width: 208, height: 144 }}
           >
             <BarChart
               data={costChartData}
@@ -350,13 +510,25 @@ export function CostSplitVisual({ frame = "gray" }: { frame?: SectionVisualFrame
           </BarChart>
           </ChartContainer>
 
-          <div className="space-y-1 text-center">
-            <p className="text-lg font-semibold tracking-tight text-[#22a06b] sm:text-xl">
-              Up to {SAVINGS_MULTIPLIER}× less
+          <div className="rounded-xl border border-black/[0.06] bg-[#fafafa] px-3.5 py-3">
+            <p className="text-[0.625rem] font-medium uppercase tracking-wide text-[#646464]">
+              Same traffic · {(SAMPLE_ANNUAL_CHATS / 1_000_000).toFixed(0)}M chats / year
             </p>
-            <p className="text-[0.6875rem] leading-5 text-[#646464]">
-              Same traffic · sample annual bill modeled on request
-            </p>
+            <div className="mt-2 flex items-baseline justify-between gap-3">
+              <div>
+                <p className="text-[0.6875rem] text-[#646464]">Frontier APIs</p>
+                <p className="text-lg font-semibold tabular-nums text-[#646464] line-through decoration-black/20">
+                  ${(FRONTIER_ANNUAL / 1_000_000).toFixed(1)}M
+                </p>
+              </div>
+              <ArrowRight className="size-4 shrink-0 text-[#22a06b]/60" />
+              <div className="text-right">
+                <p className="text-[0.6875rem] text-[#22a06b]">Aligned</p>
+                <p className="text-lg font-semibold tabular-nums text-[#22a06b]">
+                  ${(ALIGNED_ANNUAL / 1_000).toFixed(0)}k
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

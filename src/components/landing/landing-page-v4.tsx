@@ -13,22 +13,20 @@ import {
 import {
   CompoundVisual,
   CostSplitVisual,
+  SecurityFlowVisual,
+  SovereignMapVisual,
 } from "@/components/landing/enterprise-v2-visuals";
+import { HeroApiConsole } from "@/components/landing/hero-api-console";
 import { AlignedNavBrand } from "@/components/landing/aligned-nav-brand";
 import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
 import { LandingFooter } from "@/components/landing/landing-footer";
 import { HeroCommitmentsStrip } from "@/components/landing/hero-commitments-strip";
-import { HeroWindow } from "@/components/landing/hero-window";
 import {
   LandingEyebrow,
   LandingGhostButton,
   LandingPrimaryButton,
   landing,
 } from "@/components/landing/landing-primitives";
-import {
-  FamilyVisual,
-  PowerfulVisual,
-} from "@/components/landing/section-visuals";
 import { cn } from "@/lib/utils";
 
 const sectionTagAccent = "text-[#646464]";
@@ -92,7 +90,7 @@ export function LandingPageV4() {
           </div>
 
           <div className="mx-auto mt-12 w-full max-w-[58rem] px-1 sm:mt-14">
-            <HeroWindow />
+            <HeroApiConsole />
             <HeroCommitmentsStrip className="mt-8 sm:mt-9" />
           </div>
         </HeroGradientLimeFrame>
@@ -146,7 +144,7 @@ export function LandingPageV4() {
             },
           ]}
           bodyClose="This is what lets teams use Aligned for regulated, data-sensitive, and customer-facing work."
-          visual={<FamilyVisual frame="lime" />}
+          visual={<SecurityFlowVisual frame="lime" />}
         />
 
         <SplitSection
@@ -155,7 +153,7 @@ export function LandingPageV4() {
           title="Sovereign AI: your data stays in a boundary you control."
           body="Your prompts, your context, and your outputs stay inside a perimeter you can write into a contract and point to in an audit. Inference runs on US infrastructure. Nothing is sent offshore, and nothing reaches a third-party model you did not approve, so you can say exactly where your data goes, which most providers cannot. The platform runs on SOC 2-compliant infrastructure with certification underway, and dedicated deployment is available for strict residency needs."
           reverse
-          visual={<PowerfulVisual frame="lime" />}
+          visual={<SovereignMapVisual frame="lime" />}
         />
 
         <DataProtectionMatrixSection />
