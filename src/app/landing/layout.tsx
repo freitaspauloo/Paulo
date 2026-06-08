@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Aligned AI — Landing (Figma rebuild)",
+  title: "Aligned AI — Enterprise",
   description:
-    "Faithful Aligned-2 landing page rebuild with layered sections and design tokens.",
+    "Frontier-class AI, hosted in the US, at a fraction of the cost.",
 };
 
 export default function LandingLayout({

@@ -3,16 +3,18 @@
 import { useRef } from "react";
 import {
   ArrowRight,
-  Briefcase,
-  CalendarDays,
+  Building2,
   ChevronLeft,
   ChevronRight,
-  CircleHelp,
   Code2,
-  FileText,
-  Search,
+  DollarSign,
+  Gauge,
+  GitBranch,
+  Layers,
+  MapPin,
+  ShieldCheck,
+  Sigma,
   Sparkles,
-  Users,
 } from "lucide-react";
 
 import { HeroWindow } from "@/components/landing/hero-window";
@@ -30,40 +32,47 @@ import {
 } from "@/components/landing/section-visuals";
 import { cn } from "@/lib/utils";
 
-const features = [
-  { title: "Work", body: "Draft, summarize, and plan — with answers you can act on.", icon: Briefcase, color: "text-progress" },
-  { title: "Collaborate", body: "Work together in real time. Same chat, same project.", icon: Users, color: "text-cyan" },
-  { title: "Research", body: "Hours of digging, minutes of yours. Every claim cited.", icon: FileText, color: "text-pink" },
-  { title: "Code", body: "Write, debug, and ship faster, with errors caught early.", icon: Code2, color: "text-orange" },
-  { title: "Create", body: "Turn an idea into actions instantly.", icon: Sparkles, color: "text-brown" },
-  { title: "Notes", body: "Cited reports pulled across dozens of trusted sources.", icon: Search, color: "text-purple" },
-  { title: "Projects", body: "Remembers what matters, so you don't repeat yourself.", icon: CalendarDays, color: "text-mint" },
-  { title: "Ask Anything", body: "Recipes, travel, budgeting, and everything in between.", icon: CircleHelp, color: "text-cyan" },
+const capabilities = [
+  { title: "Reasoning", body: "Frontier-level on GPQA, DROP, and BIG-Bench Hard — the evals that decide real work.", icon: Sparkles, color: "text-purple" },
+  { title: "Coding", body: "89.3% HumanEval pass@1. Write, debug, and ship faster with errors caught early.", icon: Code2, color: "text-cyan" },
+  { title: "Math", body: "91.2% MGSM, multilingual, every result reproducible on public datasets.", icon: Sigma, color: "text-mint" },
+  { title: "Migration", body: "OpenAI-compatible endpoints — swap a base URL and keep your whole stack.", icon: GitBranch, color: "text-orange" },
+  { title: "Routing", body: "A compound system that swaps in the strongest model for each task.", icon: Layers, color: "text-pink" },
+  { title: "Controls", body: "SOC 2-grade access controls and audit logging, built into the platform.", icon: ShieldCheck, color: "text-brown" },
+];
+
+const stats = [
+  { value: "Top 3", label: "accuracy across 13 deployed models, and #1 on accuracy per dollar", icon: Gauge },
+  { value: "20–80x", label: "lower cost per chat than frontier APIs, at comparable accuracy", icon: DollarSign },
+  { value: "100% US", label: "hosted inference, inside a boundary you can name in a contract", icon: MapPin },
 ];
 
 const charts = [
   {
-    title: "Cost Per Chat",
+    title: "Cost per chat",
+    caption: "Lower is better",
     bars: [
-      { label: "Aligned", value: "$0.005", pct: 4, lead: true },
-      { label: "Top 3", value: "$0.25", pct: 100, lead: false },
-      { label: "Other", value: "$0.17", pct: 68, lead: false },
+      { label: "Aligned", value: "$0.006", pct: 6, lead: true },
+      { label: "Top 3", value: "$0.12", pct: 40, lead: false },
+      { label: "Other", value: "$0.50", pct: 100, lead: false },
     ],
   },
   {
-    title: "General Accuracy",
+    title: "General accuracy",
+    caption: "Higher is better",
     bars: [
-      { label: "Aligned", value: "4.35", pct: 87, lead: true },
-      { label: "Top 3", value: "4.49", pct: 90, lead: false },
-      { label: "Other", value: "3.63", pct: 73, lead: false },
+      { label: "Aligned", value: "88.4%", pct: 96, lead: true },
+      { label: "Top 3", value: "85.5%", pct: 90, lead: false },
+      { label: "Other", value: "83.0%", pct: 84, lead: false },
     ],
   },
   {
-    title: "Faith Representation",
+    title: "Accuracy per $",
+    caption: "Higher is better",
     bars: [
-      { label: "Aligned", value: "61%", pct: 100, lead: true },
-      { label: "Top 3", value: "13%", pct: 21, lead: false },
-      { label: "Other", value: "14%", pct: 23, lead: false },
+      { label: "Aligned", value: "#1", pct: 100, lead: true },
+      { label: "Top 3", value: "0.4×", pct: 40, lead: false },
+      { label: "Other", value: "0.1×", pct: 12, lead: false },
     ],
   },
 ];
@@ -80,6 +89,7 @@ function StorySection({
   accent,
   title,
   body,
+  cta = "Talk to our team",
   reverse,
   visual,
 }: {
@@ -87,6 +97,7 @@ function StorySection({
   accent: string;
   title: string;
   body: string;
+  cta?: string;
   reverse?: boolean;
   visual: React.ReactNode;
 }) {
@@ -98,7 +109,9 @@ function StorySection({
           {title}
         </h2>
         <p className="text-base leading-7 text-[#646464]">{body}</p>
-        <LandingPrimaryButton>Try it for free</LandingPrimaryButton>
+        <LandingPrimaryButton href="mailto:enterprise@joinaligned.ai">
+          {cta}
+        </LandingPrimaryButton>
       </div>
       <div className={cn(reverse && "md:order-1")}>{visual}</div>
     </section>
@@ -132,15 +145,29 @@ export function LandingPage() {
         </nav>
 
         <div className="mx-auto mt-12 max-w-[44rem] space-y-6 px-6 text-center sm:mt-16">
+          <span
+            className={cn(
+              "mx-auto inline-flex items-center gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]",
+              landing.capsule,
+            )}
+          >
+            <Building2 className="size-3.5" />
+            Aligned for Enterprise
+          </span>
           <h1 className="text-balance text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
-            One AI for everything.
+            Frontier-class AI, hosted in the US, at a fraction of the cost.
           </h1>
-          <p className="mx-auto max-w-[34rem] text-pretty text-base leading-7 text-[#646464] sm:text-[1.0625rem]">
-            A powerful AI assistant for work, learning, family life, research,
-            coding, and everyday questions — built with safety, privacy, and
-            aligned with your values in mind.
+          <p className="mx-auto max-w-[36rem] text-pretty text-base leading-7 text-[#646464] sm:text-[1.0625rem]">
+            Aligned matches the pioneer models on the benchmarks that decide real
+            work — and adds what they will not: US-hosted inference, 10–50x lower
+            costs, and safety built into the architecture.
           </p>
-          <LandingPrimaryButton className="mx-auto">Try Aligned AI free</LandingPrimaryButton>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <LandingPrimaryButton href="mailto:enterprise@joinaligned.ai">
+              Talk to our team <ArrowRight className="ml-1 size-4" />
+            </LandingPrimaryButton>
+            <LandingGhostButton>Start for free</LandingGhostButton>
+          </div>
         </div>
 
         <div className="mt-14 px-2 sm:mt-16">
@@ -148,14 +175,35 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Stats */}
+      <section className={cn(landing.page, "px-6 pt-16 sm:pt-20")}>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {stats.map((s) => (
+            <div
+              key={s.value}
+              className={cn(
+                "space-y-3 border border-black/[0.06] bg-white p-6",
+                landing.cardMd,
+                landing.shadowCard,
+              )}
+            >
+              <s.icon className="size-5 text-[#646464]" strokeWidth={1.75} />
+              <div className="text-3xl font-semibold tracking-tight">{s.value}</div>
+              <p className="text-sm leading-6 text-[#646464]">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Capabilities */}
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-[40rem] space-y-3 px-6 text-center">
           <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
-            Whatever you bring to it, Aligned AI is ready
+            Put a frontier-class model to work, without the trade-offs
           </h2>
           <p className="text-base text-[#646464]">
-            Ask anything, keep what matters, and know it&apos;s right — wherever you are.
+            The same caliber of output the pioneer models give you — on the
+            evaluations enterprises actually run.
           </p>
         </div>
 
@@ -163,19 +211,19 @@ export function LandingPage() {
           ref={carouselRef}
           className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:gap-5 sm:px-[max(1.5rem,calc((100%-72rem)/2+1.5rem))] [&::-webkit-scrollbar]:hidden"
         >
-          {features.map((f) => (
+          {capabilities.map((c) => (
             <article
-              key={f.title}
+              key={c.title}
               className={cn(
                 "flex min-h-[19rem] w-[18.5rem] shrink-0 snap-start flex-col justify-between border border-black/[0.06] bg-white p-7",
                 landing.cardMd,
                 landing.shadowCard,
               )}
             >
-              <f.icon className={cn("size-8", f.color)} strokeWidth={1.75} />
+              <c.icon className={cn("size-8", c.color)} strokeWidth={1.75} />
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold tracking-[-0.01em]">{f.title}</h3>
-                <p className="text-sm leading-6 text-[#646464]">{f.body}</p>
+                <h3 className="text-xl font-semibold tracking-[-0.01em]">{c.title}</h3>
+                <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
               </div>
             </article>
           ))}
@@ -212,15 +260,15 @@ export function LandingPage() {
         <StorySection
           eyebrow="Do more"
           accent="text-purple"
-          title="Private by design"
-          body="Your chats, files, work and family activity stay protected — not sold, targeted, or used for training by default."
+          title="Do more, for less."
+          body="Run the workloads you have been rationing because of cost. At $0.006 per chat against $0.12–$0.50 for frontier APIs, the budget that bought one workload now buys ten."
           visual={<PrivateVisual />}
         />
         <StorySection
           eyebrow="Accuracy"
           accent="text-cyan"
-          title="Answers you can trust."
-          body="Designed to check important facts against reliable sources, helping you get clearer answers with fewer mistakes."
+          title="Capability without the trade-offs."
+          body="Aligned performs at the level of the pioneer models on reasoning, coding, math, and instruction-following — all reproducible on public Hugging Face datasets and independent leaderboards."
           reverse
           visual={<AnswersVisual />}
         />
@@ -234,7 +282,8 @@ export function LandingPage() {
               Just as good, a fraction of the cost.
             </h2>
             <p className="text-base text-[#646464]">
-              Most competitive pricing, comparatively accurate, and faith-specific alignment.
+              Top-3 accuracy across 13 deployed models, and #1 on accuracy per
+              dollar — with the benchmark named and the source public.
             </p>
           </div>
 
@@ -248,7 +297,10 @@ export function LandingPage() {
                   landing.shadowCard,
                 )}
               >
-                <h3 className="text-sm font-semibold">{chart.title}</h3>
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="text-sm font-semibold">{chart.title}</h3>
+                  <span className="text-xs text-[#646464]">{chart.caption}</span>
+                </div>
                 <div className="mt-8 flex h-48 items-end justify-around gap-3">
                   {chart.bars.map((b) => (
                     <div
@@ -306,17 +358,17 @@ export function LandingPage() {
 
       <div className={cn(landing.page, "space-y-20 px-6 pb-24 sm:space-y-24 sm:pb-28")}>
         <StorySection
-          eyebrow="Alignment"
+          eyebrow="Residency"
           accent="text-mint"
-          title="Powerful AI, tailored to you"
-          body="Adapts to your preferences, priorities, and values, giving you a better assistant for everyday life and work."
+          title="Your data stays in the United States."
+          body="Inference runs on US infrastructure with encrypted data in transit and at rest. Dedicated capacity and private deployment are available, with data-flow diagrams under NDA."
           visual={<PowerfulVisual />}
         />
         <StorySection
-          eyebrow="Family"
+          eyebrow="Safety"
           accent="text-mint"
-          title="Safe for teens, in your control"
-          body="A powerful AI for your kids — explicit content blocked, answers built for their age. Stay in control with a parent dashboard, time limits, quiet hours, and alerts when something needs you."
+          title="Safety is the architecture, not a filter on top."
+          body="Classification and verification wrap every call before and after inference. Independent red-team coverage and hallucination reduction are built into the stack — not promised around it."
           reverse
           visual={<FamilyVisual />}
         />

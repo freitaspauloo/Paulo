@@ -72,9 +72,9 @@ export function HeroWindow() {
               Chats
             </p>
             <div className="space-y-0.5">
-              <NavItem active>Last Minute Trip</NavItem>
-              <NavItem>Family night: Book of Mormon</NavItem>
-              <NavItem>Mission prep timeline</NavItem>
+              <NavItem active>Migration pilot</NavItem>
+              <NavItem>US residency review</NavItem>
+              <NavItem>Policy ring rollout</NavItem>
             </div>
             <div className="mt-auto flex items-center gap-2 border-t border-black/[0.06] pt-3">
               <span className="flex size-8 items-center justify-center rounded-full bg-[#202020] text-xs font-semibold text-white">
@@ -91,7 +91,7 @@ export function HeroWindow() {
           {/* Chat column */}
           <div className="flex min-w-0 flex-1 flex-col">
             <header className="flex h-12 items-center justify-between border-b border-black/[0.06] px-4 sm:px-5">
-              <span className="text-sm font-semibold">Last Minute Trip</span>
+              <span className="text-sm font-semibold">Migration pilot</span>
               <div className="flex items-center gap-3 text-[#646464]">
                 <Share2 className="size-4" />
                 <UserPlus className="size-4" />
@@ -101,28 +101,19 @@ export function HeroWindow() {
             <div className="flex-1 space-y-5 overflow-hidden px-4 py-5 sm:px-6">
               <div className="flex justify-end">
                 <p className="max-w-[85%] rounded-[12px] bg-[#f2f2f2] px-4 py-2.5 text-sm leading-6">
-                  What are the top 10 countries every traveler should know about?
+                  How do we migrate 12M support chats to the US-hosted lane without
+                  downtime?
                 </p>
               </div>
               <div className="space-y-2 text-sm leading-6">
                 <p>
-                  Here are 10 countries worth knowing — diverse regions, cultures,
-                  and why they matter:
+                  Run a 10% shadow cutover, compare hallucination and cost vs your
+                  current provider, then flip by policy ring.
                 </p>
-                <ul className="list-disc space-y-1 pl-5 text-[#646464]">
-                  <li>
-                    <span className="font-medium text-foreground">Japan</span> —
-                    safety, transit, and cultural depth
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Italy</span> —
-                    art, food, and walkable cities
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Canada</span> —
-                    nature, bilingual cities
-                  </li>
-                </ul>
+                <p className="text-[#646464]">
+                  Est. 22x lower cost on pilot volume; all data stays inside the US
+                  boundary.
+                </p>
                 <p className="text-xs text-[#646464]">Streaming…</p>
               </div>
             </div>
@@ -141,7 +132,9 @@ export function HeroWindow() {
                 >
                   <Plus className="size-4" />
                 </button>
-                <span className="flex-1 text-sm text-[#646464]">Ask anything…</span>
+                <span className="flex-1 text-sm text-[#646464]">
+                  Ask about migration, routing, or controls…
+                </span>
                 <span className="hidden items-center gap-1 rounded-full bg-[#f9f9f9] px-2.5 py-1 text-xs text-[#646464] sm:inline-flex">
                   Auto <ChevronDown className="size-3" />
                 </span>

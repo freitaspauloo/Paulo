@@ -34,22 +34,33 @@ export function LandingEyebrow({
   );
 }
 
+const primaryButtonClass =
+  "inline-flex h-10 items-center justify-center bg-[#202020] px-6 text-sm font-medium text-white transition-colors hover:bg-[#202020]/90 active:bg-[#202020]/80";
+
+const ghostButtonClass =
+  "inline-flex h-9 items-center justify-center px-4 text-sm font-medium text-foreground transition-colors hover:bg-black/[0.04] active:bg-black/[0.06]";
+
 export function LandingPrimaryButton({
   children,
   className,
+  href,
 }: {
   children: React.ReactNode;
   className?: string;
+  href?: string;
 }) {
+  const classNames = cn(primaryButtonClass, landing.capsule, className);
+
+  if (href) {
+    return (
+      <a href={href} className={classNames}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      className={cn(
-        "inline-flex h-10 items-center justify-center bg-[#202020] px-6 text-sm font-medium text-white transition-colors hover:bg-[#202020]/90 active:bg-[#202020]/80",
-        landing.capsule,
-        className,
-      )}
-    >
+    <button type="button" className={classNames}>
       {children}
     </button>
   );
@@ -58,19 +69,24 @@ export function LandingPrimaryButton({
 export function LandingGhostButton({
   children,
   className,
+  href,
 }: {
   children: React.ReactNode;
   className?: string;
+  href?: string;
 }) {
+  const classNames = cn(ghostButtonClass, landing.capsule, className);
+
+  if (href) {
+    return (
+      <a href={href} className={classNames}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      className={cn(
-        "inline-flex h-9 items-center justify-center px-4 text-sm font-medium text-foreground transition-colors hover:bg-black/[0.04] active:bg-black/[0.06]",
-        landing.capsule,
-        className,
-      )}
-    >
+    <button type="button" className={classNames}>
       {children}
     </button>
   );
