@@ -3,6 +3,17 @@
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
 import { landing } from "@/components/landing/landing-primitives";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   SectionVisualShell,
   sectionVisualStageClass,
@@ -80,115 +91,90 @@ function CostBarShape({ x = 0, y = 0, width = 0, height = 0, fill, payload }: Ba
   );
 }
 
-const COMPOUND_PATHS = [
-  { label: "Reasoning", active: true },
-  { label: "Coding", active: false },
-  { label: "Math", active: false },
-] as const;
-
-function CompoundConvergeLines() {
-  return (
-    <svg
-      viewBox="0 0 280 72"
-      fill="none"
-      aria-hidden
-      className="mx-auto h-[4.5rem] w-full max-w-[17.5rem]"
-    >
-      <path
-        d="M42 4 L140 58"
-        className="stroke-[#22a06b]/55"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M140 4 L140 58"
-        className="stroke-black/10"
-        strokeWidth="1.5"
-        strokeDasharray="4 4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M238 4 L140 58"
-        className="stroke-black/10"
-        strokeWidth="1.5"
-        strokeDasharray="4 4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M140 58 L140 68"
-        className="stroke-[#202020]/20"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <circle cx="140" cy="58" r="5" className="fill-[#22a06b]" />
-      <circle cx="140" cy="58" r="9" className="fill-[#22a06b]/15" />
-    </svg>
-  );
-}
+const COMPOUND_TABS = {
+  reasoning: {
+    label: "Reasoning",
+    status: "Strongest model selected for this task.",
+  },
+  coding: {
+    label: "Coding",
+    status: "Available when coding is the strongest match.",
+  },
+  math: {
+    label: "Math",
+    status: "Available when math is the strongest match.",
+  },
+} as const;
 
 export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
     <SectionVisualShell frame={frame}>
       <div className={sectionVisualStageClass(frame)}>
-        <div
+        <Card
+          size="sm"
           className={cn(
-            "absolute inset-0 flex flex-col justify-center border border-black/[0.06] bg-white p-5 sm:p-6",
+            "absolute inset-0 gap-0 overflow-hidden py-0 ring-black/[0.08]",
             landing.cardLg,
             landing.shadowDrop,
           )}
         >
-          <div className="mb-4 flex items-center gap-2 border-b border-black/[0.06] pb-3">
-            <div className="flex gap-1.5">
-              <span className="size-2 rounded-full bg-black/10" />
-              <span className="size-2 rounded-full bg-black/10" />
-              <span className="size-2 rounded-full bg-black/10" />
-            </div>
-            <p className="text-xs font-medium text-[#646464]">Compound routing</p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            {COMPOUND_PATHS.map((path) => (
-              <div
-                key={path.label}
-                className={cn(
-                  "flex flex-col items-center gap-2 rounded-[10px] border px-2 py-3 text-center sm:px-3",
-                  path.active
-                    ? "border-[#22a06b]/35 bg-[#22a06b]/[0.07] shadow-[0_0_0_1px_rgba(34,160,107,0.08)]"
-                    : "border-black/[0.06] bg-[#fafafa] text-[#646464]",
-                )}
-              >
-                <span
-                  className={cn(
-                    "text-[0.6875rem] font-semibold sm:text-xs",
-                    path.active ? "text-foreground" : "text-[#646464]",
-                  )}
-                >
-                  {path.label}
-                </span>
-                {path.active ? (
-                  <span className="rounded-full bg-[#22a06b]/10 px-2 py-0.5 text-[0.625rem] font-medium leading-none text-[#22a06b]">
-                    Strongest
-                  </span>
-                ) : (
-                  <span className="text-[0.625rem] text-[#646464]/70">Model path</span>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <CompoundConvergeLines />
-
-          <div className="mx-auto -mt-1 flex w-fit items-center gap-1.5 rounded-full border border-black/[0.08] bg-[#f9f9f9] px-3 py-1 text-[0.6875rem] font-medium text-[#646464]">
-            Compose
-          </div>
-
-          <div className="mt-3 rounded-[10px] border border-[#202020]/12 bg-[#202020] px-4 py-3 text-center text-sm font-medium text-white">
-            One composed output
-            <span className="mt-0.5 block text-[0.6875rem] font-normal text-white/65">
-              → your application
+          <div className="flex h-10 shrink-0 items-center gap-2 border-b border-black/[0.06] px-4">
+            <span className="size-2.5 shrink-0 rounded-full bg-[#ff5f57]" />
+            <span className="size-2.5 shrink-0 rounded-full bg-[#febc2e]" />
+            <span className="size-2.5 shrink-0 rounded-full bg-[#28c840]" />
+            <span className="truncate font-mono text-[0.6875rem] text-muted-foreground">
+              Compound routing
             </span>
           </div>
-        </div>
+
+          <CardHeader className="gap-2 border-b border-black/[0.06] pb-4">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <CardTitle className="text-sm font-semibold">Model paths</CardTitle>
+                <CardDescription className="text-xs">
+                  One composed response per request
+                </CardDescription>
+              </div>
+              <Badge className="shrink-0 border-transparent bg-[#22a06b]/10 text-[#22a06b] hover:bg-[#22a06b]/10">
+                Strongest match
+              </Badge>
+            </div>
+          </CardHeader>
+
+          <CardContent className="space-y-4 pt-4">
+            <Tabs defaultValue="reasoning">
+              <TabsList className="grid h-9 w-full grid-cols-3">
+                {Object.entries(COMPOUND_TABS).map(([value, tab]) => (
+                  <TabsTrigger key={value} value={value} className="text-xs">
+                    {tab.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {Object.entries(COMPOUND_TABS).map(([value, tab]) => (
+                <TabsContent key={value} value={value} className="mt-3">
+                  <p className="rounded-lg border border-black/[0.06] bg-muted/40 px-3 py-2.5 text-xs leading-5 text-muted-foreground">
+                    {tab.status}
+                  </p>
+                </TabsContent>
+              ))}
+            </Tabs>
+
+            <div className="flex items-center gap-3">
+              <Separator className="flex-1" />
+              <span className="text-[0.6875rem] font-medium text-muted-foreground">
+                Compose
+              </span>
+              <Separator className="flex-1" />
+            </div>
+          </CardContent>
+
+          <CardFooter className="border-t border-black/[0.06] bg-[#202020] py-3 text-background">
+            <div className="flex w-full flex-col gap-0.5">
+              <span className="text-sm font-medium">One composed output</span>
+              <span className="text-xs text-white/65">→ your application</span>
+            </div>
+          </CardFooter>
+        </Card>
       </div>
     </SectionVisualShell>
   );
