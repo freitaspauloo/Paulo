@@ -28,6 +28,7 @@ export function LandingFallingPattern({
   backgroundColor,
   blurIntensity,
   opacity,
+  showOverlay = true,
 }: {
   variant: LandingPatternVariant;
   className?: string;
@@ -37,6 +38,7 @@ export function LandingFallingPattern({
   blurIntensity?: string;
   /** Layer opacity multiplier (v4 white dots need a boost). */
   opacity?: number;
+  showOverlay?: boolean;
 }) {
   const preset = FRAME_PRESETS[variant];
 
@@ -50,7 +52,7 @@ export function LandingFallingPattern({
       duration={150}
       blurIntensity={blurIntensity ?? preset.blurIntensity ?? "1em"}
       density={1}
-      showOverlay
+      showOverlay={showOverlay}
     />
   );
 }

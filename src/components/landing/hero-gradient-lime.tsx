@@ -6,30 +6,18 @@ import { cn } from "@/lib/utils";
 export function HeroGradientLimeFrame({
   className,
   children,
-  dotColor,
-  patternBackgroundColor,
-  patternBlurIntensity,
-  patternOpacity,
+  elevatedWhiteDots = false,
   gradientOverlayOpacity = 0.34,
 }: {
   className?: string;
   children: React.ReactNode;
-  /** v4-only: white falling dots on lime hero */
-  dotColor?: string;
-  patternBackgroundColor?: string;
-  patternBlurIntensity?: string;
-  patternOpacity?: number;
+  /** v4: white halftone dots rendered above the gradient */
+  elevatedWhiteDots?: boolean;
   gradientOverlayOpacity?: number;
 }) {
   return (
     <div className={cn("relative isolate overflow-hidden", className)}>
-      <LandingFallingPattern
-        variant="lime"
-        color={dotColor}
-        backgroundColor={patternBackgroundColor}
-        blurIntensity={patternBlurIntensity}
-        opacity={patternOpacity}
-      />
+      {!elevatedWhiteDots ? <LandingFallingPattern variant="lime" /> : null}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1]"
@@ -42,6 +30,15 @@ export function HeroGradientLimeFrame({
         <div className="absolute -bottom-[20%] -right-[10%] size-[54%] rounded-full bg-[#36b862]/44 blur-3xl motion-safe:animate-[landing-gradient-drift-a_20s_ease-in-out_infinite]" />
         <div className="absolute -right-[6%] -top-[8%] size-[42%] rounded-full bg-[#d8ebe2]/32 blur-3xl motion-safe:animate-[landing-gradient-drift-c_22s_ease-in-out_infinite]" />
       </div>
+      {elevatedWhiteDots ? (
+        <LandingFallingPattern
+          variant="lime"
+          color="rgba(255, 255, 255, 0.95)"
+          backgroundColor="transparent"
+          blurIntensity="0.55em"
+          className="pointer-events-none z-[2] mix-blend-screen opacity-90"
+        />
+      ) : null}
       <div className="relative z-10">{children}</div>
     </div>
   );

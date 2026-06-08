@@ -56,8 +56,7 @@ export function LandingPageV4() {
       {/* Section 1 — Hero (lime + falling dots) */}
       <section className="bg-white pb-12 sm:pb-[3.75rem]">
         <HeroGradientLimeFrame
-          dotColor="#ffffff"
-          patternBlurIntensity="0.65em"
+          elevatedWhiteDots
           className={cn(
             landing.heroMargin,
             landing.heroFrame,
