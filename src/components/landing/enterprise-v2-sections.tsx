@@ -163,44 +163,97 @@ export function BenefitBlurbsSection() {
   );
 }
 
-const matrixItems = [
-  ["Never trained on", "Your conversations never train our models unless you explicitly opt in, on any tier."],
-  ["Never sold or shared", "Your prompts and outputs are never sold, rented, or handed to a third party."],
-  ["No ads, ever", "We earn from subscriptions, not your attention, with no ad model on any plan."],
-  ["Encrypted in transit", "Every request and response is encrypted on the wire, by default, with no exceptions."],
-  ["Encrypted at rest", "Stored data is encrypted, with keys we can scope to your own environment."],
-  ["US-hosted", "Inference runs on US infrastructure, inside a boundary you can name in a contract."],
-  ["No third-party leakage", "Requests never reach an outside model that you have not explicitly approved."],
-  ["You control retention", "Set how long your data is kept, and delete any of it on demand."],
-  ["Audited access", "Every access to your data is logged, queryable, and exportable for your own review."],
+const matrixGroups = [
+  {
+    title: "Privacy",
+    items: [
+      {
+        label: "Never trained on",
+        body: "Your conversations never train our models unless you explicitly opt in, on any tier.",
+      },
+      {
+        label: "Never sold or shared",
+        body: "Your prompts and outputs are never sold, rented, or handed to a third party.",
+      },
+      {
+        label: "No ads, ever",
+        body: "We earn from subscriptions, not your attention, with no ad model on any plan.",
+      },
+    ],
+  },
+  {
+    title: "Encryption",
+    items: [
+      {
+        label: "Encrypted in transit",
+        body: "Every request and response is encrypted on the wire, by default, with no exceptions.",
+      },
+      {
+        label: "Encrypted at rest",
+        body: "Stored data is encrypted, with keys we can scope to your own environment.",
+      },
+      {
+        label: "US-hosted",
+        body: "Inference runs on US infrastructure, inside a boundary you can name in a contract.",
+      },
+    ],
+  },
+  {
+    title: "Control",
+    items: [
+      {
+        label: "No third-party leakage",
+        body: "Requests never reach an outside model that you have not explicitly approved.",
+      },
+      {
+        label: "You control retention",
+        body: "Set how long your data is kept, and delete any of it on demand.",
+      },
+      {
+        label: "Audited access",
+        body: "Every access to your data is logged, queryable, and exportable for your own review.",
+      },
+    ],
+  },
 ] as const;
 
 export function DataProtectionMatrixSection() {
   return (
-    <section className="space-y-10 py-4 sm:space-y-12">
+    <section className="space-y-8">
       <div className="mx-auto max-w-[40rem] space-y-3 text-center">
-        <h2 className="text-balance text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-[#22a06b]">
+        <LandingEyebrow accent="text-[#646464]">Data protection</LandingEyebrow>
+        <h2 className="text-balance text-[clamp(2rem,4vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
           Only you can see your data.
         </h2>
-        <p className="text-base text-[#646464]">
+        <p className="text-base leading-7 text-[#646464]">
           Every layer below exists to keep that true.
         </p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {matrixItems.map(([label, description]) => (
-          <div
-            key={label}
-            className={cn(
-              "space-y-2 border border-black/[0.06] bg-white p-5",
-              landing.cardMd,
-              landing.shadowCard,
-            )}
-          >
-            <Shield className="size-4 text-[#646464]" strokeWidth={1.75} />
-            <p className="text-sm font-semibold">{label}</p>
-            <p className="text-sm leading-6 text-[#646464]">{description}</p>
-          </div>
-        ))}
+
+      <div
+        className={cn(
+          "overflow-hidden border border-black/[0.06] bg-white",
+          landing.cardMd,
+          landing.shadowCard,
+        )}
+      >
+        <div className="grid divide-y divide-black/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0">
+          {matrixGroups.map((group) => (
+            <div key={group.title} className="space-y-5 p-6 sm:p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#646464]">
+                {group.title}
+              </p>
+              <ul className="space-y-5">
+                {group.items.map((item) => (
+                  <li key={item.label} className="space-y-1.5">
+                    <p className="text-sm font-semibold leading-snug">{item.label}</p>
+                    <p className="text-sm leading-6 text-[#646464]">{item.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
