@@ -7,8 +7,10 @@ import { cn } from "@/lib/utils";
 
 function HeroUserMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-full rounded-2xl bg-secondary px-4 py-2.5 text-sm leading-6 text-foreground sm:px-5 sm:py-3">
-      {children}
+    <div className="flex w-full justify-end">
+      <div className="max-w-[min(100%,28rem)] rounded-2xl bg-secondary px-4 py-2.5 text-sm leading-6 text-foreground sm:px-5 sm:py-3">
+        {children}
+      </div>
     </div>
   );
 }
