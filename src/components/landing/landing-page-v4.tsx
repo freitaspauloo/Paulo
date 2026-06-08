@@ -125,7 +125,7 @@ export function LandingPageV4() {
 
         <SplitSection
           kicker="Security"
-          accent="text-mint"
+          accent={sectionTagAccent}
           title="Safety is the architecture, not a filter on top of it."
           body="In most AI products, safety is a layer applied after the model is built. At Aligned it is part of the structure. Every prompt is classified before any model sees it, and every response is verified against your configuration before it is returned. Because the controls are built in rather than added on top, they cannot be disabled or bypassed."
           subCards={[
@@ -144,7 +144,7 @@ export function LandingPageV4() {
 
         <SplitSection
           kicker="Data residency and compliance"
-          accent="text-mint"
+          accent={sectionTagAccent}
           title="Your data stays in the United States, inside a boundary you can name."
           body="Inference runs inside a perimeter you can write into a contract and point to in an audit. Nothing is sent offshore, and nothing reaches a third-party model you did not approve, so you can say exactly where your data goes, which most providers cannot. The platform runs on SOC 2-compliant infrastructure with certification underway, and for strict residency needs, dedicated and private deployment are available. A complete data-flow diagram is available under NDA."
           reverse
