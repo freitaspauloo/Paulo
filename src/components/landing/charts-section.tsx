@@ -39,7 +39,7 @@ const charts: {
     caption: "Lower is better",
     config: {
       value: { label: "Cost" },
-      Aligned: { label: "Aligned", color: "var(--color-chart-2)" },
+      Aligned: { label: "Aligned", color: "#202020" },
       "Top 3": { label: "Top 3", color: "hsl(0 0% 0% / 0.12)" },
       Other: { label: "Other", color: "hsl(0 0% 0% / 0.08)" },
     },
@@ -54,7 +54,7 @@ const charts: {
     caption: "Higher is better",
     config: {
       value: { label: "Accuracy" },
-      Aligned: { label: "Aligned", color: "var(--color-chart-2)" },
+      Aligned: { label: "Aligned", color: "#202020" },
       "Top 3": { label: "Top 3", color: "hsl(0 0% 0% / 0.12)" },
       Other: { label: "Other", color: "hsl(0 0% 0% / 0.08)" },
     },
@@ -69,7 +69,7 @@ const charts: {
     caption: "Higher is better",
     config: {
       value: { label: "Efficiency" },
-      Aligned: { label: "Aligned", color: "var(--color-chart-2)" },
+      Aligned: { label: "Aligned", color: "#202020" },
       "Top 3": { label: "Top 3", color: "hsl(0 0% 0% / 0.12)" },
       Other: { label: "Other", color: "hsl(0 0% 0% / 0.08)" },
     },
@@ -82,10 +82,13 @@ const charts: {
 ];
 
 const legend = [
-  { label: "Aligned AI", dot: "bg-chart-2" },
+  { label: "Aligned AI", dot: "bg-[#202020]" },
   { label: "Top 3 frontier", dot: "bg-black/30" },
   { label: "Other frontier", dot: "bg-black/15" },
 ] as const;
+
+const LEAD_BAR = "#202020";
+const OTHER_BAR = "hsl(0 0% 0% / 0.1)";
 
 function BenchmarkBarChart({
   config,
@@ -102,21 +105,17 @@ function BenchmarkBarChart({
     >
       <BarChart
         data={data}
-        margin={{ top: 28, right: 4, left: 4, bottom: 0 }}
-        barCategoryGap="22%"
+        margin={{ top: 32, right: 12, left: 12, bottom: 4 }}
+        barCategoryGap="28%"
+        barGap={4}
       >
-        <defs>
-          <linearGradient id="alignedBar" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stopColor="var(--progress)" />
-            <stop offset="100%" stopColor="var(--palette-cyan)" />
-          </linearGradient>
-        </defs>
         <CartesianGrid vertical={false} strokeDasharray="3 3" className="stroke-black/[0.06]" />
         <XAxis
           dataKey="name"
           tickLine={false}
           axisLine={false}
-          tickMargin={10}
+          tickMargin={12}
+          interval={0}
           tick={{ fill: "#646464", fontSize: 11 }}
         />
         <ChartTooltip
@@ -135,27 +134,29 @@ function BenchmarkBarChart({
             />
           }
         />
-        <Bar dataKey="value" radius={[8, 8, 0, 0]} maxBarSize={44}>
+        <Bar dataKey="value" radius={[6, 6, 0, 0]} barSize={28} maxBarSize={28}>
           {data.map((entry) => (
             <Cell
               key={entry.name}
-              fill={entry.lead ? "url(#alignedBar)" : "hsl(0 0% 0% / 0.1)"}
+              fill={entry.lead ? LEAD_BAR : OTHER_BAR}
             />
           ))}
           <LabelList
             dataKey="display"
             position="top"
-            content={({ x, y, value, index }) => {
+            offset={10}
+            content={({ x, width, y, value, index }) => {
               if (x == null || y == null || value == null) return null;
               const entry = data[index ?? 0];
+              const centerX = Number(x) + (width != null ? Number(width) / 2 : 0);
               return (
                 <text
-                  x={Number(x)}
+                  x={centerX}
                   y={Number(y)}
-                  dy={-8}
+                  dy={-10}
                   textAnchor="middle"
                   className={cn(
-                    "text-[11px] tabular-nums",
+                    "text-[10px] tabular-nums sm:text-[11px]",
                     entry?.lead
                       ? "fill-foreground font-semibold"
                       : "fill-[#646464]",
@@ -204,13 +205,17 @@ export function ChartsSection() {
                   "gap-0 border border-black/[0.06] bg-white py-0 ring-0",
                 )}
               >
-                <CardHeader className="border-b border-black/[0.06] px-5 pt-5 pb-4">
-                  <CardTitle className="text-sm font-semibold">{chart.title}</CardTitle>
-                  <CardAction>
-                    <span className="text-xs text-[#646464]">{chart.caption}</span>
+                <CardHeader className="items-center border-b border-black/[0.06] px-5 pt-5 pb-4">
+                  <CardTitle className="text-sm font-semibold leading-none">
+                    {chart.title}
+                  </CardTitle>
+                  <CardAction className="self-center">
+                    <span className="text-xs leading-none text-[#646464]">
+                      {chart.caption}
+                    </span>
                   </CardAction>
                 </CardHeader>
-                <CardContent className="px-4 pt-5 pb-5 sm:px-5 sm:pb-6">
+                <CardContent className="px-5 pt-4 pb-5 sm:pb-6">
                   <BenchmarkBarChart config={chart.config} data={chart.data} />
                 </CardContent>
               </Card>
