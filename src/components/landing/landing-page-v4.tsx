@@ -30,6 +30,8 @@ import {
 } from "@/components/landing/section-visuals";
 import { cn } from "@/lib/utils";
 
+const sectionTagAccent = "text-[#646464]";
+
 export function LandingPageV4() {
   return (
     <main className="w-full bg-white text-foreground">
@@ -100,7 +102,7 @@ export function LandingPageV4() {
 
         <SplitSection
           kicker="Capability"
-          accent="text-cyan"
+          accent={sectionTagAccent}
           title="As capable as the models you already use."
           body="Aligned performs at the level of ChatGPT, Claude, and Gemini on the work enterprises actually run: reasoning, coding, math, and instruction-following. Under the hood it composes across the best available models and routes each task to the strongest one, so as the field advances, Aligned advances with it instead of aging out. You are not trading capability for the savings."
           link={{
@@ -112,7 +114,7 @@ export function LandingPageV4() {
 
         <SplitSection
           kicker="Cost"
-          accent="text-purple"
+          accent={sectionTagAccent}
           title="10 to 50x lower cost per chat."
           body="This is not a discount and it is not a smaller model. It is an architecture that spends compute only where it changes the answer, routing each request to the most efficient path that still meets the bar. Aligned runs from $0.006 per chat against $0.12 to $0.50 for the frontier APIs. Send us one month of your real volume and we will model the difference."
           cta={ENTERPRISE_MAIL}
