@@ -94,23 +94,42 @@ function CapabilityCard({
   layout,
 }: {
   capability: (typeof capabilities)[number];
-  layout: "carousel" | "grid";
+  layout: "carousel" | "inline";
 }) {
+  const isCarousel = layout === "carousel";
+
   return (
     <article
       className={cn(
-        "flex flex-col justify-between border border-black/[0.06] bg-white p-6 sm:p-7",
+        "flex h-full flex-col justify-between border border-black/[0.06] bg-white",
         landing.cardMd,
         landing.shadowDrop,
-        layout === "carousel"
-          ? "min-h-[19rem] w-[min(18.5rem,85vw)] shrink-0 snap-start"
-          : "min-h-[17rem]",
+        isCarousel
+          ? "min-h-[19rem] w-[min(18.5rem,85vw)] shrink-0 snap-start p-6 sm:p-7"
+          : "min-h-[16rem] min-w-0 p-5",
       )}
     >
-      <c.icon className={cn("size-8", c.color)} strokeWidth={1.75} />
+      <c.icon
+        className={cn(isCarousel ? "size-8" : "size-7", c.color)}
+        strokeWidth={1.75}
+      />
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold tracking-[-0.01em]">{c.title}</h3>
-        <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
+        <h3
+          className={cn(
+            "font-semibold tracking-[-0.01em]",
+            isCarousel ? "text-xl" : "text-base",
+          )}
+        >
+          {c.title}
+        </h3>
+        <p
+          className={cn(
+            "text-[#646464]",
+            isCarousel ? "text-sm leading-6" : "text-xs leading-5",
+          )}
+        >
+          {c.body}
+        </p>
       </div>
     </article>
   );
@@ -267,10 +286,10 @@ export function LandingPage() {
           </div>
         </div>
 
-        {/* Desktop: full grid, no scroll */}
-        <div className="mt-12 hidden gap-5 lg:grid lg:grid-cols-3">
+        {/* Desktop: single row, all cards in line */}
+        <div className="mt-12 hidden gap-4 lg:grid lg:grid-cols-6 lg:items-stretch">
           {capabilities.map((c) => (
-            <CapabilityCard key={c.title} capability={c} layout="grid" />
+            <CapabilityCard key={c.title} capability={c} layout="inline" />
           ))}
         </div>
 
