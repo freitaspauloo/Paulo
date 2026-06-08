@@ -1,5 +1,6 @@
 "use client";
 
+import { LandingFallingPattern } from "@/components/landing/landing-falling-pattern";
 import { cn } from "@/lib/utils";
 
 export function HeroGradientLimeFrame({
@@ -26,6 +27,7 @@ export function HeroGradientLimeFrame({
         {/* Faint green wash across upper area */}
         <div className="absolute -right-[6%] -top-[8%] size-[42%] rounded-full bg-[#d8ebe2]/32 blur-3xl motion-safe:animate-[landing-gradient-drift-c_22s_ease-in-out_infinite]" />
       </div>
+      <LandingFallingPattern />
       <div className="relative z-10">{children}</div>
     </div>
   );

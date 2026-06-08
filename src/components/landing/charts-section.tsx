@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
+import { HeroGradientCyanFrame } from "@/components/landing/hero-gradient-cyan";
 import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
 import { landing } from "@/components/landing/landing-primitives";
 import { Badge } from "@/components/ui/badge";
@@ -184,8 +185,7 @@ export function ChartsSection({
   const frameClassName = cn(
     landing.heroMargin,
     landing.heroFrame,
-    !animatedLimeFrame && frameGradient,
-    "overflow-hidden px-4 py-12 sm:px-8 sm:py-16",
+    "px-4 py-12 sm:px-8 sm:py-16",
   );
 
   const content = (
@@ -256,7 +256,12 @@ export function ChartsSection({
           {content}
         </HeroGradientLimeFrame>
       ) : (
-        <div className={frameClassName}>{content}</div>
+        <HeroGradientCyanFrame
+          className={frameClassName}
+          gradientClassName={frameGradient}
+        >
+          {content}
+        </HeroGradientCyanFrame>
       )}
     </section>
   );

@@ -7,6 +7,7 @@ import {
   ControlsSection,
   PlansSection,
 } from "@/components/landing/enterprise-sections";
+import { HeroGradientCyanFrame } from "@/components/landing/hero-gradient-cyan";
 import { HeroWindow } from "@/components/landing/hero-window";
 import {
   LandingEyebrow,
@@ -99,12 +100,11 @@ export function LandingPage() {
 
       {/* Hero — gradient frame below nav */}
       <section className="bg-white pb-8 sm:pb-10">
-        <div
+        <HeroGradientCyanFrame
           className={cn(
             landing.heroMargin,
             landing.heroFrame,
-            "overflow-hidden px-4 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14",
-            landing.heroGradient,
+            "px-4 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14",
           )}
         >
           <div className="mx-auto max-w-[44rem] space-y-6 text-center">
@@ -154,7 +154,7 @@ export function LandingPage() {
               ))}
             </div>
           </div>
-        </div>
+        </HeroGradientCyanFrame>
       </section>
 
       <CapabilitiesSection />
