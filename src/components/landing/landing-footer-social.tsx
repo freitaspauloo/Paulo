@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const iconClass = "size-[17px] shrink-0";
+const iconClass = "size-5 shrink-0";
 
 function SocialInstagram({ className }: { className?: string }) {
   return (
@@ -8,7 +8,7 @@ function SocialInstagram({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={1.25}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn(iconClass, className)}
@@ -16,7 +16,7 @@ function SocialInstagram({ className }: { className?: string }) {
     >
       <rect x="4" y="4" width="16" height="16" rx="4" />
       <circle cx="12" cy="12" r="3.25" />
-      <circle cx="17.2" cy="6.8" r="0.75" fill="currentColor" stroke="none" />
+      <circle cx="17.2" cy="6.8" r="0.75" />
     </svg>
   );
 }
@@ -27,7 +27,7 @@ function SocialLinkedIn({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={1.25}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn(iconClass, className)}
@@ -48,7 +48,7 @@ function SocialX({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={1.25}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn(iconClass, className)}
@@ -65,7 +65,7 @@ function SocialTikTok({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={1.25}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn(iconClass, className)}
@@ -78,12 +78,12 @@ function SocialTikTok({ className }: { className?: string }) {
 }
 
 const linkClass = cn(
-  "flex items-center justify-center text-[#b8b8b8] transition-colors hover:text-[#e8e8e8]",
+  "flex items-center justify-center text-[#a3a3a3] transition-colors hover:text-[#d4d4d4]",
 );
 
 export function LandingFooterSocial({ className }: { className?: string }) {
   return (
-    <div className={cn("flex items-center gap-4 sm:gap-5", className)}>
+    <div className={cn("flex items-center gap-5", className)}>
       <a href="#" aria-label="Instagram" className={linkClass}>
         <SocialInstagram />
       </a>
