@@ -115,12 +115,11 @@ function StorySection({
 export function LandingPage() {
   return (
     <main className="w-full bg-white text-foreground">
-      {/* Hero — nav on white; gradient frame below (no border) */}
-      <section className="bg-white pb-8 pt-3 sm:pb-10 sm:pt-4">
+      <header className="sticky top-0 z-50 w-full border-b border-black/[0.06] bg-white/70 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/55">
         <nav
           className={cn(
             landing.heroMargin,
-            "mb-3 flex h-[4.25rem] items-center justify-between sm:mb-4",
+            "flex h-[4.25rem] items-center justify-between",
           )}
         >
           <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold">
@@ -139,7 +138,10 @@ export function LandingPage() {
             </LandingPrimaryButton>
           </div>
         </nav>
+      </header>
 
+      {/* Hero — gradient frame below nav */}
+      <section className="bg-white pb-8 sm:pb-10">
         <div
           className={cn(
             landing.heroMargin,
