@@ -8,6 +8,8 @@ export const landing = {
   page: "mx-auto w-full max-w-[72rem]",
   container: "rounded-[24px]",
   heroFrame: "rounded-[2.5rem]",
+  heroGradient:
+    "bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)]",
   /** ~10% gutter each side; clamps so margins never disappear on small screens */
   heroMargin: "mx-[clamp(1rem,10%,6rem)] w-[calc(100%-2*clamp(1rem,10%,6rem))]",
   cardLg: "rounded-[20px]",

@@ -17,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { ChartsSection } from "@/components/landing/charts-section";
 import {
   BenchmarksSection,
   ControlsSection,
@@ -50,36 +51,6 @@ const stats = [
   { value: "Top 3", label: "accuracy across 13 deployed models, and #1 on accuracy per dollar", icon: Gauge },
   { value: "20–80x", label: "lower cost per chat than frontier APIs, at comparable accuracy", icon: DollarSign },
   { value: "100% US", label: "hosted inference, inside a boundary you can name in a contract", icon: MapPin },
-];
-
-const charts = [
-  {
-    title: "Cost per chat",
-    caption: "Lower is better",
-    bars: [
-      { label: "Aligned", value: "$0.006", pct: 6, lead: true },
-      { label: "Top 3", value: "$0.12", pct: 40, lead: false },
-      { label: "Other", value: "$0.50", pct: 100, lead: false },
-    ],
-  },
-  {
-    title: "General accuracy",
-    caption: "Higher is better",
-    bars: [
-      { label: "Aligned", value: "88.4%", pct: 96, lead: true },
-      { label: "Top 3", value: "85.5%", pct: 90, lead: false },
-      { label: "Other", value: "83.0%", pct: 84, lead: false },
-    ],
-  },
-  {
-    title: "Accuracy per $",
-    caption: "Higher is better",
-    bars: [
-      { label: "Aligned", value: "#1", pct: 100, lead: true },
-      { label: "Top 3", value: "0.4×", pct: 40, lead: false },
-      { label: "Other", value: "0.1×", pct: 12, lead: false },
-    ],
-  },
 ];
 
 const social = [
@@ -207,7 +178,8 @@ export function LandingPage() {
           className={cn(
             landing.heroMargin,
             landing.heroFrame,
-            "overflow-hidden bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)] px-4 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14",
+            "overflow-hidden px-4 pb-10 pt-10 sm:px-8 sm:pb-12 sm:pt-14",
+            landing.heroGradient,
           )}
         >
           <div className="mx-auto max-w-[44rem] space-y-6 text-center">
@@ -338,87 +310,7 @@ export function LandingPage() {
         />
       </div>
 
-      {/* Charts */}
-      <section className="my-20 bg-[#eef2fe] py-20 sm:my-28 sm:py-24">
-        <div className={cn(landing.page, "px-6")}>
-          <div className="mx-auto max-w-[40rem] space-y-3 text-center">
-            <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
-              Just as good, a fraction of the cost.
-            </h2>
-            <p className="text-base text-[#646464]">
-              Top-3 accuracy across 13 deployed models, and #1 on accuracy per
-              dollar — with the benchmark named and the source public.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:gap-5">
-            {charts.map((chart) => (
-              <div
-                key={chart.title}
-                className={cn(
-                  "border border-black/[0.06] bg-white p-6 sm:p-7",
-                  landing.cardMd,
-                  landing.shadowCard,
-                )}
-              >
-                <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="text-sm font-semibold">{chart.title}</h3>
-                  <span className="text-xs text-[#646464]">{chart.caption}</span>
-                </div>
-                <div className="mt-8 flex h-48 items-end justify-around gap-3">
-                  {chart.bars.map((b) => (
-                    <div
-                      key={b.label}
-                      className="flex h-full flex-1 flex-col items-center justify-end gap-2"
-                    >
-                      <span
-                        className={cn(
-                          "text-xs tabular-nums",
-                          b.lead ? "font-semibold" : "text-[#646464]",
-                        )}
-                      >
-                        {b.value}
-                      </span>
-                      <div
-                        className={cn(
-                          "w-full max-w-[3.5rem] rounded-t-[8px]",
-                          b.lead
-                            ? "bg-gradient-to-t from-progress to-cyan"
-                            : "bg-black/[0.08]",
-                        )}
-                        style={{ height: `${Math.max(b.pct, 6)}%` }}
-                      />
-                      <span className="text-center text-[0.7rem] text-[#646464]">
-                        {b.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5 text-sm">
-            <span className="inline-flex items-center gap-2">
-              <span className="size-2 rounded-full bg-progress" /> Aligned AI
-            </span>
-            <span className="inline-flex items-center gap-2 text-[#646464]">
-              <span className="size-2 rounded-full bg-black/30" /> Top 3 frontier
-            </span>
-            <span className="inline-flex items-center gap-2 text-[#646464]">
-              <span className="size-2 rounded-full bg-black/15" /> Other frontier
-            </span>
-          </div>
-          <div className="mt-3 text-center">
-            <button
-              type="button"
-              className="inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline"
-            >
-              View Benchmarks <ArrowRight className="size-4" />
-            </button>
-          </div>
-        </div>
-      </section>
+      <ChartsSection />
 
       <div className={cn(landing.page, "space-y-20 px-6 pb-24 sm:space-y-24 sm:pb-28")}>
         <StorySection
