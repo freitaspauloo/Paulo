@@ -17,18 +17,21 @@ const photos = {
 function PhotoScene({
   image,
   alt,
-  tint,
   overlayClassName = "from-black/30 via-black/5 to-transparent",
   children,
 }: {
   image: string;
   alt: string;
-  tint: string;
   overlayClassName?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-[24px] p-4 sm:p-6", tint)}>
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
+        landing.sectionVisualFrame,
+      )}
+    >
       <div className="relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]">
         <div
           className={cn(
@@ -120,7 +123,6 @@ export function PrivateVisual() {
     <PhotoScene
       image={photos.cost}
       alt="Enterprise team collaborating at computers"
-      tint="bg-[#eef1f4]"
       overlayClassName="from-black/40 via-black/15 to-transparent"
     >
       <OverlayCard
@@ -160,7 +162,6 @@ export function AnswersVisual() {
     <PhotoScene
       image={photos.accuracy}
       alt="Analytics dashboard showing model benchmarks"
-      tint="bg-cyan-bg"
     >
       <OverlayCard
         className="right-4 top-10 w-[min(100%,17rem)] sm:w-[18rem]"
@@ -200,7 +201,6 @@ export function PowerfulVisual() {
     <PhotoScene
       image={photos.residency}
       alt="US data center infrastructure"
-      tint="bg-mint-bg"
     >
       <OverlayCard
         className="right-3 top-8 w-[min(100%,18rem)] sm:right-10 sm:w-[19rem]"
@@ -241,12 +241,12 @@ export function FamilyVisual() {
     <PhotoScene
       image={photos.safety}
       alt="Security and safety architecture review"
-      tint="bg-[#e9f4ec]"
     >
       <OverlayCard
-        className="left-3 top-8 w-[min(100%,17.5rem)] sm:left-8 sm:w-[19rem]"
+        className="left-1/2 top-8 w-fit max-w-[calc(100%-1.5rem)] -translate-x-1/2"
         delay={140}
       >
+        <div className="mx-auto w-fit">
         {[
           ["input", "classify · policy gate"],
           ["inference", "route → strongest model"],
@@ -255,7 +255,7 @@ export function FamilyVisual() {
           <div
             key={key}
             className={cn(
-              "flex gap-2.5 py-2 first:pt-0 last:pb-0",
+              "flex items-start gap-2.5 py-2 first:pt-0 last:pb-0",
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:fill-mode-both motion-safe:duration-500",
             )}
             style={{ animationDelay: `${200 + i * 150}ms` }}
@@ -269,6 +269,7 @@ export function FamilyVisual() {
             </div>
           </div>
         ))}
+        </div>
       </OverlayCard>
     </PhotoScene>
   );

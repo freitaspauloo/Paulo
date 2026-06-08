@@ -10,11 +10,13 @@ export const landing = {
   heroFrame: "rounded-[2.5rem]",
   heroGradient:
     "bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)]",
-  /** v3 — soft mint/teal variant (hue of operator@aligned #22a06b) */
+  /** v3 — white glow → vibrant lime (#7cff6b) */
   heroGradientLime:
-    "bg-[linear-gradient(180deg,#d4efe8_0%,#e2f6f0_28%,#edf8f5_55%,#f7fcfa_100%)]",
+    "bg-[linear-gradient(180deg,#ffffff_0%,#f6fff2_22%,#d8ffb8_50%,#a8ff72_75%,#7cff6b_100%)]",
   /** ~10% gutter each side; clamps so margins never disappear on small screens */
   heroMargin: "mx-[clamp(1rem,10%,6rem)] w-[calc(100%-2*clamp(1rem,10%,6rem))]",
+  /** Story-section photo frames — flat light grey, no tint gradient */
+  sectionVisualFrame: "bg-[#f0f0f0]",
   cardLg: "rounded-[20px]",
   cardMd: "rounded-[16px]",
   cardSm: "rounded-[12px]",
