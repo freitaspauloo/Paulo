@@ -73,22 +73,22 @@ export function BenchmarksSection() {
           landing.shadowCard,
         )}
       >
-        <Table>
+        <Table className="[&_td]:px-5 [&_td]:py-4 [&_th]:h-auto [&_th]:px-5 [&_th]:py-4 sm:[&_td]:px-6 sm:[&_th]:px-6">
           <TableHeader>
             <TableRow>
-              <TableHead className="min-w-[14rem]">Benchmark</TableHead>
+              <TableHead className="min-w-[14rem] pl-6 sm:pl-8">Benchmark</TableHead>
               <TableHead className="text-right font-medium text-foreground">
                 Aligned
               </TableHead>
               <TableHead className="text-right">GPT-4o</TableHead>
               <TableHead className="text-right">Gemini 1.5 Pro</TableHead>
-              <TableHead className="text-right">Llama 3 405B</TableHead>
+              <TableHead className="pr-6 text-right sm:pr-8">Llama 3 405B</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {benchmarks.map((row) => (
               <TableRow key={row[0]}>
-                <TableCell className="font-medium">{row[0]}</TableCell>
+                <TableCell className="pl-6 font-medium sm:pl-8">{row[0]}</TableCell>
                 <TableCell className="text-right font-medium tabular-nums">
                   {row[1]}
                 </TableCell>
@@ -98,7 +98,7 @@ export function BenchmarksSection() {
                 <TableCell className="text-right tabular-nums text-[#646464]">
                   {row[3]}
                 </TableCell>
-                <TableCell className="text-right tabular-nums text-[#646464]">
+                <TableCell className="pr-6 text-right tabular-nums text-[#646464] sm:pr-8">
                   {row[4]}
                 </TableCell>
               </TableRow>
