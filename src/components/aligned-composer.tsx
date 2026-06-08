@@ -13,6 +13,8 @@ interface AlignedComposerProps {
   defaultValue?: string;
   placeholder?: string;
   className?: string;
+  /** Optional footer rendered inside the composer frame (below the input). */
+  footer?: React.ReactNode;
 }
 
 export function AlignedComposer({
@@ -20,6 +22,7 @@ export function AlignedComposer({
   defaultValue,
   placeholder = "Type a prompt or press / for commands",
   className,
+  footer,
 }: AlignedComposerProps) {
   return (
     <div
@@ -58,6 +61,7 @@ export function AlignedComposer({
           </button>
         </div>
       </div>
+      {footer}
     </div>
   );
 }

@@ -9,7 +9,6 @@ import {
   FirstWeekSection,
   PlatformTabsSection,
   SplitSection,
-  TrustStripSection,
 } from "@/components/landing/enterprise-v2-sections";
 import {
   CompoundVisual,
@@ -88,7 +87,7 @@ export function LandingPageV4() {
           </div>
 
           <div className="mx-auto mt-12 w-full max-w-[58rem] px-1 sm:mt-14">
-            <HeroWindow />
+            <HeroWindow showCommitmentsStrip />
           </div>
         </HeroGradientLimeFrame>
       </section>
@@ -99,7 +98,6 @@ export function LandingPageV4() {
           "space-y-20 px-6 py-16 sm:space-y-24 sm:py-20",
         )}
       >
-        <TrustStripSection />
         <BenefitBlurbsSection />
 
         <SplitSection
