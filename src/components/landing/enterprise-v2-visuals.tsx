@@ -1,18 +1,16 @@
 "use client";
 
+import { GitMerge } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   SectionVisualShell,
   sectionVisualPanelClass,
@@ -91,20 +89,26 @@ function CostBarShape({ x = 0, y = 0, width = 0, height = 0, fill, payload }: Ba
   );
 }
 
-const COMPOUND_TABS = {
-  reasoning: {
-    label: "Reasoning",
-    status: "Strongest model selected for this task.",
+const COMPOUND_PATHS = [
+  {
+    id: "reasoning",
+    label: "Reasoning path",
+    detail: "Strongest model for this task",
+    active: true,
   },
-  coding: {
-    label: "Coding",
-    status: "Available when coding is the strongest match.",
+  {
+    id: "coding",
+    label: "Coding path",
+    detail: "Standby until it wins the route",
+    active: false,
   },
-  math: {
-    label: "Math",
-    status: "Available when math is the strongest match.",
+  {
+    id: "math",
+    label: "Math path",
+    detail: "Standby until it wins the route",
+    active: false,
   },
-} as const;
+] as const;
 
 export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
@@ -112,7 +116,9 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
       <div className={sectionVisualStageClass(frame)}>
         <Card
           size="sm"
-          className={sectionVisualPanelClass("gap-0 py-0 ring-black/[0.08]")}
+          className={sectionVisualPanelClass(
+            "flex h-full flex-col gap-0 py-0 ring-black/[0.08]",
+          )}
         >
           <div className="flex h-10 shrink-0 items-center gap-2 border-b border-black/[0.06] px-4">
             <span className="size-2.5 shrink-0 rounded-full bg-[#ff5f57]" />
@@ -123,48 +129,66 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
             </span>
           </div>
 
-          <CardHeader className="gap-2 border-b border-black/[0.06] pb-4">
-            <div className="flex items-start justify-between gap-3">
-              <div className="space-y-1">
-                <CardTitle className="text-sm font-semibold">Model paths</CardTitle>
-                <CardDescription className="text-xs">
-                  One composed response per request
-                </CardDescription>
-              </div>
-              <Badge className="shrink-0 border-transparent bg-[#22a06b]/10 text-[#22a06b] hover:bg-[#22a06b]/10">
-                Strongest match
-              </Badge>
-            </div>
-          </CardHeader>
-
-          <CardContent className="space-y-4 pt-4">
-            <Tabs defaultValue="reasoning">
-              <TabsList className="grid h-9 w-full grid-cols-3">
-                {Object.entries(COMPOUND_TABS).map(([value, tab]) => (
-                  <TabsTrigger key={value} value={value} className="text-xs">
-                    {tab.label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {Object.entries(COMPOUND_TABS).map(([value, tab]) => (
-                <TabsContent key={value} value={value} className="mt-3">
-                  <p className="rounded-lg border border-black/[0.06] bg-muted/40 px-3 py-2.5 text-xs leading-5 text-muted-foreground">
-                    {tab.status}
-                  </p>
-                </TabsContent>
+          <CardContent className="flex flex-1 flex-col justify-center gap-3 px-4 py-4">
+            <RadioGroup
+              value="reasoning"
+              className="pointer-events-none gap-2"
+              aria-readonly
+            >
+              {COMPOUND_PATHS.map((path) => (
+                <label
+                  key={path.id}
+                  htmlFor={`compound-${path.id}`}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg border px-3 py-2.5",
+                    path.active
+                      ? "border-[#22a06b]/35 bg-[#22a06b]/[0.06] shadow-[0_0_0_1px_rgba(34,160,107,0.06)]"
+                      : "border-black/[0.06] bg-muted/35",
+                  )}
+                >
+                  <RadioGroupItem
+                    id={`compound-${path.id}`}
+                    value={path.id}
+                    className={cn(
+                      path.active &&
+                        "border-[#22a06b] bg-[#22a06b] text-white data-checked:border-[#22a06b] data-checked:bg-[#22a06b]",
+                    )}
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p
+                      className={cn(
+                        "text-xs font-medium sm:text-[0.8125rem]",
+                        path.active ? "text-foreground" : "text-muted-foreground",
+                      )}
+                    >
+                      {path.label}
+                    </p>
+                    <p className="text-[0.6875rem] leading-4 text-muted-foreground">
+                      {path.detail}
+                    </p>
+                  </div>
+                  {path.active ? (
+                    <Badge className="shrink-0 border-transparent bg-[#22a06b]/10 text-[0.625rem] text-[#22a06b] hover:bg-[#22a06b]/10">
+                      Strongest
+                    </Badge>
+                  ) : null}
+                </label>
               ))}
-            </Tabs>
+            </RadioGroup>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 py-0.5">
               <Separator className="flex-1" />
-              <span className="text-[0.6875rem] font-medium text-muted-foreground">
-                Compose
-              </span>
+              <div className="flex size-7 items-center justify-center rounded-full bg-muted">
+                <GitMerge className="size-3.5 text-muted-foreground" />
+              </div>
               <Separator className="flex-1" />
             </div>
+            <p className="text-center text-[0.6875rem] font-medium text-muted-foreground">
+              Paths merge into one composed response
+            </p>
           </CardContent>
 
-          <CardFooter className="border-t border-black/[0.06] bg-[#202020] py-3 text-background">
+          <CardFooter className="mt-auto border-t border-black/[0.06] bg-[#202020] py-3 text-background">
             <div className="flex w-full flex-col gap-0.5">
               <span className="text-sm font-medium">One composed output</span>
               <span className="text-xs text-white/65">→ your application</span>
