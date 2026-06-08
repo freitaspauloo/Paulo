@@ -244,7 +244,7 @@ export function FamilyVisual() {
       tint="bg-[#e9f4ec]"
     >
       <OverlayCard
-        className="left-3 top-8 w-[min(100%,20rem)] font-mono text-xs sm:left-8"
+        className="left-3 top-8 w-[min(100%,17.5rem)] sm:left-8 sm:w-[19rem]"
         delay={140}
       >
         {[
@@ -255,16 +255,18 @@ export function FamilyVisual() {
           <div
             key={key}
             className={cn(
-              "flex items-center gap-2 py-1.5",
+              "flex gap-2.5 py-2 first:pt-0 last:pb-0",
               "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:fill-mode-both motion-safe:duration-500",
             )}
             style={{ animationDelay: `${200 + i * 150}ms` }}
           >
-            <span className="flex size-5 items-center justify-center rounded bg-mint-bg text-[10px] font-medium text-mint">
+            <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded bg-mint-bg font-mono text-[10px] font-medium text-mint">
               {i + 1}
             </span>
-            <span className="font-medium text-foreground">{key}</span>
-            <span className="text-[#646464]">→ {value}</span>
+            <div className="min-w-0 font-mono text-xs leading-5">
+              <div className="font-medium text-foreground">{key}</div>
+              <div className="text-[11px] leading-4 text-[#646464]">→ {value}</div>
+            </div>
           </div>
         ))}
       </OverlayCard>
