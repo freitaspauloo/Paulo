@@ -3,7 +3,6 @@
 import {
   ArrowDown,
   Check,
-  Key,
   Link2,
   MapPin,
   Shield,
@@ -514,7 +513,6 @@ export function EnterpriseControlsGridSection() {
               landing.shadowCard,
             )}
           >
-            <Key className="size-4 text-[#646464]" strokeWidth={1.75} />
             <h3 className="text-sm font-semibold">{title}</h3>
             <p className="text-sm leading-6 text-[#646464]">{body}</p>
           </article>
