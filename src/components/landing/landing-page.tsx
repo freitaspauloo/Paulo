@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Building2,
   Code2,
   DollarSign,
   Gauge,
@@ -150,15 +149,6 @@ export function LandingPage() {
           )}
         >
           <div className="mx-auto max-w-[44rem] space-y-6 text-center">
-            <span
-              className={cn(
-                "mx-auto inline-flex items-center gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]",
-                landing.capsule,
-              )}
-            >
-              <Building2 className="size-3.5" />
-              Aligned for Enterprise
-            </span>
             <h1 className="text-balance text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
               Frontier-class AI, hosted in the US, at a fraction of the cost.
             </h1>
