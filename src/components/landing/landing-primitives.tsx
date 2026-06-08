@@ -10,9 +10,9 @@ export const landing = {
   heroFrame: "rounded-[2.5rem]",
   heroGradient:
     "bg-[linear-gradient(180deg,#bfeaf6_0%,#d4f0f8_28%,#e8f7fc_55%,#f6fbfe_100%)]",
-  /** v3 — lime green variant (same stops as heroGradient) */
+  /** v3 — soft mint/teal variant (hue of operator@aligned #22a06b) */
   heroGradientLime:
-    "bg-[linear-gradient(180deg,#c8f0a0_0%,#ddf5bd_28%,#eefad4_55%,#f8fdf2_100%)]",
+    "bg-[linear-gradient(180deg,#d4efe8_0%,#e2f6f0_28%,#edf8f5_55%,#f7fcfa_100%)]",
   /** ~10% gutter each side; clamps so margins never disappear on small screens */
   heroMargin: "mx-[clamp(1rem,10%,6rem)] w-[calc(100%-2*clamp(1rem,10%,6rem))]",
   cardLg: "rounded-[20px]",
