@@ -85,7 +85,7 @@ export function LandingPageV4() {
 
           <div className="mx-auto mt-12 w-full max-w-[58rem] px-1 sm:mt-14">
             <HeroWindow />
-            <HeroCommitmentsStrip className="mt-10 px-2 sm:mt-12" />
+            <HeroCommitmentsStrip className="mt-8 sm:mt-9" />
           </div>
         </HeroGradientLimeFrame>
       </section>

@@ -14,8 +14,8 @@ export function HeroCommitmentsStrip({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "overflow-hidden border border-black/[0.08] bg-white text-[#202020]",
-        landing.cardMd,
+        "mx-auto w-full max-w-[50rem] overflow-hidden border border-black/[0.08] bg-white text-[#202020]",
+        landing.cardSm,
         landing.shadowDrop,
         className,
       )}
@@ -24,10 +24,10 @@ export function HeroCommitmentsStrip({ className }: { className?: string }) {
         {COMMITMENT_ITEMS.map((item) => (
           <div
             key={item.label}
-            className="flex flex-col items-center gap-3 px-5 py-6 text-center sm:px-6 sm:py-7"
+            className="flex flex-col items-center gap-2 px-4 py-4 text-center sm:px-5 sm:py-4"
           >
-            <item.icon className="size-5 text-[#202020]" strokeWidth={1.75} />
-            <p className="max-w-[14rem] text-sm font-medium leading-6 text-[#202020]">
+            <item.icon className="size-4 text-[#202020]" strokeWidth={1.75} />
+            <p className="text-[0.8125rem] font-medium leading-5 text-[#202020] sm:whitespace-nowrap">
               {item.label}
             </p>
           </div>
