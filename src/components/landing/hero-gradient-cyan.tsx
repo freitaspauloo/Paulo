@@ -14,8 +14,15 @@ export function HeroGradientCyanFrame({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("relative isolate overflow-hidden", gradientClassName, className)}>
-      <LandingFallingPattern />
+    <div className={cn("relative isolate overflow-hidden", className)}>
+      <LandingFallingPattern variant="cyan" />
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-0 z-[1] opacity-45",
+          gradientClassName,
+        )}
+      />
       <div className="relative z-10">{children}</div>
     </div>
   );
