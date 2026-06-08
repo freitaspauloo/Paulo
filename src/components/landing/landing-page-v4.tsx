@@ -53,7 +53,7 @@ export function LandingPageV4() {
       </header>
 
       {/* Section 1 — Hero (lime + falling dots) */}
-      <section className="bg-white pb-8 sm:pb-10">
+      <section className="bg-white pb-12 sm:pb-[3.75rem]">
         <HeroGradientLimeFrame
           dotColor="rgba(255, 255, 255, 0.98)"
           patternBackgroundColor="#5ec96f"
@@ -95,7 +95,7 @@ export function LandingPageV4() {
       <div
         className={cn(
           landing.page,
-          "space-y-20 px-6 py-16 sm:space-y-24 sm:py-20",
+          "space-y-[7.5rem] px-6 py-[6rem] sm:space-y-[9rem] sm:py-[7.5rem]",
         )}
       >
         <BenefitBlurbsSection />
