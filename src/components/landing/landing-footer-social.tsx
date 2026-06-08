@@ -77,31 +77,23 @@ function SocialTikTok({ className }: { className?: string }) {
   );
 }
 
-const linkClass =
-  "text-[#b8b8b8] transition-colors hover:text-[#e8e8e8]";
-
-const boxedLinkClass = cn(
-  linkClass,
-  "flex size-9 items-center justify-center rounded-[7px] border border-[#b8b8b8]/70 hover:border-[#e8e8e8]",
+const linkClass = cn(
+  "flex items-center justify-center text-[#b8b8b8] transition-colors hover:text-[#e8e8e8]",
 );
 
 export function LandingFooterSocial({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center gap-4 sm:gap-5", className)}>
-      <a href="#" aria-label="Instagram" className={boxedLinkClass}>
+      <a href="#" aria-label="Instagram" className={linkClass}>
         <SocialInstagram />
       </a>
-      <a href="#" aria-label="LinkedIn" className={boxedLinkClass}>
+      <a href="#" aria-label="LinkedIn" className={linkClass}>
         <SocialLinkedIn />
       </a>
-      <a href="#" aria-label="X" className={cn(linkClass, "flex items-center justify-center")}>
+      <a href="#" aria-label="X" className={linkClass}>
         <SocialX />
       </a>
-      <a
-        href="#"
-        aria-label="TikTok"
-        className={cn(linkClass, "flex items-center justify-center")}
-      >
+      <a href="#" aria-label="TikTok" className={linkClass}>
         <SocialTikTok />
       </a>
     </div>
