@@ -17,6 +17,7 @@ import {
 import { AlignedNavBrand } from "@/components/landing/aligned-nav-brand";
 import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
 import { LandingFooterSocial } from "@/components/landing/landing-footer-social";
+import { HeroCommitmentsStrip } from "@/components/landing/hero-commitments-strip";
 import { HeroWindow } from "@/components/landing/hero-window";
 import {
   LandingGhostButton,
@@ -55,11 +56,8 @@ export function LandingPageV4() {
       {/* Section 1 — Hero (lime + falling dots) */}
       <section className="bg-white pb-12 sm:pb-[3.75rem]">
         <HeroGradientLimeFrame
-          dotColor="rgba(255, 255, 255, 0.98)"
-          patternBackgroundColor="#5ec96f"
-          patternBlurIntensity="0.55em"
-          patternOpacity={1}
-          gradientOverlayOpacity={0.24}
+          dotColor="#ffffff"
+          patternBlurIntensity="0.65em"
           className={cn(
             landing.heroMargin,
             landing.heroFrame,
@@ -87,7 +85,8 @@ export function LandingPageV4() {
           </div>
 
           <div className="mx-auto mt-12 w-full max-w-[58rem] px-1 sm:mt-14">
-            <HeroWindow showCommitmentsStrip />
+            <HeroWindow />
+            <HeroCommitmentsStrip className="mt-10 px-2 sm:mt-12" />
           </div>
         </HeroGradientLimeFrame>
       </section>

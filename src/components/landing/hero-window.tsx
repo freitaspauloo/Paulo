@@ -1,40 +1,9 @@
 "use client";
 
-import { MapPin, Shield, Sparkles } from "lucide-react";
-
 import { Avatar } from "@/components/aligned-avatar";
 import { AlignedComposer } from "@/components/aligned-composer";
 import { landing } from "@/components/landing/landing-primitives";
 import { cn } from "@/lib/utils";
-
-const COMMITMENT_ITEMS = [
-  { icon: Sparkles, label: "Frontier-class capability" },
-  { icon: MapPin, label: "US-hosted inference" },
-  { icon: Shield, label: "Your data is never used for training" },
-] as const;
-
-function HeroComposerCommitments() {
-  return (
-    <div className="border-t border-white/10 bg-[#202020] px-4 py-5 text-white sm:px-5 sm:py-6">
-      <p className="text-center text-sm font-semibold tracking-tight">
-        Built on three commitments.
-      </p>
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-3">
-        {COMMITMENT_ITEMS.map((item) => (
-          <div
-            key={item.label}
-            className="flex flex-col items-center gap-2 text-center"
-          >
-            <item.icon className="size-4 text-white" strokeWidth={1.75} />
-            <p className="max-w-[11rem] text-xs font-medium leading-5 text-white/90">
-              {item.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function HeroUserMessage({ children }: { children: React.ReactNode }) {
   return (
@@ -55,12 +24,7 @@ function HeroAgentMessage({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function HeroWindow({
-  showCommitmentsStrip = false,
-}: {
-  /** v4: trust strip inside the composer frame */
-  showCommitmentsStrip?: boolean;
-}) {
+export function HeroWindow() {
   return (
     <div className="relative mx-auto w-full max-w-[58rem]">
       <div
@@ -115,7 +79,6 @@ export function HeroWindow({
             status="Live chat — migration pilot"
             className="w-full max-w-none bg-white"
             placeholder="Ask about migration, policy, or cost…"
-            footer={showCommitmentsStrip ? <HeroComposerCommitments /> : undefined}
           />
         </div>
       </div>
