@@ -6,13 +6,16 @@ import { cn } from "@/lib/utils";
 export function HeroGradientLimeFrame({
   className,
   children,
+  dotColor,
 }: {
   className?: string;
   children: React.ReactNode;
+  /** v4-only: white falling dots on lime hero */
+  dotColor?: string;
 }) {
   return (
     <div className={cn("relative isolate overflow-hidden", className)}>
-      <LandingFallingPattern variant="lime" />
+      <LandingFallingPattern variant="lime" color={dotColor} />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] opacity-[0.34]"

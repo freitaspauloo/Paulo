@@ -15,6 +15,7 @@ import {
   CompoundVisual,
   CostSplitVisual,
 } from "@/components/landing/enterprise-v2-visuals";
+import { BrandedLambdaMark } from "@/components/landing/branded-lambda-mark";
 import { HeroGradientLimeFrame } from "@/components/landing/hero-gradient-lime";
 import { LandingFooterSocial } from "@/components/landing/landing-footer-social";
 import { HeroWindow } from "@/components/landing/hero-window";
@@ -39,10 +40,8 @@ export function LandingPageV4() {
             "flex h-[4.25rem] items-center justify-between",
           )}
         >
-          <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold">
-            <span className="flex size-7 items-center justify-center rounded-[8px] bg-[#202020] text-[0.7rem] font-bold text-white">
-              λ
-            </span>
+          <span className="flex items-center gap-2.5 text-[0.95rem] font-semibold tracking-[-0.01em]">
+            <BrandedLambdaMark />
             Aligned AI
           </span>
           <div className="flex items-center gap-1">
@@ -60,6 +59,7 @@ export function LandingPageV4() {
       {/* Section 1 — Hero (lime + falling dots) */}
       <section className="bg-white pb-8 sm:pb-10">
         <HeroGradientLimeFrame
+          dotColor="rgba(255, 255, 255, 0.82)"
           className={cn(
             landing.heroMargin,
             landing.heroFrame,

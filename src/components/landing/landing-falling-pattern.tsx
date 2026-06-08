@@ -24,9 +24,12 @@ const FRAME_PRESETS: Record<
 export function LandingFallingPattern({
   variant,
   className,
+  color,
 }: {
   variant: LandingPatternVariant;
   className?: string;
+  /** Optional dot color override (e.g. v4 white dots). */
+  color?: string;
 }) {
   const preset = FRAME_PRESETS[variant];
 
@@ -35,7 +38,7 @@ export function LandingFallingPattern({
       aria-hidden
       className={cn("absolute inset-0 z-0 size-full p-0", className)}
       backgroundColor={preset.backgroundColor}
-      color={preset.color}
+      color={color ?? preset.color}
       duration={150}
       blurIntensity={preset.blurIntensity ?? "1em"}
       density={1}
