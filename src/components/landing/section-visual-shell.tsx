@@ -33,3 +33,16 @@ export function SectionVisualShell({
 export function sectionVisualStageClass(frame: SectionVisualFrame = "gray") {
   return cn(landing.sectionVisualStage, frame === "lime" && "relative z-10");
 }
+
+export function sectionVisualPanelClass(className?: string) {
+  return cn(
+    landing.sectionVisualPanel,
+    landing.cardLg,
+    landing.shadowDrop,
+    className,
+  );
+}
+
+export function sectionVisualPhotoClass(className?: string) {
+  return cn(landing.sectionVisualPhoto, landing.cardLg, className);
+}

@@ -6,6 +6,7 @@ import { Check, MapPin } from "lucide-react";
 import { landing } from "@/components/landing/landing-primitives";
 import {
   SectionVisualShell,
+  sectionVisualPhotoClass,
   sectionVisualStageClass,
   type SectionVisualFrame,
 } from "@/components/landing/section-visual-shell";
@@ -35,12 +36,7 @@ function PhotoScene({
   return (
     <SectionVisualShell frame={frame}>
       <div className={sectionVisualStageClass(frame)}>
-        <div
-          className={cn(
-            "absolute inset-0 overflow-hidden",
-            landing.cardLg,
-          )}
-        >
+        <div className={sectionVisualPhotoClass()}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image}

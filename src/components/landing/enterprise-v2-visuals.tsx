@@ -2,7 +2,6 @@
 
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
-import { landing } from "@/components/landing/landing-primitives";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -16,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   SectionVisualShell,
+  sectionVisualPanelClass,
   sectionVisualStageClass,
   type SectionVisualFrame,
 } from "@/components/landing/section-visual-shell";
@@ -112,11 +112,7 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
       <div className={sectionVisualStageClass(frame)}>
         <Card
           size="sm"
-          className={cn(
-            "absolute inset-0 gap-0 overflow-hidden py-0 ring-black/[0.08]",
-            landing.cardLg,
-            landing.shadowDrop,
-          )}
+          className={sectionVisualPanelClass("gap-0 py-0 ring-black/[0.08]")}
         >
           <div className="flex h-10 shrink-0 items-center gap-2 border-b border-black/[0.06] px-4">
             <span className="size-2.5 shrink-0 rounded-full bg-[#ff5f57]" />
@@ -185,10 +181,8 @@ export function CostSplitVisual({ frame = "gray" }: { frame?: SectionVisualFrame
     <SectionVisualShell frame={frame}>
       <div className={sectionVisualStageClass(frame)}>
         <div
-          className={cn(
-            "absolute inset-0 flex flex-col justify-center gap-4 border border-black/[0.06] bg-white p-5 sm:gap-4 sm:p-6",
-            landing.cardLg,
-            landing.shadowDrop,
+          className={sectionVisualPanelClass(
+            "flex flex-col justify-center gap-3 p-5 sm:gap-3.5 sm:p-6",
           )}
         >
           <div className="space-y-0.5 text-center">
@@ -202,13 +196,13 @@ export function CostSplitVisual({ frame = "gray" }: { frame?: SectionVisualFrame
 
           <ChartContainer
             config={costChartConfig}
-            className="aspect-auto h-[9.5rem] w-full sm:h-[10.25rem]"
-            initialDimension={{ width: 320, height: 164 }}
+            className="mx-auto aspect-auto h-[9.5rem] w-full max-w-[12.5rem] sm:h-[10.25rem]"
+            initialDimension={{ width: 200, height: 164 }}
           >
             <BarChart
               data={costChartData}
-              margin={{ top: 28, right: 12, left: 12, bottom: 4 }}
-              barCategoryGap="32%"
+              margin={{ top: 28, right: 4, left: 4, bottom: 4 }}
+              barCategoryGap="18%"
             >
             <CartesianGrid
               vertical={false}
@@ -251,8 +245,8 @@ export function CostSplitVisual({ frame = "gray" }: { frame?: SectionVisualFrame
             />
             <Bar
               dataKey="value"
-              barSize={64}
-              maxBarSize={72}
+              barSize={44}
+              maxBarSize={48}
               isAnimationActive
               animationDuration={900}
               animationEasing="ease-out"

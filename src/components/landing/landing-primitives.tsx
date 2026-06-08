@@ -19,7 +19,12 @@ export const landing = {
   sectionVisualFrame: "bg-[#f0f0f0]",
   /** Shared split-section visual shell (grey frame + fixed stage height) */
   sectionVisualShell: "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
-  sectionVisualStage: "relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]",
+  sectionVisualStage: "relative mx-auto h-[22rem] w-full sm:h-[26rem]",
+  /** Inner white panel — compound, cost, and other product visuals */
+  sectionVisualPanel:
+    "absolute inset-0 overflow-hidden border border-black/[0.06] bg-white",
+  /** Inner photo area — same footprint as sectionVisualPanel */
+  sectionVisualPhoto: "absolute inset-0 overflow-hidden",
   cardLg: "rounded-[20px]",
   cardMd: "rounded-[16px]",
   cardSm: "rounded-[12px]",
