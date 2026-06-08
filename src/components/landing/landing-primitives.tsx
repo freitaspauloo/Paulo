@@ -17,6 +17,9 @@ export const landing = {
   heroMargin: "mx-[clamp(1rem,10%,6rem)] w-[calc(100%-2*clamp(1rem,10%,6rem))]",
   /** Story-section photo frames — flat light grey, no tint gradient */
   sectionVisualFrame: "bg-[#f0f0f0]",
+  /** Shared split-section visual shell (grey frame + fixed stage height) */
+  sectionVisualShell: "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
+  sectionVisualStage: "relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]",
   cardLg: "rounded-[20px]",
   cardMd: "rounded-[16px]",
   cardSm: "rounded-[12px]",

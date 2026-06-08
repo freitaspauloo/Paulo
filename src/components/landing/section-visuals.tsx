@@ -26,13 +26,8 @@ function PhotoScene({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
-        landing.sectionVisualFrame,
-      )}
-    >
-      <div className="relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]">
+    <div className={cn(landing.sectionVisualShell, landing.sectionVisualFrame)}>
+      <div className={landing.sectionVisualStage}>
         <div
           className={cn(
             "absolute inset-0 overflow-hidden",

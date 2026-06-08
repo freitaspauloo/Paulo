@@ -77,13 +77,8 @@ function CostBarShape({ x = 0, y = 0, width = 0, height = 0, fill, payload }: Ba
 
 export function CompoundVisual() {
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
-        landing.sectionVisualFrame,
-      )}
-    >
-      <div className="relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]">
+    <div className={cn(landing.sectionVisualShell, landing.sectionVisualFrame)}>
+      <div className={landing.sectionVisualStage}>
         <div
           className={cn(
             "absolute inset-0 flex flex-col justify-center gap-4 border border-black/[0.06] bg-white p-6 sm:p-8",
@@ -123,38 +118,34 @@ export function CompoundVisual() {
 
 export function CostSplitVisual() {
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
-        landing.sectionVisualFrame,
-      )}
-    >
-      <div
-        className={cn(
-          "flex flex-col gap-6 border border-black/[0.06] bg-white px-6 py-8 sm:gap-7 sm:px-9 sm:py-10",
-          landing.cardLg,
-          landing.shadowDrop,
-        )}
-      >
-        <div className="space-y-1 text-center">
-          <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
-            Cost per chat
-          </p>
-          <p className="text-[0.6875rem] text-[#646464]/80">
-            Hover each bar for exact pricing
-          </p>
-        </div>
-
-        <ChartContainer
-          config={costChartConfig}
-          className="aspect-auto h-[14rem] w-full sm:h-[15rem]"
-          initialDimension={{ width: 320, height: 224 }}
+    <div className={cn(landing.sectionVisualShell, landing.sectionVisualFrame)}>
+      <div className={landing.sectionVisualStage}>
+        <div
+          className={cn(
+            "absolute inset-0 flex flex-col justify-center gap-4 border border-black/[0.06] bg-white p-5 sm:gap-4 sm:p-6",
+            landing.cardLg,
+            landing.shadowDrop,
+          )}
         >
-          <BarChart
-            data={costChartData}
-            margin={{ top: 36, right: 16, left: 16, bottom: 8 }}
-            barCategoryGap="32%"
+          <div className="space-y-0.5 text-center">
+            <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
+              Cost per chat
+            </p>
+            <p className="text-[0.6875rem] text-[#646464]/80">
+              Hover each bar for exact pricing
+            </p>
+          </div>
+
+          <ChartContainer
+            config={costChartConfig}
+            className="aspect-auto h-[9.5rem] w-full sm:h-[10.25rem]"
+            initialDimension={{ width: 320, height: 164 }}
           >
+            <BarChart
+              data={costChartData}
+              margin={{ top: 28, right: 12, left: 12, bottom: 4 }}
+              barCategoryGap="32%"
+            >
             <CartesianGrid
               vertical={false}
               strokeDasharray="3 3"
@@ -242,18 +233,16 @@ export function CostSplitVisual() {
               />
             </Bar>
           </BarChart>
-        </ChartContainer>
+          </ChartContainer>
 
-        <div className="space-y-1.5 text-center">
-          <p className="text-[clamp(1.375rem,3.5vw,1.75rem)] font-semibold tracking-tight text-[#22a06b]">
-            Up to {SAVINGS_MULTIPLIER}× less
-          </p>
-          <p className="text-xs leading-5 text-[#646464]">
-            Same traffic · sample annual bill modeled on request
-          </p>
-          <p className="text-[0.6875rem] text-[#646464]/75">
-            Aligned bar height is floored so the savings stay visible at a glance
-          </p>
+          <div className="space-y-1 text-center">
+            <p className="text-lg font-semibold tracking-tight text-[#22a06b] sm:text-xl">
+              Up to {SAVINGS_MULTIPLIER}× less
+            </p>
+            <p className="text-[0.6875rem] leading-5 text-[#646464]">
+              Same traffic · sample annual bill modeled on request
+            </p>
+          </div>
         </div>
       </div>
     </div>
