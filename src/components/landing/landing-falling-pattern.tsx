@@ -25,11 +25,18 @@ export function LandingFallingPattern({
   variant,
   className,
   color,
+  backgroundColor,
+  blurIntensity,
+  opacity,
 }: {
   variant: LandingPatternVariant;
   className?: string;
   /** Optional dot color override (e.g. v4 white dots). */
   color?: string;
+  backgroundColor?: string;
+  blurIntensity?: string;
+  /** Layer opacity multiplier (v4 white dots need a boost). */
+  opacity?: number;
 }) {
   const preset = FRAME_PRESETS[variant];
 
@@ -37,10 +44,11 @@ export function LandingFallingPattern({
     <FallingPattern
       aria-hidden
       className={cn("absolute inset-0 z-0 size-full p-0", className)}
-      backgroundColor={preset.backgroundColor}
+      style={opacity !== undefined ? { opacity } : undefined}
+      backgroundColor={backgroundColor ?? preset.backgroundColor}
       color={color ?? preset.color}
       duration={150}
-      blurIntensity={preset.blurIntensity ?? "1em"}
+      blurIntensity={blurIntensity ?? preset.blurIntensity ?? "1em"}
       density={1}
       showOverlay
     />

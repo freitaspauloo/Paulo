@@ -7,18 +7,33 @@ export function HeroGradientLimeFrame({
   className,
   children,
   dotColor,
+  patternBackgroundColor,
+  patternBlurIntensity,
+  patternOpacity,
+  gradientOverlayOpacity = 0.34,
 }: {
   className?: string;
   children: React.ReactNode;
   /** v4-only: white falling dots on lime hero */
   dotColor?: string;
+  patternBackgroundColor?: string;
+  patternBlurIntensity?: string;
+  patternOpacity?: number;
+  gradientOverlayOpacity?: number;
 }) {
   return (
     <div className={cn("relative isolate overflow-hidden", className)}>
-      <LandingFallingPattern variant="lime" color={dotColor} />
+      <LandingFallingPattern
+        variant="lime"
+        color={dotColor}
+        backgroundColor={patternBackgroundColor}
+        blurIntensity={patternBlurIntensity}
+        opacity={patternOpacity}
+      />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] opacity-[0.34]"
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{ opacity: gradientOverlayOpacity }}
       >
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#f0faf4_0%,#dff5e6_18%,#c4edc8_38%,#9ee0ad_58%,#6ed98a_78%,#4ecf72_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_118%_78%_at_50%_-6%,#f3f9f6_0%,#ebf5f0_16%,rgba(235,245,238,0.82)_30%,rgba(214,234,222,0.42)_52%,transparent_76%)] motion-safe:animate-[landing-gradient-glow_16s_ease-in-out_infinite]" />
