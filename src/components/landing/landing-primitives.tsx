@@ -5,6 +5,8 @@ export const landing = {
   page: "mx-auto w-full max-w-[72rem]",
   container: "rounded-[24px]",
   heroFrame: "rounded-[2.5rem]",
+  /** ~10% gutter each side; clamps so margins never disappear on small screens */
+  heroMargin: "mx-[clamp(1rem,10%,6rem)] w-[calc(100%-2*clamp(1rem,10%,6rem))]",
   cardLg: "rounded-[20px]",
   cardMd: "rounded-[16px]",
   cardSm: "rounded-[12px]",

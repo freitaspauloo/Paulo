@@ -133,10 +133,10 @@ export function LandingPage() {
   return (
     <main className="w-full overflow-x-hidden bg-white text-foreground">
       {/* Hero — nav + headline in one bordered frame (white gutter outside) */}
-      <section className="bg-white px-3 pb-8 pt-3 sm:px-5 sm:pb-10 sm:pt-4">
+      <section className="bg-white pb-8 pt-3 sm:pb-10 sm:pt-4">
         <div
           className={cn(
-            landing.page,
+            landing.heroMargin,
             landing.heroFrame,
             "overflow-hidden border border-[#c5d5df] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
           )}
