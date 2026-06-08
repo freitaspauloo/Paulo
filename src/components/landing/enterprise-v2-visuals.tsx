@@ -1,14 +1,11 @@
 "use client";
 
-import { GitMerge } from "lucide-react";
+import { Brain, Code2, GitMerge, Sigma, Sparkles, type LucideIcon } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts";
 
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -89,26 +86,35 @@ function CostBarShape({ x = 0, y = 0, width = 0, height = 0, fill, payload }: Ba
   );
 }
 
-const COMPOUND_PATHS = [
+const COMPOUND_PATHS: {
+  id: string;
+  label: string;
+  hint: string;
+  icon: LucideIcon;
+  active: boolean;
+}[] = [
   {
     id: "reasoning",
     label: "Reasoning path",
-    detail: "Strongest model for this task",
+    hint: "Strongest model for this task",
+    icon: Brain,
     active: true,
   },
   {
     id: "coding",
     label: "Coding path",
-    detail: "Standby until it wins the route",
+    hint: "Standby until it wins the route",
+    icon: Code2,
     active: false,
   },
   {
     id: "math",
     label: "Math path",
-    detail: "Standby until it wins the route",
+    hint: "Standby until it wins the route",
+    icon: Sigma,
     active: false,
   },
-] as const;
+];
 
 export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame }) {
   return (
@@ -129,71 +135,98 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
             </span>
           </div>
 
-          <CardContent className="flex flex-1 flex-col justify-center gap-3 px-4 py-4">
-            <RadioGroup
-              value="reasoning"
-              className="pointer-events-none gap-2"
-              aria-readonly
-            >
-              {COMPOUND_PATHS.map((path) => (
-                <label
-                  key={path.id}
-                  htmlFor={`compound-${path.id}`}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg border px-3 py-2.5",
-                    path.active
-                      ? "border-[#22a06b]/35 bg-[#22a06b]/[0.06] shadow-[0_0_0_1px_rgba(34,160,107,0.06)]"
-                      : "border-black/[0.06] bg-muted/35",
-                  )}
-                >
-                  <RadioGroupItem
-                    id={`compound-${path.id}`}
-                    value={path.id}
-                    className={cn(
-                      path.active &&
-                        "border-[#22a06b] bg-[#22a06b] text-white data-checked:border-[#22a06b] data-checked:bg-[#22a06b]",
-                    )}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p
+          <CardContent className="flex flex-1 flex-col items-center justify-center px-5 py-5 sm:px-6">
+            <div className="flex w-full max-w-[16.5rem] flex-col gap-3">
+              <RadioGroup
+                value="reasoning"
+                className="pointer-events-none gap-2"
+                aria-readonly
+              >
+                {COMPOUND_PATHS.map((path) => {
+                  const Icon = path.icon;
+
+                  return (
+                    <label
+                      key={path.id}
+                      htmlFor={`compound-${path.id}`}
                       className={cn(
-                        "text-xs font-medium sm:text-[0.8125rem]",
-                        path.active ? "text-foreground" : "text-muted-foreground",
+                        "flex items-start gap-2.5 rounded-lg border px-3 py-2.5",
+                        path.active
+                          ? "border-[#22a06b]/35 bg-[#22a06b]/[0.06] shadow-[0_0_0_1px_rgba(34,160,107,0.08)]"
+                          : "border-black/[0.06] bg-muted/30 opacity-75",
                       )}
                     >
-                      {path.label}
-                    </p>
-                    <p className="text-[0.6875rem] leading-4 text-muted-foreground">
-                      {path.detail}
-                    </p>
+                      <RadioGroupItem
+                        id={`compound-${path.id}`}
+                        value={path.id}
+                        className={cn(
+                          "mt-0.5",
+                          path.active &&
+                            "border-[#22a06b] bg-[#22a06b] text-white data-checked:border-[#22a06b] data-checked:bg-[#22a06b]",
+                        )}
+                      />
+                      <div className="min-w-0 flex-1 space-y-0.5">
+                        <div className="flex items-center gap-1.5">
+                          <Icon
+                            className={cn(
+                              "size-3.5 shrink-0",
+                              path.active ? "text-[#22a06b]" : "text-muted-foreground",
+                            )}
+                            strokeWidth={2}
+                            aria-hidden
+                          />
+                          <span
+                            className={cn(
+                              "text-xs font-medium",
+                              path.active ? "text-foreground" : "text-muted-foreground",
+                            )}
+                          >
+                            {path.label}
+                          </span>
+                        </div>
+                        <p className="text-[0.6875rem] leading-4 text-muted-foreground">
+                          {path.hint}
+                        </p>
+                      </div>
+                      {path.active ? (
+                        <Badge className="mt-0.5 shrink-0 border-transparent bg-[#22a06b]/10 px-1.5 text-[0.625rem] text-[#22a06b] hover:bg-[#22a06b]/10">
+                          Strongest
+                        </Badge>
+                      ) : null}
+                    </label>
+                  );
+                })}
+              </RadioGroup>
+
+              <div className="space-y-2 pt-0.5">
+                <div className="relative py-1">
+                  <Separator className="bg-black/[0.08]" />
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="flex size-7 items-center justify-center rounded-full border border-black/[0.08] bg-white shadow-sm">
+                      <GitMerge
+                        className="size-3.5 text-muted-foreground"
+                        strokeWidth={2}
+                        aria-hidden
+                      />
+                    </div>
                   </div>
-                  {path.active ? (
-                    <Badge className="shrink-0 border-transparent bg-[#22a06b]/10 text-[0.625rem] text-[#22a06b] hover:bg-[#22a06b]/10">
-                      Strongest
-                    </Badge>
-                  ) : null}
-                </label>
-              ))}
-            </RadioGroup>
-
-            <div className="flex items-center gap-2.5 py-0.5">
-              <Separator className="flex-1" />
-              <div className="flex size-7 items-center justify-center rounded-full bg-muted">
-                <GitMerge className="size-3.5 text-muted-foreground" />
+                </div>
+                <p className="text-center text-[0.6875rem] leading-4 text-muted-foreground">
+                  Paths merge into one composed response
+                </p>
               </div>
-              <Separator className="flex-1" />
-            </div>
-            <p className="text-center text-[0.6875rem] font-medium text-muted-foreground">
-              Paths merge into one composed response
-            </p>
-          </CardContent>
 
-          <CardFooter className="mt-auto border-t border-black/[0.06] bg-[#202020] py-3 text-background">
-            <div className="flex w-full flex-col gap-0.5">
-              <span className="text-sm font-medium">One composed output</span>
-              <span className="text-xs text-white/65">→ your application</span>
+              <Alert className="border-[#22a06b]/25 bg-gradient-to-br from-[#22a06b]/[0.08] to-white py-3">
+                <Sparkles className="size-4 text-[#22a06b]" />
+                <AlertTitle className="text-xs font-semibold">
+                  One composed output
+                </AlertTitle>
+                <AlertDescription className="text-[0.6875rem] leading-4">
+                  → your application
+                </AlertDescription>
+              </Alert>
             </div>
-          </CardFooter>
+          </CardContent>
         </Card>
       </div>
     </SectionVisualShell>
