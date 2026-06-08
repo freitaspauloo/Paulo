@@ -115,7 +115,7 @@ function StorySection({
 export function LandingPageV3() {
   return (
     <main className="w-full bg-white text-foreground">
-      <header className="sticky top-0 z-50 w-full border-b border-black/[0.06] bg-white/70 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/55">
+      <header className="sticky top-0 z-50 w-full bg-white/70 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/55">
         <nav
           className={cn(
             landing.heroMargin,
