@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 export const landing = {
   page: "mx-auto w-full max-w-[72rem]",
   container: "rounded-[24px]",
+  heroFrame: "rounded-[2.5rem]",
   cardLg: "rounded-[20px]",
   cardMd: "rounded-[16px]",
   cardSm: "rounded-[12px]",
