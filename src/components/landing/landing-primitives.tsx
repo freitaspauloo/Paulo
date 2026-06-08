@@ -58,10 +58,12 @@ export function LandingPrimaryButton({
   children,
   className,
   href,
+  type = "button",
 }: {
   children: React.ReactNode;
   className?: string;
   href?: string;
+  type?: "button" | "submit";
 }) {
   const classNames = cn(primaryButtonClass, landing.capsule, className);
 
@@ -74,7 +76,7 @@ export function LandingPrimaryButton({
   }
 
   return (
-    <button type="button" className={classNames}>
+    <button type={type} className={classNames}>
       {children}
     </button>
   );

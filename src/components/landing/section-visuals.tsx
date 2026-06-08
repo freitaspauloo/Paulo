@@ -210,7 +210,7 @@ export function PowerfulVisual() {
           <MapPin className="size-4 text-mint motion-safe:animate-pulse" />
           <span className="font-medium">US boundary</span>
           <span className="ml-auto rounded-full bg-mint-bg px-2 py-0.5 text-[10px] font-medium text-mint">
-            SOC 2
+            SOC 2 in progress
           </span>
         </div>
         <div className="my-3 border-t border-black/[0.06]" />
