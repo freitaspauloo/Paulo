@@ -63,14 +63,16 @@ function CapabilityCard({
   return (
     <article
       className={cn(
-        "flex min-h-[19rem] w-[18.5rem] shrink-0 snap-start flex-col justify-between border border-black/[0.06] bg-white p-7",
+        "flex h-full min-h-[15.5rem] flex-col justify-between border border-black/[0.06] bg-white p-5 sm:min-h-[16.5rem] sm:p-6",
         landing.cardMd,
         landing.shadowDrop,
       )}
     >
-      <c.icon className={cn("size-8", c.color)} strokeWidth={1.75} />
+      <c.icon className={cn("size-7 sm:size-8", c.color)} strokeWidth={1.75} />
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold tracking-[-0.01em]">{c.title}</h3>
+        <h3 className="text-lg font-semibold tracking-[-0.01em] sm:text-xl">
+          {c.title}
+        </h3>
         <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
       </div>
     </article>
@@ -207,7 +209,7 @@ export function LandingPage() {
       </section>
 
       {/* Capabilities */}
-      <section className={cn(landing.page, "min-w-0 px-6 py-20 sm:py-28")}>
+      <section className={cn(landing.page, "px-6 py-20 sm:py-28")}>
         <div className="mx-auto max-w-[40rem] space-y-3 text-center">
           <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
             Put a frontier-class model to work, without the trade-offs
@@ -218,12 +220,10 @@ export function LandingPage() {
           </p>
         </div>
 
-        <div className="mt-12 min-w-0 max-w-full overflow-x-auto overscroll-x-contain py-2 pb-4 snap-x snap-mandatory [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden">
-          <div className="flex w-max gap-4 sm:gap-5">
-            {capabilities.map((c) => (
-              <CapabilityCard key={c.title} capability={c} />
-            ))}
-          </div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+          {capabilities.map((c) => (
+            <CapabilityCard key={c.title} capability={c} />
+          ))}
         </div>
       </section>
 
