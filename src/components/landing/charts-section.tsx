@@ -59,85 +59,87 @@ export function ChartsSection() {
           "overflow-hidden px-4 py-12 sm:px-8 sm:py-16",
         )}
       >
-        <div className="mx-auto max-w-[40rem] space-y-3 text-center">
-          <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
-            Just as good, a fraction of the cost.
-          </h2>
-          <p className="text-base leading-7 text-[#646464]">
-            Top-3 accuracy across 13 deployed models, and #1 on accuracy per
-            dollar — with the benchmark named and the source public.
-          </p>
-        </div>
+        <div className="mx-auto w-full max-w-[58rem]">
+          <div className="mx-auto max-w-[40rem] space-y-3 text-center">
+            <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
+              Just as good, a fraction of the cost.
+            </h2>
+            <p className="text-base leading-7 text-[#646464]">
+              Top-3 accuracy across 13 deployed models, and #1 on accuracy per
+              dollar — with the benchmark named and the source public.
+            </p>
+          </div>
 
-        <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-3 sm:gap-5">
-          {charts.map((chart) => (
-            <Card
-              key={chart.title}
-              className={cn(
-                landing.cardMd,
-                landing.shadowDrop,
-                "gap-0 border border-black/[0.06] bg-white py-0 ring-0",
-              )}
-            >
-              <CardHeader className="border-b border-black/[0.06] pb-4">
-                <CardTitle className="text-sm font-semibold">{chart.title}</CardTitle>
-                <CardAction>
-                  <span className="text-xs text-[#646464]">{chart.caption}</span>
-                </CardAction>
-              </CardHeader>
-              <CardContent className="pt-6 pb-6">
-                <div className="flex h-44 items-end justify-around gap-3 sm:h-48">
-                  {chart.bars.map((bar) => (
-                    <div
-                      key={bar.label}
-                      className="flex h-full flex-1 flex-col items-center justify-end gap-2"
-                    >
-                      <span
-                        className={cn(
-                          "text-xs tabular-nums",
-                          bar.lead ? "font-semibold text-foreground" : "text-[#646464]",
-                        )}
-                      >
-                        {bar.value}
-                      </span>
+          <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-3 sm:gap-5">
+            {charts.map((chart) => (
+              <Card
+                key={chart.title}
+                className={cn(
+                  landing.cardMd,
+                  landing.shadowDrop,
+                  "gap-0 border border-black/[0.06] bg-white py-0 ring-0",
+                )}
+              >
+                <CardHeader className="border-b border-black/[0.06] pb-4">
+                  <CardTitle className="text-sm font-semibold">{chart.title}</CardTitle>
+                  <CardAction>
+                    <span className="text-xs text-[#646464]">{chart.caption}</span>
+                  </CardAction>
+                </CardHeader>
+                <CardContent className="pt-6 pb-6">
+                  <div className="flex h-44 items-end justify-around gap-3 sm:h-48">
+                    {chart.bars.map((bar) => (
                       <div
-                        className={cn(
-                          "w-full max-w-[3.25rem] rounded-t-[8px] transition-[height]",
-                          bar.lead
-                            ? "bg-gradient-to-t from-progress to-cyan"
-                            : "bg-black/[0.08]",
-                        )}
-                        style={{ height: `${Math.max(bar.pct, 6)}%` }}
-                      />
-                      <span className="text-center text-[0.7rem] text-[#646464]">
-                        {bar.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                        key={bar.label}
+                        className="flex h-full flex-1 flex-col items-center justify-end gap-2"
+                      >
+                        <span
+                          className={cn(
+                            "text-xs tabular-nums",
+                            bar.lead ? "font-semibold text-foreground" : "text-[#646464]",
+                          )}
+                        >
+                          {bar.value}
+                        </span>
+                        <div
+                          className={cn(
+                            "w-full max-w-[3.25rem] rounded-t-[8px] transition-[height]",
+                            bar.lead
+                              ? "bg-gradient-to-t from-progress to-cyan"
+                              : "bg-black/[0.08]",
+                          )}
+                          style={{ height: `${Math.max(bar.pct, 6)}%` }}
+                        />
+                        <span className="text-center text-[0.7rem] text-[#646464]">
+                          {bar.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:mt-10">
-          {legend.map((item) => (
-            <Badge
-              key={item.label}
-              variant="secondary"
-              className="gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]"
-            >
-              <span className={cn("size-2 rounded-full", item.dot)} />
-              {item.label}
-            </Badge>
-          ))}
-        </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:mt-10">
+            {legend.map((item) => (
+              <Badge
+                key={item.label}
+                variant="secondary"
+                className="gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]"
+              >
+                <span className={cn("size-2 rounded-full", item.dot)} />
+                {item.label}
+              </Badge>
+            ))}
+          </div>
 
-        <div className="mt-4 text-center">
-          <Button variant="link" className="h-auto gap-1 px-0 text-sm font-medium">
-            View Benchmarks
-            <ArrowRight className="size-4" />
-          </Button>
+          <div className="mt-4 text-center">
+            <Button variant="link" className="h-auto gap-1 px-0 text-sm font-medium">
+              View Benchmarks
+              <ArrowRight className="size-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
