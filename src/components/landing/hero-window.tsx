@@ -28,10 +28,6 @@ export function HeroWindow() {
   return (
     <div className="relative mx-auto w-full max-w-[58rem]">
       <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-x-8 -top-6 bottom-0 rounded-[32px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(135,206,235,0.45),transparent_68%)] blur-2xl"
-      />
-      <div
         className={cn(
           "relative flex flex-col overflow-hidden border border-black/[0.08] bg-white text-left",
           landing.cardLg,
