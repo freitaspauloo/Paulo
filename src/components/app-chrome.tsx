@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 
 /** Marketing routes render full-bleed — no dev sidebar (matches Figma frames). */
-const FULL_BLEED_PREFIXES = ["/enterprise", "/landing"];
+const FULL_BLEED_PREFIXES = ["/enterprise", "/landing", "/landing-v3"];
 
 export function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

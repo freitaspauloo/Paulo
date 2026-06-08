@@ -37,6 +37,7 @@ const navItems = [
   { title: "Agent", href: "/agent", icon: Bot },
   { title: "Enterprise", href: "/enterprise", icon: Building2 },
   { title: "Landing (v2)", href: "/landing", icon: Sparkles },
+  { title: "Landing (v3)", href: "/landing-v3", icon: Sparkles },
 ];
 
 export function AppSidebar() {
