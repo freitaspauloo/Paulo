@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const FRONTIER_COST = 0.5;
 const ALIGNED_COST = 0.006;
-const SAVINGS_MULTIPLIER = Math.round(FRONTIER_COST / ALIGNED_COST);
+const SAVINGS_MULTIPLIER = 50;
 
 type CostDatum = {
   name: string;
@@ -36,7 +36,7 @@ const costChartData: CostDatum[] = [
     value: ALIGNED_COST,
     display: "$0.006",
     lead: true,
-    detail: `Up to ${SAVINGS_MULTIPLIER}× less than frontier APIs`,
+    detail: "Up to 50× less than frontier APIs",
   },
 ];
 
@@ -214,15 +214,19 @@ export function CostSplitVisual() {
                 dataKey="display"
                 position="top"
                 offset={12}
-                content={({ x, width, y, value, index }) => {
+                content={({ x, width, y, height, value, index }) => {
                   if (x == null || y == null || value == null) return null;
                   const entry = costChartData[index ?? 0];
                   const centerX = Number(x) + (width != null ? Number(width) / 2 : 0);
+                  const rawHeight = height != null ? Number(height) : 0;
+                  const rawY = Number(y);
+                  const minHeight = entry?.lead ? ALIGNED_MIN_BAR_PX : 0;
+                  const visualTop = rawY + rawHeight - Math.max(rawHeight, minHeight);
                   return (
                     <text
                       x={centerX}
-                      y={Number(y)}
-                      dy={-12}
+                      y={visualTop}
+                      dy={-10}
                       textAnchor="middle"
                       className={cn(
                         "text-[11px] tabular-nums sm:text-xs",
