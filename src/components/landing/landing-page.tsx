@@ -187,17 +187,17 @@ export function LandingPage() {
               {stats.map((s) => (
                 <div
                   key={s.value}
-                  className="flex flex-1 items-start gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5"
+                  className="flex flex-1 flex-col gap-2.5 px-5 py-4 sm:gap-3 sm:px-6 sm:py-5"
                 >
                   <s.icon
-                    className="mt-0.5 size-3.5 shrink-0 text-[#646464]"
+                    className="size-4 shrink-0 text-[#646464]"
                     strokeWidth={1.75}
                   />
-                  <div className="min-w-0 space-y-0.5">
+                  <div className="min-w-0 space-y-1">
                     <div className="text-base font-semibold tracking-tight sm:text-lg">
                       {s.value}
                     </div>
-                    <p className="text-[0.65rem] leading-4 text-[#646464] sm:text-[0.7rem] sm:leading-[1.125rem]">
+                    <p className="text-xs leading-5 text-[#646464]">
                       {s.label}
                     </p>
                   </div>
