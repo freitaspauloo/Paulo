@@ -28,11 +28,11 @@ function PhotoScene({
   return (
     <div
       className={cn(
-        "relative h-full overflow-hidden rounded-[24px] p-4 sm:p-6",
+        "relative overflow-hidden rounded-[24px] p-4 sm:p-6",
         landing.sectionVisualFrame,
       )}
     >
-      <div className="relative mx-auto h-full min-h-[22rem] w-full sm:min-h-[26rem]">
+      <div className="relative mx-auto min-h-[22rem] w-full sm:min-h-[26rem]">
         <div
           className={cn(
             "absolute inset-0 overflow-hidden",
