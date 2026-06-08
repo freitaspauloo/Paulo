@@ -83,7 +83,7 @@ export function CapabilitiesSection() {
 
   return (
     <section className="py-20 sm:py-28">
-      <div className={cn(landing.page, "space-y-3 px-6 text-center")}>
+      <div className={cn(landing.heroMargin, "space-y-3 text-center")}>
         <h2 className="text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
           Put a frontier-class model to work, without the trade-offs
         </h2>
@@ -93,13 +93,17 @@ export function CapabilitiesSection() {
         </p>
       </div>
 
-      <div
-        ref={carouselRef}
-        className="mt-12 flex min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:gap-5 sm:px-[max(1.5rem,calc((100%-72rem)/2+1.5rem))] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
-      >
-        {capabilities.map((c) => (
-          <CapabilityCard key={c.title} capability={c} />
-        ))}
+      <div className={cn(landing.heroMargin, "mt-12 min-w-0")}>
+        <div
+          ref={carouselRef}
+          className="snap-x snap-mandatory overflow-x-auto pb-2 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+        >
+          <div className="mx-auto flex w-max min-w-full justify-center gap-4 sm:gap-5">
+            {capabilities.map((c) => (
+              <CapabilityCard key={c.title} capability={c} />
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="mt-8 flex items-center justify-center gap-2">
