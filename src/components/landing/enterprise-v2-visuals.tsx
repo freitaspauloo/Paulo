@@ -135,11 +135,11 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
             </span>
           </div>
 
-          <CardContent className="flex flex-1 flex-col items-center justify-center px-5 py-5 sm:px-6">
-            <div className="flex w-full max-w-[16.5rem] flex-col gap-3">
+          <CardContent className="flex flex-1 flex-col justify-center px-4 py-4 sm:px-5 sm:py-5">
+            <div className="flex w-full flex-col gap-3">
               <RadioGroup
                 value="reasoning"
-                className="pointer-events-none gap-2"
+                className="pointer-events-none w-full gap-2"
                 aria-readonly
               >
                 {COMPOUND_PATHS.map((path) => {
@@ -150,7 +150,7 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
                       key={path.id}
                       htmlFor={`compound-${path.id}`}
                       className={cn(
-                        "flex items-start gap-2.5 rounded-lg border px-3 py-2.5",
+                        "flex w-full items-start gap-2.5 rounded-lg border px-3 py-2.5 sm:px-3.5",
                         path.active
                           ? "border-[#22a06b]/35 bg-[#22a06b]/[0.06] shadow-[0_0_0_1px_rgba(34,160,107,0.08)]"
                           : "border-black/[0.06] bg-muted/30 opacity-75",
@@ -216,7 +216,7 @@ export function CompoundVisual({ frame = "gray" }: { frame?: SectionVisualFrame 
                 </p>
               </div>
 
-              <Alert className="border-[#22a06b]/25 bg-gradient-to-br from-[#22a06b]/[0.08] to-white py-3">
+              <Alert className="w-full border-[#22a06b]/25 bg-gradient-to-br from-[#22a06b]/[0.08] to-white py-3">
                 <Sparkles className="size-4 text-[#22a06b]" />
                 <AlertTitle className="text-xs font-semibold">
                   One composed output
