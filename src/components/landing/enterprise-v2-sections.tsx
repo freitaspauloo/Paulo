@@ -33,6 +33,7 @@ export function SplitSection({
   cta,
   ctaLabel = "Talk to our team",
   subCards,
+  subCardsVariant = "cards",
   reverse,
   visual,
 }: {
@@ -45,32 +46,53 @@ export function SplitSection({
   cta?: string;
   ctaLabel?: string;
   subCards?: { title: string; body: string }[];
+  /** Inline keeps the same copy with less vertical space than bordered cards. */
+  subCardsVariant?: "cards" | "inline";
   reverse?: boolean;
   visual: React.ReactNode;
 }) {
+  const compactCopy = subCardsVariant === "inline";
+
   return (
     <section className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
-      <div className={cn("space-y-5 md:max-w-md", reverse && "md:order-2")}>
+      <div
+        className={cn(
+          compactCopy ? "space-y-4" : "space-y-5",
+          "md:max-w-md",
+          reverse && "md:order-2",
+        )}
+      >
         <LandingEyebrow accent={accent}>{kicker}</LandingEyebrow>
         <h2 className="text-balance text-[clamp(2rem,4vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
           {title}
         </h2>
         <p className="text-base leading-7 text-[#646464]">{body}</p>
         {subCards ? (
-          <div className="grid gap-3 sm:grid-cols-2">
-            {subCards.map((card) => (
-              <div
-                key={card.title}
-                className={cn(
-                  "space-y-1.5 border border-black/[0.06] bg-white p-4",
-                  landing.cardSm,
-                )}
-              >
-                <p className="text-sm font-semibold">{card.title}</p>
-                <p className="text-sm leading-6 text-[#646464]">{card.body}</p>
-              </div>
-            ))}
-          </div>
+          subCardsVariant === "inline" ? (
+            <div className="space-y-2.5">
+              {subCards.map((card) => (
+                <p key={card.title} className="text-sm leading-6 text-[#646464]">
+                  <span className="font-semibold text-foreground">{card.title}</span>{" "}
+                  {card.body}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {subCards.map((card) => (
+                <div
+                  key={card.title}
+                  className={cn(
+                    "space-y-1.5 border border-black/[0.06] bg-white p-4",
+                    landing.cardSm,
+                  )}
+                >
+                  <p className="text-sm font-semibold">{card.title}</p>
+                  <p className="text-sm leading-6 text-[#646464]">{card.body}</p>
+                </div>
+              ))}
+            </div>
+          )
         ) : null}
         {bodyClose ? (
           <p className="text-base leading-7 text-[#646464]">{bodyClose}</p>

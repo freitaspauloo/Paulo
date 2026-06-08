@@ -128,6 +128,7 @@ export function LandingPageV4() {
           accent={sectionTagAccent}
           title="Safety is the architecture, not a filter on top of it."
           body="In most AI products, safety is a layer applied after the model is built. At Aligned it is part of the structure. Every prompt is classified before any model sees it, and every response is verified against your configuration before it is returned. Because the controls are built in rather than added on top, they cannot be disabled or bypassed."
+          subCardsVariant="inline"
           subCards={[
             {
               title: "Classify before inference.",
