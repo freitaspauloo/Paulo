@@ -114,22 +114,22 @@ export function ControlsSection() {
   return (
     <section
       className={cn(
-        "grid gap-8 border border-black/[0.06] bg-[#f9f9f9] p-8 sm:p-12 md:grid-cols-[1fr_1.2fr]",
+        "grid gap-10 border border-black/[0.06] bg-[#f9f9f9] p-8 sm:gap-12 sm:p-12 md:grid-cols-[1fr_1.2fr] md:items-center",
         landing.container,
       )}
     >
-      <div className="space-y-4">
+      <div className="flex flex-col justify-center space-y-5">
         <Lock className="size-6 text-[#646464]" strokeWidth={1.75} />
         <h2 className="text-[clamp(1.75rem,3vw,2rem)] font-semibold tracking-[-0.02em]">
           Deploy with confidence.
         </h2>
-        <p className="text-base leading-7 text-[#646464]">
+        <p className="max-w-sm text-base leading-7 text-[#646464]">
           Enterprise-grade access controls, and we never train our models on your
           data unless you opt in.
         </p>
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]",
+            "inline-flex w-fit items-center gap-1.5 bg-white px-3 py-1 text-xs font-medium text-[#646464] ring-1 ring-black/[0.08]",
             landing.capsule,
           )}
         >
@@ -137,10 +137,10 @@ export function ControlsSection() {
           Architected to SOC 2 standards
         </span>
       </div>
-      <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+      <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2 sm:gap-y-6">
         {controls.map((item) => (
-          <li key={item} className="flex items-start gap-2 text-sm">
-            <Check className="mt-0.5 size-4 shrink-0 text-[#22a06b]" />
+          <li key={item} className="flex items-start gap-2.5 text-sm leading-6">
+            <Check className="mt-1 size-4 shrink-0 text-[#22a06b]" />
             <span className="text-[#646464]">{item}</span>
           </li>
         ))}
