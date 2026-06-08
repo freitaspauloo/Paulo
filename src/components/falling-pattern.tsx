@@ -15,6 +15,8 @@ type FallingPatternProps = React.ComponentProps<'div'> & {
 	blurIntensity?: string;
 	/** Pattern density - affects spacing (default: 1) */
 	density?: number;
+	/** Halftone blur overlay — disable when layering over an existing background */
+	showOverlay?: boolean;
 };
 
 export function FallingPattern({
@@ -23,6 +25,7 @@ export function FallingPattern({
 	duration = 150,
 	blurIntensity = '1em',
 	density = 1,
+	showOverlay = true,
 	className,
 }: FallingPatternProps) {
 	// Generate background image style with customizable color
@@ -137,6 +140,7 @@ export function FallingPattern({
 						backgroundColor,
 						backgroundImage: generateBackgroundImage(),
 						backgroundSize: backgroundSizes,
+						backgroundRepeat: 'repeat',
 					}}
 					variants={{
 						initial: {
@@ -155,14 +159,16 @@ export function FallingPattern({
 					animate="animate"
 				/>
 			</motion.div>
-			<div
-				className="absolute inset-0 z-1 dark:brightness-600"
-				style={{
-					backdropFilter: `blur(${blurIntensity})`,
-					backgroundImage: `radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, ${backgroundColor} 2px)`,
-					backgroundSize: `${8 * density}px ${8 * density}px`,
-				}}
-			/>
+			{showOverlay ? (
+				<div
+					className="absolute inset-0 z-[1] dark:brightness-600"
+					style={{
+						backdropFilter: `blur(${blurIntensity})`,
+						backgroundImage: `radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, ${backgroundColor} 2px)`,
+						backgroundSize: `${8 * density}px ${8 * density}px`,
+					}}
+				/>
+			) : null}
 		</div>
 	);
 }

@@ -11,8 +11,8 @@ export function HeroGradientLimeFrame({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("relative overflow-hidden", className)}>
-      <div aria-hidden className="pointer-events-none absolute inset-0">
+    <div className={cn("relative isolate overflow-hidden", className)}>
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         {/* Base: mint-tinted top → soft sage bottom */}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#f5faf7_0%,#eef7f2_22%,#dfece6_46%,#cfe3d8_68%,#c2dbc8_86%,#b8d4c0_100%)]" />
 

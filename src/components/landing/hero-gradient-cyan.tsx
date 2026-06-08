@@ -14,7 +14,7 @@ export function HeroGradientCyanFrame({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("relative overflow-hidden", gradientClassName, className)}>
+    <div className={cn("relative isolate overflow-hidden", gradientClassName, className)}>
       <LandingFallingPattern />
       <div className="relative z-10">{children}</div>
     </div>
