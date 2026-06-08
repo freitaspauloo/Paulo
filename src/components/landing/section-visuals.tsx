@@ -119,7 +119,7 @@ export function PrivateVisual() {
   return (
     <PhotoScene
       image={photos.cost}
-      alt="Enterprise team in a modern corporate workspace"
+      alt="Enterprise team collaborating at computers"
       tint="bg-[#eef1f4]"
       overlayClassName="from-black/40 via-black/15 to-transparent"
     >
