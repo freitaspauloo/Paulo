@@ -11,18 +11,15 @@ const COMMITMENT_ITEMS = [
 /** v4 hero — below the terminal window, on the lime frame */
 export function HeroCommitmentsStrip({ className }: { className?: string }) {
   return (
-    <div className={cn("space-y-6 text-center text-white sm:space-y-8", className)}>
-      <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
-        Built on three commitments.
-      </h2>
+    <div className={cn("text-center text-[#202020]", className)}>
       <div className="grid gap-6 sm:grid-cols-3 sm:gap-8">
         {COMMITMENT_ITEMS.map((item) => (
           <div
             key={item.label}
             className="flex flex-col items-center gap-3 text-center"
           >
-            <item.icon className="size-5 text-white" strokeWidth={1.75} />
-            <p className="max-w-[14rem] text-sm font-medium leading-6 text-white/95">
+            <item.icon className="size-5 text-[#202020]" strokeWidth={1.75} />
+            <p className="max-w-[14rem] text-sm font-medium leading-6 text-[#202020]">
               {item.label}
             </p>
           </div>
