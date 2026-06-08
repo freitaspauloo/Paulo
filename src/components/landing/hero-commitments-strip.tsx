@@ -5,7 +5,10 @@ import { cn } from "@/lib/utils";
 
 const COMMITMENT_ITEMS = [
   { icon: Sparkles, label: "Frontier-class capability" },
-  { icon: MapPin, label: "US-hosted inference" },
+  {
+    icon: MapPin,
+    label: "Sovereign by design: US-hosted, inside your boundary",
+  },
   { icon: Shield, label: "Your data is never used for training" },
 ] as const;
 
@@ -28,7 +31,7 @@ export function HeroCommitmentsStrip({ className }: { className?: string }) {
           )}
         >
           <item.icon className="size-4 shrink-0 text-[#202020]" strokeWidth={1.75} />
-          <p className="text-center text-[0.8125rem] font-medium leading-5 sm:whitespace-nowrap">
+          <p className="text-center text-[0.8125rem] font-medium leading-5">
             {item.label}
           </p>
         </div>

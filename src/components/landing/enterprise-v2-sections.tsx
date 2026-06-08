@@ -117,7 +117,10 @@ export function SplitSection({
 export function TrustStripSection() {
   const items = [
     { icon: Sparkles, label: "Frontier-class capability" },
-    { icon: MapPin, label: "US-hosted inference" },
+    {
+      icon: MapPin,
+      label: "Sovereign by design: US-hosted, inside your boundary",
+    },
     { icon: Shield, label: "Your data is never used for training" },
   ];
 
@@ -247,7 +250,8 @@ export function DataProtectionMatrixSection() {
           Only you can see your data.
         </h2>
         <p className="text-base leading-7 text-[#646464]">
-          Every layer below exists to keep that true.
+          This is what sovereign AI means in practice. Every guarantee below is what
+          keeps it true.
         </p>
       </div>
 
@@ -518,11 +522,12 @@ export function EnterpriseControlsGridSection() {
     <section className="space-y-8">
       <div className="mx-auto max-w-[40rem] space-y-3 text-center">
         <h2 className="text-balance text-[clamp(2rem,4vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
-          Built for enterprise control.
+          Enterprise control, end to end.
         </h2>
         <p className="text-base leading-7 text-[#646464]">
-          The data guarantees are in the matrix above. These are the operational
-          controls your admins manage.
+          Sovereignty is not only where your data lives, it is who controls it. The
+          data guarantees are in the matrix above; these are the operational controls
+          your admins manage.
         </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -556,12 +561,13 @@ export function ClosingContactSection() {
           Let&apos;s find out together.
         </h2>
         <p className="text-base leading-7 text-[#646464]">
-          We are opening Aligned to a small group of enterprises in private preview.
-          Tell us what you run today, and we will model your cost and run a capability
-          comparison on your own data, so we can both see whether this is a fit.
+          We are opening Aligned to a small group of enterprises evaluating sovereign
+          AI in private preview. Tell us what you run today, and we will model your
+          cost and run a capability comparison on your own data, so we can both see
+          whether this is a fit.
         </p>
         <p className="text-sm leading-6 text-[#646464]">
-          Same caliber of output, a fraction of the cost, hosted in the US.
+          Frontier-class, sovereign, and a fraction of the cost.
         </p>
       </div>
 

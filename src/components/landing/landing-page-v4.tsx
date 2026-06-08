@@ -20,6 +20,7 @@ import { LandingFooter } from "@/components/landing/landing-footer";
 import { HeroCommitmentsStrip } from "@/components/landing/hero-commitments-strip";
 import { HeroWindow } from "@/components/landing/hero-window";
 import {
+  LandingEyebrow,
   LandingGhostButton,
   LandingPrimaryButton,
   landing,
@@ -66,14 +67,19 @@ export function LandingPageV4() {
           )}
         >
           <div className="mx-auto max-w-[44rem] space-y-6 text-center">
+            <div className="flex justify-center">
+              <LandingEyebrow accent="text-[#646464]">
+                Sovereign AI for the enterprise
+              </LandingEyebrow>
+            </div>
             <h1 className="text-balance text-[clamp(2.5rem,5.5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
               Frontier-class AI, at a fraction of the cost.
             </h1>
             <p className="mx-auto max-w-[36rem] text-pretty text-base leading-7 text-[#646464] sm:text-[1.0625rem]">
-              Aligned matches the leading models on the work that matters, at 10 to
-              50x lower cost, hosted in the US with safety built into the
-              architecture. The capability is what you expect. The cost is the reason
-              to move.
+              Aligned is sovereign AI: frontier-class capability that runs on US
+              infrastructure, inside a boundary you control, at 10 to 50x lower cost
+              than the frontier APIs. The capability is what you expect. The cost is
+              the reason to move.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <LandingPrimaryButton href={ENTERPRISE_MAIL}>
@@ -127,27 +133,27 @@ export function LandingPageV4() {
           kicker="Security"
           accent={sectionTagAccent}
           title="Safety is the architecture, not a filter on top of it."
-          body="In most AI products, safety is a layer applied after the model is built. At Aligned it is part of the structure—built in, not bolted on, so controls cannot be disabled or bypassed."
+          body="In most AI products, safety is a layer applied after the model is built. At Aligned it is part of the structure. Every prompt is classified before any model sees it, and every response is verified against your configuration before it is returned. Because the controls are built in rather than added on top, they cannot be disabled or bypassed."
           subCardsVariant="inline"
           subCards={[
             {
               title: "Classify before inference.",
-              body: "Every prompt is checked against your policy before any model processes it.",
+              body: "Every prompt is checked against your policy before any model is allowed to process it.",
             },
             {
               title: "Verify before delivery.",
-              body: "Every response is verified against your configuration before it reaches a user.",
+              body: "Every response is checked against your configuration before it reaches a user, so nothing leaves unchecked.",
             },
           ]}
-          bodyClose="Built for regulated, data-sensitive, and customer-facing work."
+          bodyClose="This is what lets teams use Aligned for regulated, data-sensitive, and customer-facing work."
           visual={<FamilyVisual frame="lime" />}
         />
 
         <SplitSection
-          kicker="Data residency and compliance"
+          kicker="Sovereign AI"
           accent={sectionTagAccent}
-          title="Your data stays in the United States, inside a boundary you can name."
-          body="Inference runs inside a perimeter you can contract and audit. Nothing goes offshore or to unapproved third-party models, so you can name exactly where your data goes—unlike most providers. SOC 2-compliant infrastructure with certification underway; dedicated and private deployment for strict residency. Data-flow diagram available under NDA."
+          title="Sovereign AI: your data stays in a boundary you control."
+          body="Your prompts, your context, and your outputs stay inside a perimeter you can write into a contract and point to in an audit. Inference runs on US infrastructure. Nothing is sent offshore, and nothing reaches a third-party model you did not approve, so you can say exactly where your data goes, which most providers cannot. The platform runs on SOC 2-compliant infrastructure with certification underway, and dedicated deployment is available for strict residency needs."
           reverse
           visual={<PowerfulVisual frame="lime" />}
         />
