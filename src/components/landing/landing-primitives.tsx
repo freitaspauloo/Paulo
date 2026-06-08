@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 
 /** Aligned-2 (Oreo) tokens — radius/control 8, card-sm 12, card-md 16, container 24, capsule 999 */
+/** Figma drop shadow: x 0, y 2, blur 6, spread 0, #0F172A @ 5% */
+const dropShadow = "shadow-[0_2px_6px_0_rgba(15,23,42,0.05)]" as const;
+
 export const landing = {
   page: "mx-auto w-full max-w-[72rem]",
   container: "rounded-[24px]",
@@ -12,9 +15,10 @@ export const landing = {
   cardSm: "rounded-[12px]",
   control: "rounded-[8px]",
   capsule: "rounded-full",
-  shadowCard: "shadow-[0_4px_24px_rgba(0,0,0,0.06)]",
-  shadowFloat: "shadow-[0_20px_50px_-12px_rgba(0,0,0,0.18)]",
-  shadowHero: "shadow-[0_32px_64px_-16px_rgba(0,0,0,0.22)]",
+  shadowDrop: dropShadow,
+  shadowCard: dropShadow,
+  shadowFloat: dropShadow,
+  shadowHero: dropShadow,
 } as const;
 
 export function LandingEyebrow({
