@@ -62,45 +62,21 @@ const social = [
 
 function CapabilityCard({
   capability: c,
-  layout,
 }: {
   capability: (typeof capabilities)[number];
-  layout: "carousel" | "inline";
 }) {
-  const isCarousel = layout === "carousel";
-
   return (
     <article
       className={cn(
-        "flex h-full flex-col justify-between border border-black/[0.06] bg-white",
+        "flex min-h-[19rem] w-[18.5rem] shrink-0 snap-start flex-col justify-between border border-black/[0.06] bg-white p-7",
         landing.cardMd,
         landing.shadowDrop,
-        isCarousel
-          ? "min-h-[19rem] w-[min(18.5rem,85vw)] shrink-0 snap-start p-6 sm:p-7"
-          : "min-h-[16rem] min-w-0 p-5",
       )}
     >
-      <c.icon
-        className={cn(isCarousel ? "size-8" : "size-7", c.color)}
-        strokeWidth={1.75}
-      />
+      <c.icon className={cn("size-8", c.color)} strokeWidth={1.75} />
       <div className="space-y-2">
-        <h3
-          className={cn(
-            "font-semibold tracking-[-0.01em]",
-            isCarousel ? "text-xl" : "text-base",
-          )}
-        >
-          {c.title}
-        </h3>
-        <p
-          className={cn(
-            "text-[#646464]",
-            isCarousel ? "text-sm leading-6" : "text-xs leading-5",
-          )}
-        >
-          {c.body}
-        </p>
+        <h3 className="text-xl font-semibold tracking-[-0.01em]">{c.title}</h3>
+        <p className="text-sm leading-6 text-[#646464]">{c.body}</p>
       </div>
     </article>
   );
@@ -144,7 +120,7 @@ export function LandingPage() {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollCarousel = (dir: -1 | 1) => {
-    carouselRef.current?.scrollBy({ left: dir * 300, behavior: "smooth" });
+    carouselRef.current?.scrollBy({ left: dir * 320, behavior: "smooth" });
   };
 
   return (
@@ -246,26 +222,18 @@ export function LandingPage() {
           </p>
         </div>
 
-        {/* Mobile / tablet: horizontal scroll */}
         <div
           ref={carouselRef}
-          className="-mx-6 mt-12 snap-x snap-mandatory overflow-x-auto px-6 py-2 pb-4 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden"
+          className="-mx-6 mt-12 snap-x snap-mandatory overflow-x-auto px-6 py-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div className="flex w-max gap-4 pr-6 sm:gap-5">
             {capabilities.map((c) => (
-              <CapabilityCard key={c.title} capability={c} layout="carousel" />
+              <CapabilityCard key={c.title} capability={c} />
             ))}
           </div>
         </div>
 
-        {/* Desktop: single row, all cards in line */}
-        <div className="mt-12 hidden gap-4 lg:grid lg:grid-cols-6 lg:items-stretch">
-          {capabilities.map((c) => (
-            <CapabilityCard key={c.title} capability={c} layout="inline" />
-          ))}
-        </div>
-
-        <div className="mt-8 flex items-center justify-center gap-2 lg:hidden">
+        <div className="mt-8 flex items-center justify-center gap-2">
           <button
             type="button"
             aria-label="Previous"
