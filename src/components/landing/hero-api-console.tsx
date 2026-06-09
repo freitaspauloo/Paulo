@@ -20,7 +20,7 @@ const ROUTES = [
 function HeroUserMessage({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex justify-end">
-      <div className="max-w-[88%] rounded-2xl bg-secondary px-3 py-1.5 text-[0.8125rem] leading-5 text-foreground">
+      <div className="max-w-[88%] rounded-2xl bg-secondary px-3.5 py-2 text-[0.8125rem] leading-5 text-foreground">
         {children}
       </div>
     </div>
@@ -31,7 +31,7 @@ function HeroAgentMessage({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex gap-2">
       <Avatar agent="nova" size="sm" className="mt-0.5 shrink-0" />
-      <div className="min-w-0 flex-1 space-y-1.5 text-[0.8125rem] leading-5">{children}</div>
+      <div className="min-w-0 flex-1 space-y-2 text-[0.8125rem] leading-5">{children}</div>
     </div>
   );
 }
@@ -131,8 +131,8 @@ export function HeroApiConsole() {
                 />
               </header>
 
-              <div className="px-3 py-2 sm:px-4">
-                <div className="flex flex-col gap-2">
+              <div className="px-3 py-3.5 sm:px-4 sm:py-4">
+                <div className="flex flex-col gap-3">
                   <HeroUserMessage>
                     Summarize these access controls into a SOC 2 evidence checklist.
                   </HeroUserMessage>
