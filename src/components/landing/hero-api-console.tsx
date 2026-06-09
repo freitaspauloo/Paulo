@@ -38,7 +38,7 @@ function HeroAgentMessage({ children }: { children: React.ReactNode }) {
 
 function ActivePathsStrip() {
   return (
-    <div className="rounded-lg border border-black/[0.06] bg-[#fafafa] px-3 py-2">
+    <div className="border-b border-black/[0.06] bg-[#fafafa] px-3 py-2">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
         <p className="text-[0.625rem] font-medium uppercase tracking-wide text-[#646464]">
           Active paths
@@ -114,8 +114,11 @@ export function HeroApiConsole() {
             </Badge>
           </div>
 
-          <div className="flex">
-            <AlignedSidebar className="hidden h-auto w-48 shrink-0 self-stretch rounded-none border-0 border-r md:flex" />
+          <div className="flex items-start">
+            <AlignedSidebar
+              compact
+              className="hidden w-48 shrink-0 rounded-none border-0 border-r md:flex"
+            />
 
             <div className="flex min-w-0 flex-1 flex-col bg-white">
               <header className="flex h-9 shrink-0 items-center gap-3 border-b border-black/[0.06] px-3 sm:px-4">
@@ -130,8 +133,8 @@ export function HeroApiConsole() {
                 />
               </header>
 
-              <div className="px-3 py-3 sm:px-4">
-                <div className="mx-auto flex max-w-xl flex-col gap-3">
+              <div className="px-3 py-2 sm:px-4">
+                <div className="flex flex-col gap-2">
                   <HeroUserMessage>
                     Summarize these access controls into a SOC 2 evidence checklist.
                   </HeroUserMessage>
@@ -150,11 +153,11 @@ export function HeroApiConsole() {
                 </div>
               </div>
 
-              <div className="mt-auto shrink-0 space-y-2 border-t border-black/[0.06] px-3 py-2.5 sm:px-4">
+              <div className="shrink-0 border-t border-black/[0.06]">
                 <ActivePathsStrip />
                 <AlignedComposer
                   rows={1}
-                  className="mx-auto max-w-xl shadow-none [&>div]:gap-2 [&>div]:p-2.5"
+                  className="w-full max-w-none rounded-none border-0 shadow-none [&>div]:gap-1.5 [&>div]:px-3 [&>div]:py-2"
                   placeholder="Follow up on the SOC 2 checklist…"
                 />
               </div>

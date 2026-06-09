@@ -51,11 +51,18 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function AlignedSidebar({ className }: { className?: string }) {
+export function AlignedSidebar({
+  className,
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
   return (
     <aside
       className={cn(
-        "flex h-[560px] w-[264px] flex-col rounded-[16px] border bg-card p-2",
+        "flex w-[264px] flex-col rounded-[16px] border bg-card p-2",
+        compact ? "h-auto" : "h-[560px]",
         className,
       )}
     >
@@ -74,46 +81,54 @@ export function AlignedSidebar({ className }: { className?: string }) {
       </div>
 
       {/* Scrollable content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className={cn(compact ? "overflow-hidden" : "flex-1 overflow-y-auto")}>
         {/* Primary menu */}
         <SidebarItem icon={SquarePen}>New chat</SidebarItem>
         <SidebarItem icon={Search}>Search chats</SidebarItem>
-        <SidebarItem icon={StickyNote}>Notes</SidebarItem>
-        <SidebarItem icon={FolderClosed}>Projects</SidebarItem>
+        {!compact ? (
+          <>
+            <SidebarItem icon={StickyNote}>Notes</SidebarItem>
+            <SidebarItem icon={FolderClosed}>Projects</SidebarItem>
+          </>
+        ) : null}
 
         {/* Chats */}
         <SectionLabel>Chats</SectionLabel>
         <SidebarItem icon={MessageCircle} active showMenu>
-          Searching latest AI news
+          SOC 2 readiness review
         </SidebarItem>
         <SidebarItem icon={MessageCircle} showMenu>
-          Discuss creative thinking
+          Access control audit
         </SidebarItem>
-        <SidebarItem icon={MessageCircle} showMenu>
-          Learn GLSL Shaders
-        </SidebarItem>
-        <SidebarItem icon={MessageCircle} showMenu>
-          New chat
-        </SidebarItem>
-        <SidebarItem>More</SidebarItem>
+        {!compact ? (
+          <>
+            <SidebarItem icon={MessageCircle} showMenu>
+              Learn GLSL Shaders
+            </SidebarItem>
+            <SidebarItem icon={MessageCircle} showMenu>
+              New chat
+            </SidebarItem>
+            <SidebarItem>More</SidebarItem>
 
-        {/* Notes */}
-        <SectionLabel>Notes</SectionLabel>
-        <SidebarItem icon={StickyNote} showMenu>
-          Discuss creative thinking
-        </SidebarItem>
-        <SidebarItem icon={StickyNote} showMenu>
-          Learn GLSL Shaders
-        </SidebarItem>
+            {/* Notes */}
+            <SectionLabel>Notes</SectionLabel>
+            <SidebarItem icon={StickyNote} showMenu>
+              Discuss creative thinking
+            </SidebarItem>
+            <SidebarItem icon={StickyNote} showMenu>
+              Learn GLSL Shaders
+            </SidebarItem>
 
-        {/* Projects */}
-        <SectionLabel>Projects</SectionLabel>
-        <SidebarItem icon={FolderClosed} showMenu>
-          Discuss creative thinking
-        </SidebarItem>
-        <SidebarItem icon={FolderClosed} showMenu>
-          Learn GLSL Shaders
-        </SidebarItem>
+            {/* Projects */}
+            <SectionLabel>Projects</SectionLabel>
+            <SidebarItem icon={FolderClosed} showMenu>
+              Discuss creative thinking
+            </SidebarItem>
+            <SidebarItem icon={FolderClosed} showMenu>
+              Learn GLSL Shaders
+            </SidebarItem>
+          </>
+        ) : null}
       </div>
 
       {/* Footer — user */}
