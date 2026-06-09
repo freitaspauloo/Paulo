@@ -40,7 +40,7 @@ export function AlignedComposer({
             "border-b bg-muted text-muted-foreground",
             typeof status === "string"
               ? "flex items-center gap-2 px-4 py-2 text-xs"
-              : "px-3 py-2",
+              : "px-4 py-2",
           )}
         >
           {typeof status === "string" ? (

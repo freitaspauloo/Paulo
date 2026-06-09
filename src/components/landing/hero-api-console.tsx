@@ -155,7 +155,7 @@ export function HeroApiConsole() {
                 <AlignedComposer
                   rows={1}
                   status={<ActivePathsStatus />}
-                  className="w-full max-w-none rounded-none border-0 shadow-none [&_[data-slot=composer-body]]:gap-1.5 [&_[data-slot=composer-body]]:px-3 [&_[data-slot=composer-body]]:py-2"
+                  className="w-full max-w-none rounded-none border-0 shadow-none"
                   placeholder="Follow up on the SOC 2 checklist…"
                 />
               </div>
