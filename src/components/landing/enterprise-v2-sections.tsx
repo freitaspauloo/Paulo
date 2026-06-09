@@ -2,6 +2,7 @@
 
 import {
   ArrowDown,
+  ArrowRight,
   Ban,
   BarChart3,
   Check,
@@ -115,9 +116,10 @@ export function SplitSection({
         {link ? (
           <a
             href={link.href}
-            className="inline-flex text-sm font-medium text-foreground underline-offset-4 hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-4 hover:underline"
           >
             {link.label}
+            <ArrowRight className="size-3.5 shrink-0" strokeWidth={2} aria-hidden />
           </a>
         ) : null}
         {cta ? (
