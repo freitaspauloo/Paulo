@@ -338,31 +338,56 @@ const weekStages = [
 
 const weekStageLabels = ["Evaluate", "Integrate", "Deploy"] as const;
 
+function formatTimelineItem(text: string) {
+  return text.replace(/\s*\[PLANNED:[^\]]+\]/gi, "").trim();
+}
+
 export function FirstWeekSection() {
   return (
     <section className="space-y-10">
       <h2 className="mx-auto max-w-[40rem] text-center text-balance text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
         Here is what you can stand up with Aligned in your first week.
       </h2>
-      <div className="relative">
+
+      <div
+        className={cn(
+          "relative overflow-hidden border border-black/[0.06] bg-[#fafafa] p-6 sm:p-8",
+          landing.cardMd,
+          landing.shadowCard,
+        )}
+      >
         <div
           aria-hidden
-          className="absolute top-5 right-[16.67%] left-[16.67%] hidden h-px bg-black/[0.08] md:block"
+          className="pointer-events-none absolute top-[3.125rem] right-[14%] left-[14%] hidden h-px bg-gradient-to-r from-transparent via-black/10 to-transparent md:block"
         />
-        <div className="grid gap-8 md:grid-cols-3 md:gap-6">
+
+        <div className="relative grid gap-10 md:grid-cols-3 md:gap-6">
           {weekStages.map((stage, i) => (
-            <article key={stage.title} className="relative space-y-4">
-              <div className="flex items-center gap-3">
-                <span className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full border-4 border-white bg-[#22a06b] text-white shadow-sm">
-                  <Check className="size-4" strokeWidth={2.5} />
+            <article key={stage.title} className="relative flex flex-col gap-4">
+              <div className="flex items-start gap-3">
+                <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full bg-[#22a06b] text-sm font-semibold text-white shadow-[0_2px_10px_rgba(34,160,107,0.28)] ring-4 ring-[#fafafa]">
+                  <Check className="size-5" strokeWidth={2.5} aria-hidden />
                 </span>
-                <h3 className="font-semibold">{weekStageLabels[i]}</h3>
+                <div className="min-w-0 space-y-0.5 pt-0.5">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#646464]">
+                    Stage {i + 1}
+                  </p>
+                  <h3 className="text-lg font-semibold leading-snug tracking-tight">
+                    {weekStageLabels[i]}
+                  </h3>
+                </div>
               </div>
-              <ul className="space-y-3 pl-[3.25rem] md:pl-0">
+
+              <ul className="flex flex-col gap-2">
                 {stage.items.map((item) => (
-                  <li key={item} className="flex gap-2.5 text-sm leading-6 text-[#646464]">
-                    <Check className="mt-0.5 size-4 shrink-0 text-[#22a06b]/70" />
-                    <span>{item}</span>
+                  <li
+                    key={item}
+                    className={cn(
+                      "rounded-lg border border-black/[0.06] bg-white px-3.5 py-3 text-sm leading-6 text-[#646464]",
+                      landing.shadowDrop,
+                    )}
+                  >
+                    {formatTimelineItem(item)}
                   </li>
                 ))}
               </ul>
