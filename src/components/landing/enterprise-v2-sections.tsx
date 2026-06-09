@@ -353,22 +353,17 @@ export function FirstWeekSection() {
 
       <div
         className={cn(
-          "relative overflow-hidden border border-black/[0.06] bg-[#fafafa] p-6 sm:p-8",
+          "overflow-hidden border border-black/[0.06] bg-white p-6 sm:p-8",
           landing.cardMd,
           landing.shadowCard,
         )}
       >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-[3.125rem] right-[14%] left-[14%] hidden h-px bg-gradient-to-r from-transparent via-black/10 to-transparent md:block"
-        />
-
-        <div className="relative grid gap-10 md:grid-cols-3 md:gap-6">
+        <div className="grid gap-10 md:grid-cols-3 md:gap-6">
           {weekStages.map((stage, i) => (
             <article key={stage.title} className="relative flex flex-col gap-4">
               <div className="flex items-start gap-3">
-                <span className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full bg-[#22a06b] text-sm font-semibold text-white shadow-[0_2px_10px_rgba(34,160,107,0.28)] ring-4 ring-[#fafafa]">
-                  <Check className="size-5" strokeWidth={2.5} aria-hidden />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#22a06b] text-white shadow-[0_1px_6px_rgba(34,160,107,0.22)]">
+                  <Check className="size-3.5" strokeWidth={2.5} aria-hidden />
                 </span>
                 <div className="min-w-0 space-y-0.5 pt-0.5">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#646464]">
@@ -384,10 +379,7 @@ export function FirstWeekSection() {
                 {stage.items.map((item) => (
                   <li
                     key={item}
-                    className={cn(
-                      "rounded-lg border border-black/[0.06] bg-white px-3.5 py-3 text-sm leading-6 text-[#646464]",
-                      landing.shadowDrop,
-                    )}
+                    className="rounded-lg border border-black/[0.06] bg-[#fafafa] px-3.5 py-3 text-sm leading-6 text-[#646464]"
                   >
                     {formatTimelineItem(item)}
                   </li>
@@ -534,12 +526,12 @@ export function PlatformTabsSection() {
               key={task}
               className="flex gap-2 text-sm leading-6 text-[#646464]"
             >
-              <Check className="mt-0.5 size-4 shrink-0 text-[#22a06b]" />
+              <Check className="mt-0.5 size-3.5 shrink-0 text-[#22a06b]" />
               <span>{task}</span>
             </li>
           ))}
         </ul>
-        <div className="space-y-3 border-t border-black/[0.06] pt-5">
+        <div className="space-y-3 pt-1">
           <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
             Example prompt
           </p>
