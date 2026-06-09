@@ -522,7 +522,7 @@ export function PlatformTabsSection() {
           <p className="text-xs font-medium uppercase tracking-wide text-[#646464]">
             Output
           </p>
-          <div className="rounded-lg border border-black/[0.06] border-l-[3px] border-l-[#22a06b] bg-white px-4 py-3 text-sm leading-6 text-[#646464]">
+          <div className="rounded-lg border border-[#22a06b]/30 bg-[#22a06b]/[0.06] px-4 py-3 text-sm leading-6 text-foreground shadow-[0_0_0_1px_rgba(34,160,107,0.08)]">
             {panel.output}
           </div>
         </div>
