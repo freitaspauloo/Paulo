@@ -34,6 +34,15 @@ import {
   landing,
 } from "@/components/landing/landing-primitives";
 import { Input } from "@/components/ui/input";
+import {
+  Timeline,
+  TimelineContent,
+  TimelineHeader,
+  TimelineItem,
+  TimelineMarker,
+  TimelineMeta,
+  TimelineTitle,
+} from "@/components/ui/timeline";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
@@ -286,15 +295,16 @@ export function DataProtectionMatrixSection() {
           landing.shadowCard,
         )}
       >
-        <div className="grid gap-px bg-black/[0.06] sm:grid-cols-3">
-          {matrixItems.map((item) => {
+        <div className="grid sm:grid-cols-3">
+          {matrixItems.map((item, index) => {
             const Icon = item.icon;
             return (
               <article
                 key={item.label}
                 className={cn(
-                  "flex flex-col gap-2.5 bg-white p-5 sm:p-6",
-                  item.keystone && "bg-[#f4fbf7]",
+                  "flex flex-col gap-2.5 p-5 sm:p-6",
+                  index % 3 !== 2 && "sm:border-r sm:border-black/[0.06]",
+                  item.keystone ? "bg-[#f4fbf7]" : "bg-white",
                 )}
               >
                 <Icon
@@ -358,36 +368,32 @@ export function FirstWeekSection() {
           landing.shadowCard,
         )}
       >
-        <div className="grid gap-10 md:grid-cols-3 md:gap-6">
+        <Timeline orientation="horizontal" aria-label="First week rollout stages">
           {weekStages.map((stage, i) => (
-            <article key={stage.title} className="relative flex flex-col gap-4">
+            <TimelineItem key={stage.title}>
               <div className="flex items-start gap-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#22a06b] text-white shadow-[0_1px_6px_rgba(34,160,107,0.22)]">
-                  <Check className="size-3.5" strokeWidth={2.5} aria-hidden />
-                </span>
-                <div className="min-w-0 space-y-0.5 pt-0.5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#646464]">
-                    Stage {i + 1}
-                  </p>
-                  <h3 className="text-lg font-semibold leading-snug tracking-tight">
-                    {weekStageLabels[i]}
-                  </h3>
-                </div>
+                <TimelineMarker variant="success" size="sm">
+                  <Check className="size-3" strokeWidth={2.5} aria-hidden />
+                </TimelineMarker>
+                <TimelineHeader>
+                  <TimelineMeta>Stage {i + 1}</TimelineMeta>
+                  <TimelineTitle>{weekStageLabels[i]}</TimelineTitle>
+                </TimelineHeader>
               </div>
 
-              <ul className="flex flex-col gap-2">
+              <TimelineContent>
                 {stage.items.map((item) => (
-                  <li
+                  <p
                     key={item}
                     className="rounded-lg border border-black/[0.06] bg-[#fafafa] px-3.5 py-3 text-sm leading-6 text-[#646464]"
                   >
                     {formatTimelineItem(item)}
-                  </li>
+                  </p>
                 ))}
-              </ul>
-            </article>
+              </TimelineContent>
+            </TimelineItem>
           ))}
-        </div>
+        </Timeline>
       </div>
     </section>
   );
