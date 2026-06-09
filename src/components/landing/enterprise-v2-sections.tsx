@@ -282,9 +282,9 @@ export function DataProtectionMatrixSection() {
         <h2 className="text-balance text-[clamp(2rem,4vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
           Only you can see your data.
         </h2>
-        <p className="text-base leading-7 text-[#646464]">
+        <p className="text-pretty text-base leading-7 text-[#646464]">
           This is what sovereign AI means in practice. Every guarantee below is what
-          keeps it true.
+          keeps it&nbsp;true.
         </p>
       </div>
 
