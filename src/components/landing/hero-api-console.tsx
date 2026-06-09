@@ -20,7 +20,7 @@ const ROUTES = [
 function HeroUserMessage({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex justify-end">
-      <div className="max-w-[88%] rounded-2xl bg-secondary px-3.5 py-2 text-[0.8125rem] leading-5 text-foreground">
+      <div className="max-w-[88%] rounded-2xl bg-secondary px-3 py-1.5 text-[0.8125rem] leading-5 text-foreground">
         {children}
       </div>
     </div>
@@ -29,9 +29,48 @@ function HeroUserMessage({ children }: { children: React.ReactNode }) {
 
 function HeroAgentMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-2.5">
+    <div className="flex gap-2">
       <Avatar agent="nova" size="sm" className="mt-0.5 shrink-0" />
-      <div className="min-w-0 flex-1 space-y-2 text-[0.8125rem] leading-5">{children}</div>
+      <div className="min-w-0 flex-1 space-y-1.5 text-[0.8125rem] leading-5">{children}</div>
+    </div>
+  );
+}
+
+function ActivePathsStrip() {
+  return (
+    <div className="rounded-lg border border-black/[0.06] bg-[#fafafa] px-3 py-2">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+        <p className="text-[0.625rem] font-medium uppercase tracking-wide text-[#646464]">
+          Active paths
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {ROUTES.map((route) => {
+            const Icon = route.icon;
+            return (
+              <div
+                key={route.label}
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[0.6875rem] font-medium",
+                  route.active
+                    ? "border-[#22a06b]/35 bg-[#22a06b]/[0.08] text-foreground"
+                    : "border-transparent bg-white text-muted-foreground opacity-60",
+                )}
+              >
+                <Icon className="size-3" strokeWidth={2} />
+                {route.label}
+                {route.active ? (
+                  <span className="text-[0.5625rem] text-[#22a06b]">· lit</span>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+        <div className="ml-auto hidden items-center gap-1.5 text-[0.625rem] text-muted-foreground sm:flex">
+          <span>Reasoning path selected</span>
+          <ArrowRight className="size-2.5" />
+          <span>Composed response</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -47,75 +86,40 @@ export function HeroApiConsole() {
           landing.shadowHero,
         )}
       >
-        <div className="flex h-11 shrink-0 items-center gap-2 border-b border-black/[0.06] px-5 sm:px-6">
-          <span className="size-2.5 shrink-0 rounded-full bg-[#ff5f57]" />
-          <span className="size-2.5 shrink-0 rounded-full bg-[#febc2e]" />
-          <span className="size-2.5 shrink-0 rounded-full bg-[#28c840]" />
-          <span className="ml-1 truncate font-mono text-xs text-muted-foreground">
+        <div className="flex h-9 shrink-0 items-center gap-2 border-b border-black/[0.06] px-4 sm:px-5">
+          <span className="size-2 shrink-0 rounded-full bg-[#ff5f57]" />
+          <span className="size-2 shrink-0 rounded-full bg-[#febc2e]" />
+          <span className="size-2 shrink-0 rounded-full bg-[#28c840]" />
+          <span className="ml-1 truncate font-mono text-[0.6875rem] text-muted-foreground">
             Aligned API console — live routing
           </span>
         </div>
 
         <CardContent className="space-y-0 p-0">
-          <div className="space-y-4 border-b border-black/[0.06] px-5 py-4 sm:px-6">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="space-y-1">
-                <p className="font-mono text-[0.6875rem] text-muted-foreground">
-                  POST /v1/chat/completions
-                </p>
-                <p className="text-sm font-medium">
-                  Request routed · policy: aligned-default
-                </p>
-              </div>
-              <Badge
-                variant="outline"
-                className="gap-1.5 border-black/[0.08] bg-white px-2.5 py-1 text-[0.6875rem] font-medium"
-              >
-                <MapPin className="size-3 text-[#22a06b]" strokeWidth={2} />
-                US-hosted
-              </Badge>
-            </div>
-
-            <div className="rounded-xl border border-black/[0.06] bg-[#fafafa] p-3.5 sm:p-4">
-              <p className="mb-2.5 text-[0.6875rem] font-medium uppercase tracking-wide text-[#646464]">
-                Active paths
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.06] px-4 py-2.5 sm:px-5">
+            <div className="min-w-0 space-y-0.5">
+              <p className="font-mono text-[0.625rem] text-muted-foreground">
+                POST /v1/chat/completions
               </p>
-              <div className="flex flex-wrap gap-2">
-                {ROUTES.map((route) => {
-                  const Icon = route.icon;
-                  return (
-                    <div
-                      key={route.label}
-                      className={cn(
-                        "inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium",
-                        route.active
-                          ? "border-[#22a06b]/35 bg-[#22a06b]/[0.08] text-foreground"
-                          : "border-transparent bg-white text-muted-foreground opacity-60",
-                      )}
-                    >
-                      <Icon className="size-3.5" strokeWidth={2} />
-                      {route.label}
-                      {route.active ? (
-                        <span className="text-[0.625rem] text-[#22a06b]">· lit</span>
-                      ) : null}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="mt-2.5 flex items-center gap-2 text-[0.6875rem] text-muted-foreground">
-                <span>Reasoning path selected</span>
-                <ArrowRight className="size-3" />
-                <span>Composed response</span>
-              </div>
+              <p className="text-xs font-medium sm:text-[0.8125rem]">
+                Request routed · policy: aligned-default
+              </p>
             </div>
+            <Badge
+              variant="outline"
+              className="gap-1 border-black/[0.08] bg-white px-2 py-0.5 text-[0.625rem] font-medium"
+            >
+              <MapPin className="size-2.5 text-[#22a06b]" strokeWidth={2} />
+              US-hosted
+            </Badge>
           </div>
 
-          <div className="flex min-h-[20rem] sm:min-h-[22rem]">
-            <AlignedSidebar className="hidden h-auto min-h-full w-[13.5rem] shrink-0 self-stretch rounded-none border-0 border-r md:flex" />
+          <div className="flex">
+            <AlignedSidebar className="hidden h-auto w-48 shrink-0 self-stretch rounded-none border-0 border-r md:flex" />
 
             <div className="flex min-w-0 flex-1 flex-col bg-white">
-              <header className="flex h-11 shrink-0 items-center gap-3 border-b border-black/[0.06] px-4">
-                <span className="truncate text-sm font-medium">
+              <header className="flex h-9 shrink-0 items-center gap-3 border-b border-black/[0.06] px-3 sm:px-4">
+                <span className="truncate text-[0.8125rem] font-medium">
                   SOC 2 readiness review
                 </span>
                 <Avatar
@@ -126,50 +130,48 @@ export function HeroApiConsole() {
                 />
               </header>
 
-              <div className="flex-1 overflow-hidden px-4 py-4 sm:px-5">
-                <div className="mx-auto flex max-w-xl flex-col gap-4">
+              <div className="px-3 py-3 sm:px-4">
+                <div className="mx-auto flex max-w-xl flex-col gap-3">
                   <HeroUserMessage>
                     Summarize these access controls into a SOC 2 evidence checklist.
                   </HeroUserMessage>
 
                   <HeroAgentMessage>
                     <p>
-                      Mapped your controls to CC6.1 and CC6.2. Draft checklist
-                      below — each item cites the policy section it satisfies.
+                      Mapped your controls to CC6.1 and CC6.2 — draft checklist
+                      ready with policy citations.
                     </p>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-1">
                       <Tag palette="mint">#&nbsp;CC6.1</Tag>
                       <Tag palette="purple">#&nbsp;access-controls</Tag>
                       <Tag palette="orange">#&nbsp;evidence</Tag>
                     </div>
-                    <p className="text-muted-foreground">
-                      12 items ready for export. Want me to format this for your
-                      auditor?
-                    </p>
                   </HeroAgentMessage>
                 </div>
               </div>
 
-              <div className="shrink-0 border-t border-black/[0.06] p-3 sm:p-4">
+              <div className="mt-auto shrink-0 space-y-2 border-t border-black/[0.06] px-3 py-2.5 sm:px-4">
+                <ActivePathsStrip />
                 <AlignedComposer
-                  className="mx-auto max-w-xl shadow-none"
+                  rows={1}
+                  className="mx-auto max-w-xl shadow-none [&>div]:gap-2 [&>div]:p-2.5"
                   placeholder="Follow up on the SOC 2 checklist…"
                 />
               </div>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-end justify-between gap-4 border-t border-black/[0.06] px-5 py-4 sm:px-6">
-            <div className="space-y-0.5">
-              <p className="text-xs text-[#646464]">Status</p>
-              <p className="text-sm font-medium text-[#22a06b]">200 · delivered</p>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.06] px-4 py-2.5 sm:px-5">
+            <div className="flex items-baseline gap-2">
+              <p className="text-[0.6875rem] text-[#646464]">Status</p>
+              <p className="text-xs font-medium text-[#22a06b]">200 · delivered</p>
             </div>
-            <div className="text-right">
-              <p className="text-xs text-[#646464]">Cost this request</p>
-              <p className="text-3xl font-semibold tracking-tight text-[#22a06b] tabular-nums sm:text-4xl">
+            <div className="flex items-baseline gap-2 text-right">
+              <p className="text-[0.6875rem] text-[#646464]">Cost this request</p>
+              <p className="text-2xl font-semibold tracking-tight text-[#22a06b] tabular-nums">
                 $0.006
               </p>
-              <p className="text-[0.6875rem] text-muted-foreground">per chat</p>
+              <p className="text-[0.625rem] text-muted-foreground">per chat</p>
             </div>
           </div>
         </CardContent>

@@ -12,6 +12,7 @@ interface AlignedComposerProps {
   /** Prefilled text (turns it into the "filled" state). */
   defaultValue?: string;
   placeholder?: string;
+  rows?: number;
   className?: string;
   /** Optional footer rendered inside the composer frame (below the input). */
   footer?: React.ReactNode;
@@ -21,6 +22,7 @@ export function AlignedComposer({
   status,
   defaultValue,
   placeholder = "Type a prompt or press / for commands",
+  rows = 2,
   className,
   footer,
 }: AlignedComposerProps) {
@@ -39,7 +41,7 @@ export function AlignedComposer({
       )}
       <div className="flex flex-col gap-3 p-3">
         <textarea
-          rows={2}
+          rows={rows}
           defaultValue={defaultValue}
           placeholder={placeholder}
           className="w-full resize-none bg-transparent px-1 pt-1 text-sm outline-none placeholder:text-muted-foreground"
