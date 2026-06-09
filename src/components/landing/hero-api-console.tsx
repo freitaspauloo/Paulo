@@ -112,15 +112,15 @@ export function HeroApiConsole() {
             </Badge>
           </div>
 
-          <div className="flex items-start">
+          <div className="flex min-h-[26rem] items-stretch sm:min-h-[28rem]">
             <AlignedSidebar
               compact
-              className="hidden w-48 shrink-0 rounded-none border-0 border-r md:flex"
+              className="hidden h-auto min-h-full w-48 shrink-0 rounded-none border-0 border-r md:flex"
             />
 
             <div className="flex min-w-0 flex-1 flex-col bg-white">
-              <header className="flex h-9 shrink-0 items-center gap-3 border-b border-black/[0.06] px-3 sm:px-4">
-                <span className="truncate text-[0.8125rem] font-medium">
+              <header className="flex h-11 shrink-0 items-center gap-3 border-b border-black/[0.06] px-4 sm:px-5">
+                <span className="truncate text-sm font-medium">
                   SOC 2 readiness review
                 </span>
                 <Avatar
@@ -131,33 +131,35 @@ export function HeroApiConsole() {
                 />
               </header>
 
-              <div className="px-3 py-3.5 sm:px-4 sm:py-4">
-                <div className="flex flex-col gap-3">
-                  <HeroUserMessage>
-                    Summarize these access controls into a SOC 2 evidence checklist.
-                  </HeroUserMessage>
+              <div className="flex min-h-0 flex-1 flex-col">
+                <div className="flex-1 px-4 py-5 sm:px-5 sm:py-6">
+                  <div className="mx-auto flex max-w-2xl flex-col gap-5">
+                    <HeroUserMessage>
+                      Summarize these access controls into a SOC 2 evidence
+                      checklist.
+                    </HeroUserMessage>
 
-                  <HeroAgentMessage>
-                    <p>
-                      Mapped your controls to CC6.1 and CC6.2 — draft checklist
-                      ready with policy citations.
-                    </p>
-                    <div className="flex flex-wrap gap-1">
-                      <Tag palette="mint">#&nbsp;CC6.1</Tag>
-                      <Tag palette="purple">#&nbsp;access-controls</Tag>
-                      <Tag palette="orange">#&nbsp;evidence</Tag>
-                    </div>
-                  </HeroAgentMessage>
+                    <HeroAgentMessage>
+                      <p>
+                        Mapped your controls to CC6.1 and CC6.2 — draft checklist
+                        ready with policy citations.
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        <Tag palette="mint">#&nbsp;CC6.1</Tag>
+                        <Tag palette="purple">#&nbsp;access-controls</Tag>
+                        <Tag palette="orange">#&nbsp;evidence</Tag>
+                      </div>
+                    </HeroAgentMessage>
+                  </div>
                 </div>
-              </div>
 
-              <div className="shrink-0 border-t border-black/[0.06]">
-                <AlignedComposer
-                  rows={1}
-                  status={<ActivePathsStatus />}
-                  className="w-full max-w-none rounded-none border-0 shadow-none"
-                  placeholder="Follow up on the SOC 2 checklist…"
-                />
+                <div className="shrink-0 border-t border-black/[0.06] p-3 sm:p-4">
+                  <AlignedComposer
+                    status={<ActivePathsStatus />}
+                    className="w-full max-w-none bg-white"
+                    placeholder="Follow up on the SOC 2 checklist…"
+                  />
+                </div>
               </div>
             </div>
           </div>
