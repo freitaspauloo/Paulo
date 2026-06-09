@@ -131,19 +131,19 @@ export function LandingPageV4() {
           kicker="Security"
           accent={sectionTagAccent}
           title="Safety is the architecture, not a filter on top of it."
-          body="In most AI products, safety is a layer applied after the model is built. At Aligned it is part of the structure. Every prompt is classified before any model sees it, and every response is verified against your configuration before it is returned. Because the controls are built in rather than added on top, they cannot be disabled or bypassed."
+          body="In most AI products, safety is layered on after the model is built. At Aligned it is part of the structure—built in, not bolted on, so controls cannot be disabled or bypassed."
           subCardsVariant="inline"
           subCards={[
             {
               title: "Classify before inference.",
-              body: "Every prompt is checked against your policy before any model is allowed to process it.",
+              body: "Every prompt is policy-checked before any model processes it.",
             },
             {
               title: "Verify before delivery.",
-              body: "Every response is checked against your configuration before it reaches a user, so nothing leaves unchecked.",
+              body: "Every response is verified against your configuration before it reaches a user.",
             },
           ]}
-          bodyClose="This is what lets teams use Aligned for regulated, data-sensitive, and customer-facing work."
+          bodyClose="Built for regulated, data-sensitive, and customer-facing work."
           visual={<SecurityFlowVisual frame="lime" />}
         />
 
