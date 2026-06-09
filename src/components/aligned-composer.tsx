@@ -2,13 +2,14 @@
 // Rounded box with a text area, a "+" attach button, and a dark circular send
 // button. Optional status bar on top (e.g. "2/4 tasks in progress").
 
+import * as React from "react";
 import { ArrowUp, Plus } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
 interface AlignedComposerProps {
-  /** Optional status text shown in a bar above the input. */
-  status?: string;
+  /** Optional status bar above the input — string or custom content. */
+  status?: React.ReactNode;
   /** Prefilled text (turns it into the "filled" state). */
   defaultValue?: string;
   placeholder?: string;
@@ -33,13 +34,26 @@ export function AlignedComposer({
         className,
       )}
     >
-      {status && (
-        <div className="flex items-center gap-2 border-b bg-muted px-4 py-2 text-xs text-muted-foreground">
-          <span className="inline-block size-1.5 animate-pulse rounded-full bg-progress" />
-          {status}
+      {status != null ? (
+        <div
+          className={cn(
+            "border-b bg-muted text-muted-foreground",
+            typeof status === "string"
+              ? "flex items-center gap-2 px-4 py-2 text-xs"
+              : "px-3 py-2",
+          )}
+        >
+          {typeof status === "string" ? (
+            <>
+              <span className="inline-block size-1.5 animate-pulse rounded-full bg-progress" />
+              {status}
+            </>
+          ) : (
+            status
+          )}
         </div>
-      )}
-      <div className="flex flex-col gap-3 p-3">
+      ) : null}
+      <div data-slot="composer-body" className="flex flex-col gap-3 p-3">
         <textarea
           rows={rows}
           defaultValue={defaultValue}

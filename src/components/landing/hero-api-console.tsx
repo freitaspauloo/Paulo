@@ -36,40 +36,38 @@ function HeroAgentMessage({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ActivePathsStrip() {
+function ActivePathsStatus() {
   return (
-    <div className="border-b border-black/[0.06] bg-[#fafafa] px-3 py-2">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-        <p className="text-[0.625rem] font-medium uppercase tracking-wide text-[#646464]">
-          Active paths
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {ROUTES.map((route) => {
-            const Icon = route.icon;
-            return (
-              <div
-                key={route.label}
-                className={cn(
-                  "inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[0.6875rem] font-medium",
-                  route.active
-                    ? "border-[#22a06b]/35 bg-[#22a06b]/[0.08] text-foreground"
-                    : "border-transparent bg-white text-muted-foreground opacity-60",
-                )}
-              >
-                <Icon className="size-3" strokeWidth={2} />
-                {route.label}
-                {route.active ? (
-                  <span className="text-[0.5625rem] text-[#22a06b]">· lit</span>
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
-        <div className="ml-auto hidden items-center gap-1.5 text-[0.625rem] text-muted-foreground sm:flex">
-          <span>Reasoning path selected</span>
-          <ArrowRight className="size-2.5" />
-          <span>Composed response</span>
-        </div>
+    <div className="flex w-full flex-wrap items-center gap-x-2.5 gap-y-1">
+      <span className="text-[0.625rem] font-medium uppercase tracking-wide text-muted-foreground">
+        Active paths
+      </span>
+      <div className="flex flex-wrap gap-1.5">
+        {ROUTES.map((route) => {
+          const Icon = route.icon;
+          return (
+            <div
+              key={route.label}
+              className={cn(
+                "inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[0.6875rem] font-medium",
+                route.active
+                  ? "border-[#22a06b]/35 bg-[#22a06b]/[0.08] text-foreground"
+                  : "border-transparent bg-background/80 text-muted-foreground opacity-70",
+              )}
+            >
+              <Icon className="size-3" strokeWidth={2} />
+              {route.label}
+              {route.active ? (
+                <span className="text-[0.5625rem] text-[#22a06b]">· lit</span>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+      <div className="ml-auto hidden items-center gap-1.5 text-[0.6875rem] text-muted-foreground sm:flex">
+        <span>Reasoning path selected</span>
+        <ArrowRight className="size-2.5" />
+        <span>Composed response</span>
       </div>
     </div>
   );
@@ -154,10 +152,10 @@ export function HeroApiConsole() {
               </div>
 
               <div className="shrink-0 border-t border-black/[0.06]">
-                <ActivePathsStrip />
                 <AlignedComposer
                   rows={1}
-                  className="w-full max-w-none rounded-none border-0 shadow-none [&>div]:gap-1.5 [&>div]:px-3 [&>div]:py-2"
+                  status={<ActivePathsStatus />}
+                  className="w-full max-w-none rounded-none border-0 shadow-none [&_[data-slot=composer-body]]:gap-1.5 [&_[data-slot=composer-body]]:px-3 [&_[data-slot=composer-body]]:py-2"
                   placeholder="Follow up on the SOC 2 checklist…"
                 />
               </div>
