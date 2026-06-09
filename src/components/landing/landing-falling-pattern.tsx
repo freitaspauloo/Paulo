@@ -15,7 +15,7 @@ const FRAME_PRESETS: Record<
     color: "rgba(16, 125, 152, 0.55)",
   },
   lime: {
-    backgroundColor: "#e4f6ea",
+    backgroundColor: "#d6ebde",
     color: "rgba(16, 120, 68, 0.9)",
     blurIntensity: "0.75em",
   },

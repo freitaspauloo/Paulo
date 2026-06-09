@@ -21,7 +21,7 @@ export function SectionVisualShell({
     >
       {frame === "lime" ? (
         <>
-          <div aria-hidden className="absolute inset-0 z-0 bg-[#e4f6ea]" />
+          <div aria-hidden className="absolute inset-0 z-0 bg-[#d6ebde]" />
           <LimeGradientBackdrop animated={false} />
         </>
       ) : null}
