@@ -1,0 +1,20 @@
+export const site = {
+  name: "Paulo Freitas",
+  title: "Senior Product Designer — AI/SaaS",
+  tagline: "I design complex product surfaces and ship them in code.",
+  domain: "paulofreitas.design",
+  url: "https://paulofreitas.design",
+  email: "hello@dudesign.us",
+  linkedin: "https://www.linkedin.com/in/freitas-pauloo",
+  github: "https://github.com/freitaspauloo",
+  credibility: ["Audi", "Samsung", "3M", "Ford", "Sony + Honda", "Costco"],
+  skills: [
+    "Cross-functional leadership",
+    "AI & agent UX",
+    "Prototyping in code",
+    "B2B SaaS & enterprise",
+    "Design systems",
+    "Trust & accessibility UX",
+  ],
+  builtWith: "Designed and built by me in Next.js + Cursor",
+} as const;

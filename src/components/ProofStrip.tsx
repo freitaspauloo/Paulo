@@ -1,0 +1,24 @@
+import type { CaseLink } from "@/src/content/types";
+
+type Props = {
+  links: CaseLink[];
+};
+
+export function ProofStrip({ links }: Props) {
+  if (links.length === 0) return null;
+
+  return (
+    <div className="proof-strip">
+      <p className="proof-strip__label">Proof</p>
+      <ul>
+        {links.map((link) => (
+          <li key={link.url}>
+            <a href={link.url} target="_blank" rel="noopener noreferrer">
+              {link.label} ↗
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
