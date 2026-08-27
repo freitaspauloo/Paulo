@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import { SiteFooter } from "@/src/components/SiteFooter";
+import { SiteHeader } from "@/src/components/SiteHeader";
 import { site } from "@/src/content/site";
 import "./globals.css";
 
@@ -35,8 +35,8 @@ export default function RootLayout({
     <html lang="en" className={manrope.variable}>
       <body>
         <div className="page">
+          <SiteHeader />
           <main className="page-main">{children}</main>
-          <SiteFooter />
         </div>
       </body>
     </html>

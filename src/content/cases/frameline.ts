@@ -94,7 +94,7 @@ export const frameline: CaseStudy = {
     },
   ],
   cover: {
-    src: "/work/cases/frameline.png",
+    src: "/work/cases/frameline.webp",
     alt: "Frameline design surface configurator",
   },
   logos: [{ src: "/work/logos/frameline.png", alt: "Frameline" }],

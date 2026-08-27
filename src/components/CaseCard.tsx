@@ -5,15 +5,23 @@ import { assetPath } from "@/src/lib/asset-path";
 
 type Props = {
   caseStudy: CaseStudy;
+  /** Editorial index label, e.g. "02" */
+  index?: string;
 };
 
-export function CaseCard({ caseStudy }: Props) {
+export function CaseCard({ caseStudy, index }: Props) {
   return (
     <Link href={`/work/${caseStudy.slug}`} className="work-card-link">
       <article className="work-card">
+        {index ? (
+          <div className="work-card-head">
+            <p className="micro-label">Case — {index}</p>
+            <p className="micro-label">{caseStudy.client}</p>
+          </div>
+        ) : null}
         <div className="work-card-media">
           <Image
-            src={caseStudy.cover.src}
+            src={assetPath(caseStudy.cover.src)}
             alt={caseStudy.cover.alt}
             fill
             unoptimized

@@ -96,7 +96,7 @@ export const alignedAi: CaseStudy = {
     },
   ],
   cover: {
-    src: "/work/cases/aligned.png",
+    src: "/work/cases/aligned.webp",
     alt: "Aligned AI personal workspace interface",
   },
   logos: [{ src: "/work/logos/aligned.svg", alt: "Aligned AI" }],

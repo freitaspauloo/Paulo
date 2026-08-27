@@ -101,7 +101,7 @@ export const builtops: CaseStudy = {
     },
   ],
   cover: {
-    src: "/work/cases/ford.png",
+    src: "/work/cases/ford.webp",
     alt: "BuiltOps community platform — Losani Homes",
   },
   logos: [{ src: "/work/logos/ford.svg", alt: "BuiltOps" }],
