@@ -5,7 +5,7 @@ import { site } from "@/src/content/site";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Paulo Freitas — Senior Product Designer, AI/SaaS",
+  description: "Paulo Freitas — Product Designer, AI/SaaS",
 };
 
 export default function ResumePage() {
@@ -19,16 +19,16 @@ export default function ResumePage() {
 
       <h1>Paulo Freitas</h1>
       <p className="resume-meta">
-        Senior Product Designer — AI/SaaS · {site.url} · {site.email}
+        {site.title} · {site.domain} · {site.email}
       </p>
 
       <section className="resume-block">
         <h2>Summary</h2>
         <p>
           Product designer with Fortune 500 craft (Audi, Samsung, 3M, Ford,
-          Sony+Honda, Costco) and startup ship speed. I design complex AI/SaaS
-          surfaces and implement production UI in code. Seeking Senior Product
-          Designer roles in the US (~$200k).
+          Sony + Honda, Costco) and startup ship speed. I design complex AI/SaaS
+          surfaces and implement production UI in code — working end to end with
+          PM and Eng, from problem framing through shipped interface.
         </p>
       </section>
 
@@ -42,8 +42,10 @@ export default function ResumePage() {
         <ul>
           {cases.map((c) => (
             <li key={c.slug}>
-              <strong>{c.title}</strong> — {c.subtitle.slice(0, 100)}…{" "}
-              <Link href={`/work/${c.slug}`}>{site.url}/work/{c.slug}</Link>
+              <strong>{c.title}</strong> — {c.subtitle}{" "}
+              <Link href={`/work/${c.slug}`}>
+                {site.domain}/work/{c.slug}
+              </Link>
             </li>
           ))}
         </ul>

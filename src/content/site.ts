@@ -1,9 +1,10 @@
 export const site = {
   name: "Paulo Freitas",
-  title: "Senior Product Designer — AI/SaaS",
+  title: "Product Designer + Engineer",
+  x: "https://x.com/freitaspauloo",
   tagline: "I design complex product surfaces and ship them in code.",
-  domain: "paulofreitas.design",
-  url: "https://paulofreitas.design",
+  domain: "paulo.dudesign.us",
+  url: "https://paulo.dudesign.us",
   email: "hello@dudesign.us",
   linkedin: "https://www.linkedin.com/in/freitas-pauloo",
   github: "https://github.com/freitaspauloo",

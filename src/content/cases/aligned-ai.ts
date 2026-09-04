@@ -6,6 +6,12 @@ export const alignedAi: CaseStudy = {
   client: "Aligned",
   subtitle:
     "Designing a personal AI workspace where trust, clarity, and benchmark content had to ship together — not as a deck, but as product.",
+  displayTitle: "Designing a personal AI workspace you can trust",
+  metaLabel: "AI workspace",
+  year: "2025",
+  timeline: "2024 – 2025",
+  team: "Aligned product team",
+  roleTitle: "Product Designer",
   tags: ["AI workspace", "Trust UX", "Shipped in code"],
   skillsProven: [
     "AI and agent UX design",
@@ -50,16 +56,12 @@ export const alignedAi: CaseStudy = {
     },
   ],
   collaborators: ["Aligned product team", "Engineering partners"],
-  links: [
-    {
-      label: "Benchmarks repo",
-      url: "https://github.com/freitaspauloo/benchmarks",
-    },
-  ],
+  links: [{ label: "Live product", url: "https://joinaligned.ai" }],
   prototype: {
-    label: "Open benchmarks repo (Mintlify source)",
-    url: "https://github.com/freitaspauloo/benchmarks",
+    label: "Open live product at joinaligned.ai",
+    url: "https://joinaligned.ai",
     embed: false,
+    hero: true,
   },
   sections: [
     {
@@ -75,7 +77,7 @@ export const alignedAi: CaseStudy = {
       title: "Process",
       body: [
         "I mapped the core jobs: orient in the workspace, run an AI-assisted task, review output, and commit a result. Each step needed explicit trust UX — not bolted-on disclaimers, but structural clarity in the UI.",
-        "Benchmark content (Mintlify) was treated as product evidence, not a side project. The docs structure mirrors how users evaluate AI tools: capability, limits, and comparison points.",
+        "Benchmark content was treated as product evidence, not a side project. The structure mirrors how users evaluate AI tools: capability, limits, and comparison points.",
         "I prototyped key flows in code so PM and Eng could react to real interaction — scroll, focus, loading, and error states included.",
       ],
     },

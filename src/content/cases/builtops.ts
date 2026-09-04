@@ -6,6 +6,13 @@ export const builtops: CaseStudy = {
   client: "Losani Homes",
   subtitle:
     "A modular community-microsite platform where editorial teams own content and design owns the system — without either side blocking the other.",
+  displayTitle:
+    "Community microsites without engineering bottlenecks",
+  metaLabel: "Enterprise B2B",
+  year: "2025",
+  timeline: "2024 – 2025",
+  team: "Losani + engineering partners",
+  roleTitle: "Product Designer",
   tags: ["Enterprise B2B", "CMS + code", "Multi-stage rollout"],
   skillsProven: [
     "Developer tools, B2B SaaS, or enterprise complexity",

@@ -47,6 +47,7 @@ export function Reveal({
           ease: "power3.out",
           stagger,
           delay,
+          immediateRender: false,
           clearProps: "opacity,visibility,transform",
           scrollTrigger: {
             trigger: el,

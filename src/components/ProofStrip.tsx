@@ -1,4 +1,5 @@
 import type { CaseLink } from "@/src/content/types";
+import { BtnArrow } from "./BtnArrow";
 
 type Props = {
   links: CaseLink[];
@@ -13,8 +14,14 @@ export function ProofStrip({ links }: Props) {
       <ul>
         {links.map((link) => (
           <li key={link.url}>
-            <a href={link.url} target="_blank" rel="noopener noreferrer">
-              {link.label} ↗
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="arrow-link"
+            >
+              {link.label}
+              <BtnArrow size={13} />
             </a>
           </li>
         ))}

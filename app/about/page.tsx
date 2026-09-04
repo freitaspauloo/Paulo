@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EnterpriseSection } from "@/src/components/EnterpriseSection";
+import { SwapLabel } from "@/src/components/SwapLabel";
 import { getPublishedCases } from "@/src/content/cases";
 import { site } from "@/src/content/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Senior Product Designer — AI/SaaS. Based in the US market.",
+  description: "Product Designer — AI/SaaS. Based in the US market.",
 };
 
 export default function AboutPage() {
@@ -14,7 +15,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <header className="page-intro">
+      <header className="page-intro page-intro--frame">
         <h1>About</h1>
         <p>{site.tagline}</p>
       </header>
@@ -30,27 +31,39 @@ export default function AboutPage() {
           </p>
           <p>
             I also build my own tools when the market gap is obvious — like{" "}
-            <a href="https://frameline.ai">Frameline</a> — and run{" "}
-            <a href="https://dudesign.us">DUDESIGN</a> as an independent product
-            design partner for AI startups.
+            <a href="https://frameline.ai" className="text-link">
+              <SwapLabel>Frameline</SwapLabel>
+            </a>{" "}
+            — and run{" "}
+            <a href="https://dudesign.us" className="text-link">
+              <SwapLabel>DUDESIGN</SwapLabel>
+            </a>{" "}
+            as an independent product design partner for AI startups.
           </p>
           <p>
-            I&apos;m targeting <strong>Senior Product Designer — AI/SaaS</strong>{" "}
-            roles in the US (~$200k). I work best with PM and Eng when the bet is
-            clear but the surface is hard — complex B2B, agent UX, or dev-facing
-            products that need to ship in code, not slide decks.
+            I&apos;m looking for{" "}
+            <strong>Product Designer — AI/SaaS</strong> roles in the US. I work
+            best with PM and Eng when the bet is clear but the surface is hard —
+            complex B2B, agent UX, or dev-facing products that need to ship in
+            code, not slide decks.
           </p>
           <p>
-            <Link href="/resume">Résumé</Link>
+            <Link href="/resume" className="text-link">
+              <SwapLabel>Résumé</SwapLabel>
+            </Link>
             {" · "}
-            <a href={site.linkedin}>LinkedIn</a>
+            <a href={site.linkedin} className="text-link" target="_blank" rel="noopener noreferrer">
+              <SwapLabel>LinkedIn</SwapLabel>
+            </a>
             {" · "}
-            <a href={`mailto:${site.email}`}>{site.email}</a>
+            <a href={`mailto:${site.email}`} className="text-link">
+              <SwapLabel>{site.email}</SwapLabel>
+            </a>
           </p>
         </div>
 
         <aside className="about-sidebar-panel">
-          <h2>Skills · 50 JDs reviewed</h2>
+          <h2>What teams hire me for</h2>
           <ul className="tag-list" style={{ marginBottom: "1.25rem" }}>
             {site.skills.map((skill) => (
               <li key={skill}>{skill}</li>
@@ -60,14 +73,16 @@ export default function AboutPage() {
           <ul>
             {cases.map((c) => (
               <li key={c.slug}>
-                <Link href={`/work/${c.slug}`}>{c.title}</Link>
+                <Link href={`/work/${c.slug}`}>
+                  <SwapLabel>{c.title}</SwapLabel>
+                </Link>
               </li>
             ))}
           </ul>
         </aside>
       </div>
 
-      <EnterpriseSection />
+      <EnterpriseSection variant="frame" />
     </>
   );
 }

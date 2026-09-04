@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
-// /paulo only when proxied through dudesign in dev; subdomain serves from /
-const basePath =
-  process.env.NEXT_PUBLIC_BASE_PATH ??
-  (process.env.NODE_ENV === "development" ? "/paulo" : "");
+const basePath = "/paulo";
 
 const nextConfig: NextConfig = {
-  ...(basePath ? { basePath } : {}),
+  basePath,
+  // Verification builds target a separate dir so they can't overwrite the
+  // running dev server's chunks (which surfaces as "Cannot find module ./x.js").
+  distDir: process.env.NEXT_DIST_DIR ?? ".next",
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },

@@ -7,8 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
-  /** Two-digit section index, e.g. "02". */
-  index: string;
+  /** Two-digit section index, e.g. "02". Omit outside the numbered home flow. */
+  index?: string;
   label: string;
   aside?: React.ReactNode;
   /** Keep the meta row pinned to the viewport top while the section scrolls. */
@@ -64,9 +64,11 @@ export function SectionIntro({ index, label, aside, sticky = true }: Props) {
     >
       <span className="section-intro__rule" data-rule aria-hidden="true" />
       <div className="section-intro__meta">
-        <span className="micro-label section-intro__index" data-meta>
-          {index}
-        </span>
+        {index ? (
+          <span className="micro-label section-intro__index" data-meta>
+            {index}
+          </span>
+        ) : null}
         <span className="micro-label" data-meta>
           {label}
         </span>

@@ -2,14 +2,48 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "@/src/content/types";
 import { assetPath } from "@/src/lib/asset-path";
+import { SwapLabel } from "@/src/components/SwapLabel";
+
+const PAPER_TINTS = ["#e8d5c4", "#ebe6f2", "#c8c8c8", "#ddd4eb", "#f0ece6", "#e3e8ef"];
 
 type Props = {
   caseStudy: CaseStudy;
   /** Editorial index label, e.g. "02" */
   index?: string;
+  variant?: "default" | "paper";
 };
 
-export function CaseCard({ caseStudy, index }: Props) {
+export function CaseCard({ caseStudy, index, variant = "default" }: Props) {
+  const tint = PAPER_TINTS[caseStudy.order % PAPER_TINTS.length];
+  const meta = `${caseStudy.client.toUpperCase()} • ${caseStudy.tags[0]?.toUpperCase() ?? "CASE STUDY"}`;
+
+  if (variant === "paper") {
+    return (
+      <Link href={`/work/${caseStudy.slug}`} className="paper-card-link">
+        <article className="paper-card">
+          <div
+            className="paper-card__media"
+            style={{ backgroundColor: tint }}
+          >
+            <Image
+              src={assetPath(caseStudy.cover.src)}
+              alt={caseStudy.cover.alt}
+              fill
+              unoptimized
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <div className="paper-card__meta">
+            <h3>
+              <SwapLabel>{caseStudy.title}</SwapLabel>
+            </h3>
+            <p>{meta}</p>
+          </div>
+        </article>
+      </Link>
+    );
+  }
+
   return (
     <Link href={`/work/${caseStudy.slug}`} className="work-card-link">
       <article className="work-card">
@@ -30,7 +64,9 @@ export function CaseCard({ caseStudy, index }: Props) {
         </div>
         <div className="work-card-meta">
           <div>
-            <h3>{caseStudy.title}</h3>
+            <h3>
+              <SwapLabel>{caseStudy.title}</SwapLabel>
+            </h3>
             <p>{caseStudy.tags.join(" · ")}</p>
           </div>
           {caseStudy.logos && caseStudy.logos.length > 0 ? (

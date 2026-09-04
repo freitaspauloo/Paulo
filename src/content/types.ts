@@ -14,6 +14,8 @@ export type CasePrototype = {
   url: string;
   /** When false, show CTA card only (repo links, X-Frame-Options, etc.) */
   embed?: boolean;
+  /** Replace the static cover with a live prototype hero. */
+  hero?: boolean;
 };
 
 export type CaseSection = {
@@ -37,6 +39,14 @@ export type CaseStudy = {
   sections: CaseSection[];
   cover: { src: string; alt: string };
   logos?: { src: string; alt: string }[];
+  /** Large display headline under the eyebrow. Falls back to subtitle. */
+  displayTitle?: string;
+  /** Short label in the eyebrow after the client, e.g. "AI WORKSPACE". */
+  metaLabel?: string;
+  year?: string;
+  timeline?: string;
+  team?: string;
+  roleTitle?: string;
   featured?: boolean;
   published: boolean;
   order: number;

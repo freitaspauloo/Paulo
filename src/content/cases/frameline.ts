@@ -3,9 +3,15 @@ import type { CaseStudy } from "../types";
 export const frameline: CaseStudy = {
   slug: "frameline",
   title: "Frameline",
-  client: "Frameline (own product)",
+  client: "Frameline",
   subtitle:
     "A design-engineering surface library — because taste doesn't ship as code unless someone builds the install path.",
+  displayTitle: "Taste that ships as installable code",
+  metaLabel: "Design system",
+  year: "2025",
+  timeline: "2024 – present",
+  team: "Solo (DUDESIGN)",
+  roleTitle: "Product Designer + Engineer",
   tags: ["Design system", "Dev-facing", "Built with Cursor"],
   skillsProven: [
     "Systems thinking and design systems",

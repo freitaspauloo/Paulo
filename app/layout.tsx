@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import { SiteFooter } from "@/src/components/SiteFooter";
 import { SiteHeader } from "@/src/components/SiteHeader";
 import { site } from "@/src/content/site";
 import "./globals.css";
 
-const manrope = Manrope({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-manrope",
-  weight: ["400", "500", "700"],
+  variable: "--font-instrument-serif",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -32,11 +35,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={manrope.variable}>
-      <body>
-        <div className="page">
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
+    >
+      <body className={GeistSans.className}>
+        <div className="page page--frame">
           <SiteHeader />
           <main className="page-main">{children}</main>
+          <SiteFooter />
         </div>
       </body>
     </html>

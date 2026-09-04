@@ -5,6 +5,7 @@ import { assetPath } from "@/src/lib/asset-path";
 import { Parallax } from "./motion/Parallax";
 import { Reveal } from "./motion/Reveal";
 import { SectionIntro } from "./motion/SectionIntro";
+import { BtnArrow } from "./BtnArrow";
 
 type Props = {
   caseStudy: CaseStudy;
@@ -16,17 +17,7 @@ export function HomeFeatured({ caseStudy }: Props) {
       <SectionIntro
         index="01"
         label="Featured case"
-        aside={
-          caseStudy.logos && caseStudy.logos.length > 0 ? (
-            <span className="featured-logos">
-              {caseStudy.logos.map((logo) => (
-                <img key={logo.src} src={assetPath(logo.src)} alt={logo.alt} />
-              ))}
-            </span>
-          ) : (
-            caseStudy.client
-          )
-        }
+        aside={caseStudy.client}
       />
       <Link href={`/work/${caseStudy.slug}`} className="home-featured-link">
         <Parallax className="featured-hero-media" amount={6}>
@@ -50,7 +41,10 @@ export function HomeFeatured({ caseStudy }: Props) {
                 <li key={tag}>{tag}</li>
               ))}
             </ul>
-            <span className="featured-cta">Read case study →</span>
+            <span className="btn btn--ghost featured-cta">
+              Read case study
+              <BtnArrow />
+            </span>
           </div>
         </Reveal>
       </Link>
