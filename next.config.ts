@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
+  async redirects() {
+    return [
+      {
+        source: "/posts/ford-operator",
+        destination: "/posts/softwave-hero",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

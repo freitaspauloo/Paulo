@@ -42,18 +42,16 @@ Week 2: first surface in the product.
 Week 3+: production UI, same stack, no handoff queue.`,
   },
   {
-    slug: "ford-operator",
+    slug: "softwave-hero",
     number: "02",
-    title: "Ford. The operator screen",
+    title: "Softwave hero surfaces",
     date: "2026-09-15",
     format: "Case",
     channels: ["LinkedIn", "X", "Instagram"],
-    visual: "Ford laptop still. Tight crop. Credit Ford.",
-    linkedin: `Ford taught me this: the operator screen is the product.
-If that screen ships last, the whole system feels unfinished.
-Same thing in AI. Design the surface. Put it in the product.`,
-    x: `Ford: the operator screen is the product.
-AI products fail the same way when that view ships last.`,
+    visual: "Softwave device frame. Frameline surface library.",
+    linkedin: `Softwave hero surfaces.
+Frameline template. Designed and coded.`,
+    x: `Softwave hero surfaces. Frameline template. Designed and coded.`,
   },
   {
     slug: "model-default",

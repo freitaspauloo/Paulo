@@ -17,8 +17,8 @@ function visualFor(slug: string) {
   switch (slug) {
     case "wait-three-months":
       return <WaitThreeMonths />;
-    case "ford-operator":
-      return <FordOperator />;
+    case "softwave-hero":
+      return <SoftwaveHero />;
     case "model-default":
       return <ModelDefault />;
     case "how-a-surface-ships":
@@ -58,14 +58,10 @@ function WaitThreeMonths() {
   );
 }
 
-function FordOperator() {
+function SoftwaveHero() {
   return (
-    <div className="pv-fill pv-photo">
-      <img src={assetPath("/work/cases/ford.png")} alt="" />
-      <div className="pv-photo-bar">
-        <span>Ford</span>
-        <span>The operator screen</span>
-      </div>
+    <div className="pv-fill pv-softwave">
+      <img src={assetPath("/posts/softwave-frame.png")} alt="" />
     </div>
   );
 }

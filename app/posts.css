@@ -324,6 +324,16 @@ html:has(.posts-root) .page-main {
   object-position: 50% 42%;
 }
 
+.pv-softwave {
+  background: #eaeaea;
+}
+
+.pv-softwave img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .pv-photo-bar {
   position: absolute;
   inset: auto 0 0;
