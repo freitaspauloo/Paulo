@@ -5,10 +5,14 @@ import { toPng } from "html-to-image";
 import type { SocialPost } from "@/src/content/social-posts";
 import { PostVisual } from "@/src/components/PostVisual";
 
-const exportSizeFor = (slug: string) =>
-  slug === "wait-three-months"
-    ? { width: 1080, height: 1350 }
-    : { width: 1080, height: 1080 };
+const exportSizeFor = (slug: string) => {
+  if (slug === "wait-three-months") return { width: 1080, height: 1350 };
+  if (slug === "softwave-hero") return { width: 1000, height: 1000 };
+  return { width: 1080, height: 1080 };
+};
+
+const usesFixedExport = (slug: string) =>
+  slug === "wait-three-months" || slug === "softwave-hero";
 
 async function waitForAssets(root: HTMLElement) {
   await document.fonts.ready;
@@ -32,10 +36,10 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
   const exportRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
   const { width, height } = exportSizeFor(post.slug);
-  const isPoster = post.slug === "wait-three-months";
+  const isFixedExport = usesFixedExport(post.slug);
 
   async function exportPng() {
-    const node = isPoster ? exportRef.current : previewRef.current;
+    const node = isFixedExport ? exportRef.current : previewRef.current;
     if (!node || state === "busy") return;
 
     setState("busy");
@@ -43,7 +47,7 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
     try {
       await waitForAssets(node);
 
-      const dataUrl = isPoster
+      const dataUrl = isFixedExport
         ? await toPng(node, {
             width,
             height,
@@ -81,7 +85,7 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
         <PostVisual post={post} />
       </div>
 
-      {isPoster ? (
+      {isFixedExport ? (
         <div
           className="pv-frame pv-frame--export"
           ref={exportRef}

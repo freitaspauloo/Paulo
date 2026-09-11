@@ -163,6 +163,12 @@ html:has(.posts-root) .page-main {
   background: #fff;
 }
 
+.pv-frame:has(.pv-softwave) {
+  aspect-ratio: 1;
+  background: #fff;
+  outline: none;
+}
+
 .pv {
   width: 100%;
   height: 100%;
@@ -325,13 +331,37 @@ html:has(.posts-root) .page-main {
 }
 
 .pv-softwave {
-  background: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
 }
 
-.pv-softwave img {
+.pv-softwave-device {
+  box-sizing: border-box;
+  width: 88.5547%;
+  border: 1.5cqw solid #ececec;
+  border-radius: 3.2cqw;
+  padding: 2cqw;
+  background: #fff;
+}
+
+.pv-softwave-screen {
+  position: relative;
   width: 100%;
+  aspect-ratio: 845.547 / 553.302;
+  border-radius: 3.2cqw;
+  overflow: hidden;
+}
+
+.pv-softwave-screen img {
+  position: absolute;
+  top: 0;
+  left: -2.55%;
+  width: 105.09%;
   height: 100%;
-  object-fit: contain;
+  max-width: none;
+  object-fit: cover;
 }
 
 .pv-photo-bar {
@@ -723,6 +753,24 @@ html:has(.posts-root) .page-main {
 .pv-frame--export .pv-poster-arrow {
   width: 22px;
   height: 22px;
+}
+
+.pv-frame--export:has(.pv-softwave) {
+  width: 1000px;
+  height: 1000px;
+}
+
+.pv-frame--export .pv-softwave-device {
+  width: 885.547px;
+  border-width: 15px;
+  border-radius: 32px;
+  padding: 20px;
+}
+
+.pv-frame--export .pv-softwave-screen {
+  width: 845.547px;
+  height: 553.302px;
+  border-radius: 32px;
 }
 
 .post-export {

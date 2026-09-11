@@ -61,7 +61,11 @@ function WaitThreeMonths() {
 function SoftwaveHero() {
   return (
     <div className="pv-fill pv-softwave">
-      <img src={assetPath("/posts/softwave-frame.png")} alt="" />
+      <div className="pv-softwave-device">
+        <div className="pv-softwave-screen">
+          <img src={assetPath("/posts/softwave-landing.png")} alt="" />
+        </div>
+      </div>
     </div>
   );
 }

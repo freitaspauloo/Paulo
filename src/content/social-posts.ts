@@ -48,7 +48,7 @@ Week 3+: production UI, same stack, no handoff queue.`,
     date: "2026-09-15",
     format: "Case",
     channels: ["LinkedIn", "X", "Instagram"],
-    visual: "Softwave device frame. Frameline surface library.",
+    visual: "Softwave device frame. 1000 x 1000. Frameline surface library.",
     linkedin: `Softwave hero surfaces.
 Frameline template. Designed and coded.`,
     x: `Softwave hero surfaces. Frameline template. Designed and coded.`,
