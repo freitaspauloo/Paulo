@@ -22,7 +22,7 @@ export default function PostsHubPage() {
         <div className="posts-grid">
           {socialPosts
             .slice()
-            .sort((a, b) => a.date.localeCompare(b.date))
+            .sort((a, b) => a.number.localeCompare(b.number))
             .map((post) => (
               <Link
                 key={post.slug}
