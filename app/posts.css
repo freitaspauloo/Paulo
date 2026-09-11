@@ -330,21 +330,45 @@ html:has(.posts-root) .page-main {
   background: #fff;
 }
 
+/* Figma 1400:1134 — 15px #ececec ring, 20px inner pad, 32px radius @ 1080 */
+.pv-portfolio-outline {
+  box-sizing: border-box;
+  width: 89.4025%;
+  padding: 1.389%;
+  background: #ececec;
+  border-radius: 4.352cqw;
+}
+
 .pv-portfolio-device {
   box-sizing: border-box;
-  width: 88.5547%;
-  border: 1.694% solid #ececec;
-  border-radius: 3.614%;
-  padding: 2.258%;
+  padding: 2.071%;
   background: #fff;
+  border-radius: 3.315%;
 }
 
 .pv-portfolio-screen {
   position: relative;
   width: 100%;
-  aspect-ratio: 845.547 / 553.302;
-  border-radius: 3.785%;
+  aspect-ratio: 925.547 / 605.652;
+  border-radius: 3.459%;
   overflow: hidden;
+}
+
+.pv-frame.is-exporting .pv-portfolio-outline {
+  width: 965.547px;
+  padding: 15px;
+  border-radius: 47px;
+}
+
+.pv-frame.is-exporting .pv-portfolio-device {
+  padding: 20px;
+  border-radius: 32px;
+}
+
+.pv-frame.is-exporting .pv-portfolio-screen {
+  width: 925.547px;
+  height: 605.652px;
+  border-radius: 32px;
 }
 
 .pv-portfolio-screen img {

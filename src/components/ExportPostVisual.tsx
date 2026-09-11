@@ -53,6 +53,7 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
     node.style.width = `${POST_EXPORT_WIDTH}px`;
     node.style.height = `${POST_EXPORT_HEIGHT}px`;
     node.style.aspectRatio = "auto";
+    node.classList.add("is-exporting");
 
     try {
       await waitForAssets(node);
@@ -76,6 +77,7 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
     } catch {
       setState("idle");
     } finally {
+      node.classList.remove("is-exporting");
       node.style.width = prevWidth;
       node.style.height = prevHeight;
       node.style.aspectRatio = prevAspectRatio;

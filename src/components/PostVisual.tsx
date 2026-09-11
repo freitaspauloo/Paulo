@@ -33,9 +33,11 @@ function visualFor(post: SocialPost) {
 function PortfolioFrame({ src }: { src: string }) {
   return (
     <div className="pv-fill pv-portfolio">
-      <div className="pv-portfolio-device">
-        <div className="pv-portfolio-screen">
-          <img src={assetPath(src)} alt="" decoding="sync" />
+      <div className="pv-portfolio-outline">
+        <div className="pv-portfolio-device">
+          <div className="pv-portfolio-screen">
+            <img src={assetPath(src)} alt="" decoding="sync" />
+          </div>
         </div>
       </div>
     </div>
