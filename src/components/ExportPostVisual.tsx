@@ -11,24 +11,33 @@ const exportSizeFor = (slug: string) => {
   return { width: 1080, height: 1080 };
 };
 
-const usesFixedExport = (slug: string) =>
-  slug === "wait-three-months" || slug === "softwave-hero";
+const usesHiddenExport = (slug: string) => slug === "wait-three-months";
 
 async function waitForAssets(root: HTMLElement) {
   await document.fonts.ready;
   await Promise.all(
-    Array.from(root.querySelectorAll("img")).map(
-      (img) =>
-        new Promise<void>((resolve) => {
-          if (img.complete) {
-            resolve();
-            return;
-          }
+    Array.from(root.querySelectorAll("img")).map(async (img) => {
+      if (!img.complete) {
+        await new Promise<void>((resolve) => {
           img.onload = () => resolve();
           img.onerror = () => resolve();
-        }),
-    ),
+        });
+      }
+      if (img.decode) {
+        try {
+          await img.decode();
+        } catch {
+          /* ignore decode errors */
+        }
+      }
+    }),
   );
+}
+
+async function waitForPaint() {
+  await new Promise<void>((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  });
 }
 
 export function ExportPostVisual({ post }: { post: SocialPost }) {
@@ -36,34 +45,65 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
   const exportRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
   const { width, height } = exportSizeFor(post.slug);
-  const isFixedExport = usesFixedExport(post.slug);
+  const isHiddenExport = usesHiddenExport(post.slug);
 
   async function exportPng() {
-    const node = isFixedExport ? exportRef.current : previewRef.current;
-    if (!node || state === "busy") return;
+    if (state === "busy") return;
 
     setState("busy");
 
     try {
-      await waitForAssets(node);
+      let dataUrl: string;
 
-      const dataUrl = isFixedExport
-        ? await toPng(node, {
+      if (post.slug === "softwave-hero") {
+        const node = previewRef.current;
+        if (!node) return;
+
+        const prevWidth = node.style.width;
+        const prevHeight = node.style.height;
+        node.style.width = `${width}px`;
+        node.style.height = `${height}px`;
+
+        try {
+          await waitForAssets(node);
+          await waitForPaint();
+          dataUrl = await toPng(node, {
             width,
             height,
             pixelRatio: 1,
             cacheBust: true,
             skipAutoScale: true,
             backgroundColor: "#ffffff",
-          })
-        : await (async () => {
-            const rect = node.getBoundingClientRect();
-            return toPng(node, {
-              pixelRatio: width / rect.width,
+          });
+        } finally {
+          node.style.width = prevWidth;
+          node.style.height = prevHeight;
+        }
+      } else {
+        const node = isHiddenExport ? exportRef.current : previewRef.current;
+        if (!node) return;
+
+        await waitForAssets(node);
+        await waitForPaint();
+
+        dataUrl = isHiddenExport
+          ? await toPng(node, {
+              width,
+              height,
+              pixelRatio: 1,
               cacheBust: true,
               skipAutoScale: true,
-            });
-          })();
+              backgroundColor: "#ffffff",
+            })
+          : await (async () => {
+              const rect = node.getBoundingClientRect();
+              return toPng(node, {
+                pixelRatio: width / rect.width,
+                cacheBust: true,
+                skipAutoScale: true,
+              });
+            })();
+      }
 
       const link = document.createElement("a");
       link.download = `${post.number}-${post.slug}.png`;
@@ -85,7 +125,7 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
         <PostVisual post={post} />
       </div>
 
-      {isFixedExport ? (
+      {isHiddenExport ? (
         <div
           className="pv-frame pv-frame--export"
           ref={exportRef}

@@ -340,9 +340,9 @@ html:has(.posts-root) .page-main {
 .pv-softwave-device {
   box-sizing: border-box;
   width: 88.5547%;
-  border: 1.5cqw solid #ececec;
-  border-radius: 3.2cqw;
-  padding: 2cqw;
+  border: 1.694% solid #ececec;
+  border-radius: 3.614%;
+  padding: 2.258%;
   background: #fff;
 }
 
@@ -350,7 +350,7 @@ html:has(.posts-root) .page-main {
   position: relative;
   width: 100%;
   aspect-ratio: 845.547 / 553.302;
-  border-radius: 3.2cqw;
+  border-radius: 3.785%;
   overflow: hidden;
 }
 

@@ -63,7 +63,11 @@ function SoftwaveHero() {
     <div className="pv-fill pv-softwave">
       <div className="pv-softwave-device">
         <div className="pv-softwave-screen">
-          <img src={assetPath("/posts/softwave-landing.png")} alt="" />
+          <img
+            src={assetPath("/posts/softwave-landing.png")}
+            alt=""
+            decoding="sync"
+          />
         </div>
       </div>
     </div>
