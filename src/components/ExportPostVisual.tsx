@@ -37,23 +37,15 @@ async function waitForPaint() {
 }
 
 export function ExportPostVisual({ post }: { post: SocialPost }) {
-  const previewRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
 
   async function exportPng() {
-    const node = previewRef.current;
+    const node = exportRef.current;
     if (!node || state === "busy") return;
 
     setState("busy");
-
-    const prevWidth = node.style.width;
-    const prevHeight = node.style.height;
-    const prevAspectRatio = node.style.aspectRatio;
-
-    node.style.width = `${POST_EXPORT_WIDTH}px`;
-    node.style.height = `${POST_EXPORT_HEIGHT}px`;
-    node.style.aspectRatio = "auto";
-    node.classList.add("is-exporting");
+    node.classList.add("is-capturing");
 
     try {
       await waitForAssets(node);
@@ -64,7 +56,6 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
         height: POST_EXPORT_HEIGHT,
         pixelRatio: 1,
         cacheBust: true,
-        skipAutoScale: true,
         backgroundColor: "#ffffff",
       });
 
@@ -77,10 +68,7 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
     } catch {
       setState("idle");
     } finally {
-      node.classList.remove("is-exporting");
-      node.style.width = prevWidth;
-      node.style.height = prevHeight;
-      node.style.aspectRatio = prevAspectRatio;
+      node.classList.remove("is-capturing");
     }
   }
 
@@ -89,11 +77,14 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
 
   return (
     <div className="post-visual-export">
-      <div
-        className={`pv-frame pv-frame--preview pv-frame--${post.kind}`}
-        ref={previewRef}
-      >
+      <div className={`pv-frame pv-frame--preview pv-frame--${post.kind}`}>
         <PostVisual post={post} />
+      </div>
+
+      <div className="pv-export-stage" ref={exportRef} aria-hidden>
+        <div className="pv-frame pv-frame--export">
+          <PostVisual post={post} />
+        </div>
       </div>
 
       <button type="button" className="post-export" onClick={exportPng}>

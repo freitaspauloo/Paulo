@@ -354,21 +354,106 @@ html:has(.posts-root) .page-main {
   overflow: hidden;
 }
 
-.pv-frame.is-exporting .pv-portfolio-outline {
+.pv-export-stage {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.pv-export-stage.is-capturing {
+  left: 0;
+  top: 0;
+  visibility: visible;
+  z-index: 2147483647;
+}
+
+.pv-frame--export {
+  width: 1080px;
+  height: 1350px;
+  aspect-ratio: auto;
+  overflow: hidden;
+  outline: none;
+}
+
+/* Figma 1400:1133 — portfolio device frame @ 1080 x 1350 */
+.pv-frame--export .pv-portfolio {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  display: block;
+}
+
+.pv-frame--export .pv-portfolio-outline {
+  position: absolute;
+  left: 57.227px;
+  top: 352.175px;
   width: 965.547px;
   padding: 15px;
   border-radius: 47px;
+  background: #ececec;
+  box-sizing: border-box;
 }
 
-.pv-frame.is-exporting .pv-portfolio-device {
+.pv-frame--export .pv-portfolio-device {
   padding: 20px;
   border-radius: 32px;
+  background: #fff;
+  box-sizing: border-box;
 }
 
-.pv-frame.is-exporting .pv-portfolio-screen {
+.pv-frame--export .pv-portfolio-screen {
   width: 925.547px;
   height: 605.652px;
   border-radius: 32px;
+  overflow: hidden;
+}
+
+.pv-frame--export .pv-portfolio-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+.pv-frame--export .pv-softwave-hero .pv-portfolio-screen img {
+  position: absolute;
+  width: 105.09%;
+  height: 100%;
+  max-width: none;
+  left: -2.55%;
+  top: 0;
+}
+
+/* Process poster — pixel layout @ 1080 x 1350 */
+.pv-frame--export .pv-poster-card {
+  left: 53px;
+  top: 806px;
+  width: 974px;
+  height: 380px;
+}
+
+.pv-frame--export .pv-poster-head {
+  left: 90px;
+  top: 841px;
+  width: 900px;
+  font-size: 87px;
+  line-height: 100px;
+  letter-spacing: -3.48px;
+}
+
+.pv-frame--export .pv-poster-sub {
+  top: 1262px;
+  font-size: 36px;
+  letter-spacing: -0.72px;
+}
+
+.pv-frame--export .pv-poster-arrow {
+  width: 22px;
+  height: 22px;
 }
 
 .pv-portfolio-screen img {
