@@ -29,7 +29,7 @@ export default function PostsHubPage() {
                 href={`/posts/${post.slug}`}
                 className="posts-card"
               >
-                <div className="pv-frame">
+                <div className={`pv-frame pv-frame--${post.kind}`}>
                   <PostVisual post={post} />
                 </div>
                 <div className="posts-card-meta">

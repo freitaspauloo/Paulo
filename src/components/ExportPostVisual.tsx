@@ -2,16 +2,12 @@
 
 import { useRef, useState } from "react";
 import { toPng } from "html-to-image";
-import type { SocialPost } from "@/src/content/social-posts";
+import {
+  POST_EXPORT_HEIGHT,
+  POST_EXPORT_WIDTH,
+  type SocialPost,
+} from "@/src/content/social-posts";
 import { PostVisual } from "@/src/components/PostVisual";
-
-const exportSizeFor = (slug: string) => {
-  if (slug === "wait-three-months") return { width: 1080, height: 1350 };
-  if (slug === "softwave-hero") return { width: 1000, height: 1000 };
-  return { width: 1080, height: 1080 };
-};
-
-const usesHiddenExport = (slug: string) => slug === "wait-three-months";
 
 async function waitForAssets(root: HTMLElement) {
   await document.fonts.ready;
@@ -42,68 +38,34 @@ async function waitForPaint() {
 
 export function ExportPostVisual({ post }: { post: SocialPost }) {
   const previewRef = useRef<HTMLDivElement>(null);
-  const exportRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
-  const { width, height } = exportSizeFor(post.slug);
-  const isHiddenExport = usesHiddenExport(post.slug);
 
   async function exportPng() {
-    if (state === "busy") return;
+    const node = previewRef.current;
+    if (!node || state === "busy") return;
 
     setState("busy");
 
+    const prevWidth = node.style.width;
+    const prevHeight = node.style.height;
+    const prevAspectRatio = node.style.aspectRatio;
+
+    node.style.width = `${POST_EXPORT_WIDTH}px`;
+    node.style.height = `${POST_EXPORT_HEIGHT}px`;
+    node.style.aspectRatio = "auto";
+
     try {
-      let dataUrl: string;
+      await waitForAssets(node);
+      await waitForPaint();
 
-      if (post.slug === "softwave-hero") {
-        const node = previewRef.current;
-        if (!node) return;
-
-        const prevWidth = node.style.width;
-        const prevHeight = node.style.height;
-        node.style.width = `${width}px`;
-        node.style.height = `${height}px`;
-
-        try {
-          await waitForAssets(node);
-          await waitForPaint();
-          dataUrl = await toPng(node, {
-            width,
-            height,
-            pixelRatio: 1,
-            cacheBust: true,
-            skipAutoScale: true,
-            backgroundColor: "#ffffff",
-          });
-        } finally {
-          node.style.width = prevWidth;
-          node.style.height = prevHeight;
-        }
-      } else {
-        const node = isHiddenExport ? exportRef.current : previewRef.current;
-        if (!node) return;
-
-        await waitForAssets(node);
-        await waitForPaint();
-
-        dataUrl = isHiddenExport
-          ? await toPng(node, {
-              width,
-              height,
-              pixelRatio: 1,
-              cacheBust: true,
-              skipAutoScale: true,
-              backgroundColor: "#ffffff",
-            })
-          : await (async () => {
-              const rect = node.getBoundingClientRect();
-              return toPng(node, {
-                pixelRatio: width / rect.width,
-                cacheBust: true,
-                skipAutoScale: true,
-              });
-            })();
-      }
+      const dataUrl = await toPng(node, {
+        width: POST_EXPORT_WIDTH,
+        height: POST_EXPORT_HEIGHT,
+        pixelRatio: 1,
+        cacheBust: true,
+        skipAutoScale: true,
+        backgroundColor: "#ffffff",
+      });
 
       const link = document.createElement("a");
       link.download = `${post.number}-${post.slug}.png`;
@@ -113,6 +75,10 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
       window.setTimeout(() => setState("idle"), 1600);
     } catch {
       setState("idle");
+    } finally {
+      node.style.width = prevWidth;
+      node.style.height = prevHeight;
+      node.style.aspectRatio = prevAspectRatio;
     }
   }
 
@@ -121,20 +87,12 @@ export function ExportPostVisual({ post }: { post: SocialPost }) {
 
   return (
     <div className="post-visual-export">
-      <div className="pv-frame pv-frame--preview" ref={previewRef}>
+      <div
+        className={`pv-frame pv-frame--preview pv-frame--${post.kind}`}
+        ref={previewRef}
+      >
         <PostVisual post={post} />
       </div>
-
-      {isHiddenExport ? (
-        <div
-          className="pv-frame pv-frame--export"
-          ref={exportRef}
-          aria-hidden
-          style={{ width, height }}
-        >
-          <PostVisual post={post} />
-        </div>
-      ) : null}
 
       <button type="button" className="post-export" onClick={exportPng}>
         {label}

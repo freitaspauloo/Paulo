@@ -151,21 +151,14 @@ html:has(.posts-root) .page-main {
 }
 
 .pv-frame {
-  aspect-ratio: 1;
+  aspect-ratio: 1080 / 1350;
   overflow: hidden;
-  background: #111;
+  background: #fff;
   outline: 1px solid var(--posts-line);
   outline-offset: 0;
 }
 
-.pv-frame:has(.pv-poster) {
-  aspect-ratio: 1080 / 1350;
-  background: #fff;
-}
-
-.pv-frame:has(.pv-softwave) {
-  aspect-ratio: 1;
-  background: #fff;
+.pv-frame--portfolio {
   outline: none;
 }
 
@@ -330,14 +323,14 @@ html:has(.posts-root) .page-main {
   object-position: 50% 42%;
 }
 
-.pv-softwave {
+.pv-portfolio {
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
 }
 
-.pv-softwave-device {
+.pv-portfolio-device {
   box-sizing: border-box;
   width: 88.5547%;
   border: 1.694% solid #ececec;
@@ -346,7 +339,7 @@ html:has(.posts-root) .page-main {
   background: #fff;
 }
 
-.pv-softwave-screen {
+.pv-portfolio-screen {
   position: relative;
   width: 100%;
   aspect-ratio: 845.547 / 553.302;
@@ -354,14 +347,106 @@ html:has(.posts-root) .page-main {
   overflow: hidden;
 }
 
-.pv-softwave-screen img {
+.pv-portfolio-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+.pv-softwave-hero .pv-portfolio-screen img {
   position: absolute;
-  top: 0;
-  left: -2.55%;
+  inset: 0 auto auto 0;
   width: 105.09%;
   height: 100%;
   max-width: none;
-  object-fit: cover;
+  left: -2.55%;
+  object-position: 50% 0;
+}
+
+.pv-process {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6%;
+  padding: 10%;
+  background: #f3f3f1;
+  color: #0a0a0a;
+}
+
+.pv-process-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 2cqi, 20px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #32404f;
+  opacity: 0.5;
+}
+
+.pv-process-head {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(36px, 9.5cqi, 104px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.pv-process-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 5%;
+}
+
+.pv-process-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35em 1em;
+  align-items: baseline;
+  font-family: var(--font-mono);
+}
+
+.pv-process-steps li span {
+  grid-row: span 2;
+  font-size: clamp(22px, 4.5cqi, 48px);
+  color: #8a8a8a;
+}
+
+.pv-process-steps li strong {
+  font-size: clamp(20px, 4.2cqi, 44px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.pv-process-steps li em {
+  grid-column: 2;
+  font-style: normal;
+  font-size: clamp(14px, 2.4cqi, 26px);
+  color: #6b7280;
+}
+
+.pv-process-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65em;
+  font-family: var(--font-mono);
+  font-size: clamp(18px, 3.6cqi, 38px);
+  letter-spacing: -0.02em;
+  color: #3a3a3a;
+}
+
+.pv-process-foot {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(14px, 2.5cqi, 28px);
+  line-height: 1.35;
+  color: #6b7280;
 }
 
 .pv-photo-bar {
@@ -714,63 +799,6 @@ html:has(.posts-root) .page-main {
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.pv-frame--export {
-  position: fixed;
-  left: -10000px;
-  top: 0;
-  opacity: 0;
-  pointer-events: none;
-  overflow: hidden;
-  outline: none;
-  aspect-ratio: auto;
-  background: #fff;
-}
-
-.pv-frame--export .pv-poster-card {
-  left: 53px;
-  top: 806px;
-  width: 974px;
-  height: 380px;
-}
-
-.pv-frame--export .pv-poster-head {
-  left: 90px;
-  top: 841px;
-  width: 900px;
-  font-size: 87px;
-  line-height: 100px;
-  letter-spacing: -3.48px;
-}
-
-.pv-frame--export .pv-poster-sub {
-  top: 1262px;
-  font-size: 36px;
-  letter-spacing: -0.72px;
-}
-
-.pv-frame--export .pv-poster-arrow {
-  width: 22px;
-  height: 22px;
-}
-
-.pv-frame--export:has(.pv-softwave) {
-  width: 1000px;
-  height: 1000px;
-}
-
-.pv-frame--export .pv-softwave-device {
-  width: 885.547px;
-  border-width: 15px;
-  border-radius: 32px;
-  padding: 20px;
-}
-
-.pv-frame--export .pv-softwave-screen {
-  width: 845.547px;
-  height: 553.302px;
-  border-radius: 32px;
 }
 
 .post-export {

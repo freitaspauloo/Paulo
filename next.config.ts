@@ -13,11 +13,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/posts/ford-operator",
-        destination: "/posts/softwave-hero",
-        permanent: true,
-      },
+      { source: "/posts/yc-landing", destination: "/posts/model-default", permanent: true },
+      { source: "/posts/product-was-last", destination: "/posts/how-a-surface-ships", permanent: true },
+      { source: "/posts/keep-the-system", destination: "/posts/how-a-surface-ships", permanent: true },
+      { source: "/posts/not-that-hire", destination: "/posts/wait-three-months", permanent: true },
+      { source: "/posts/fortune-500-craft", destination: "/posts/wait-three-months", permanent: true },
     ];
   },
 };

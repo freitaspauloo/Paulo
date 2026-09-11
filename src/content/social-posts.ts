@@ -8,17 +8,24 @@ export type SocialFormat =
   | "Why-us"
   | "Face";
 
+export type PostKind = "process" | "portfolio";
+
 export type SocialPost = {
   slug: string;
   number: string;
   title: string;
   date: string;
+  kind: PostKind;
   format: SocialFormat;
   channels: SocialChannel[];
   visual: string;
   linkedin: string;
   x: string;
+  portfolioImage?: string;
 };
+
+export const POST_EXPORT_WIDTH = 1080;
+export const POST_EXPORT_HEIGHT = 1350;
 
 export const socialPosts: SocialPost[] = [
   {
@@ -26,9 +33,10 @@ export const socialPosts: SocialPost[] = [
     number: "01",
     title: "Most teams wait months for a Figma file",
     date: "2026-09-12",
+    kind: "process",
     format: "Offer",
     channels: ["LinkedIn", "X"],
-    visual: "Figma poster. CRT on the hill. 1080 x 1350.",
+    visual: "Process poster. CRT on the hill. 1080 x 1350.",
     linkedin: `Week 1 we lock the bet.
 What the product is for, who uses it, what success looks like. Architecture and the key flows a human actually uses.
 
@@ -45,37 +53,39 @@ Week 3+: production UI, same stack, no handoff queue.`,
     slug: "softwave-hero",
     number: "02",
     title: "Softwave hero surfaces",
-    date: "2026-09-15",
+    date: "2026-09-14",
+    kind: "portfolio",
     format: "Case",
     channels: ["LinkedIn", "X", "Instagram"],
-    visual: "Softwave device frame. 1000 x 1000. Frameline surface library.",
+    visual: "Portfolio frame. Softwave landing. 1080 x 1350.",
+    portfolioImage: "/posts/softwave-landing.png",
     linkedin: `Softwave hero surfaces.
 Frameline template. Designed and coded.`,
     x: `Softwave hero surfaces. Frameline template. Designed and coded.`,
   },
   {
-    slug: "model-default",
+    slug: "frameline-surfaces",
     number: "03",
-    title: "Most AI products look the same",
-    date: "2026-09-17",
-    format: "Why-us",
+    title: "Frameline surface library",
+    date: "2026-09-16",
+    kind: "portfolio",
+    format: "Case",
     channels: ["LinkedIn", "X", "Instagram"],
-    visual: "Split. Generic chat on the left. Designed surface on the right.",
-    linkedin: `Most AI products look the same.
-Same chat. Same purple button. Same "ask anything."
-That's the model default. Not a designed product.
-I replace that screen and ship it in code.`,
-    x: `Most AI products look the same.
-That's the model default. I replace that screen and ship it in code.`,
+    visual: "Portfolio frame. Frameline configurator. 1080 x 1350.",
+    portfolioImage: "/work/cases/frameline.webp",
+    linkedin: `Frameline surface library.
+Design-engineering templates. Designed and coded.`,
+    x: `Frameline surface library. Designed and coded.`,
   },
   {
     slug: "how-a-surface-ships",
     number: "04",
     title: "How a surface ships",
     date: "2026-09-19",
+    kind: "process",
     format: "Stack",
     channels: ["LinkedIn", "X"],
-    visual: "Three boxes. Bet. Surface. In the product.",
+    visual: "Process poster. Three steps. 1080 x 1350.",
     linkedin: `How a surface ships.
 1. The bet. What it is for.
 2. The surface. The screen a human uses.
@@ -85,77 +95,76 @@ That's the job.`,
 Figma is a step. Not the product.`,
   },
   {
-    slug: "not-that-hire",
+    slug: "aligned-ai-workspace",
     number: "05",
-    title: "You don't need that hire",
-    date: "2026-09-22",
-    format: "Offer",
-    channels: ["LinkedIn", "X"],
-    visual: "Two columns. File / Code.",
-    linkedin: `You don't need a design-engineer hire to ship the interface.
-I design the surface and put it in the product.
-Your engineers keep the backend.`,
-    x: `You don't need a design-engineer hire.
-I design the surface and ship it in code.`,
-  },
-  {
-    slug: "fortune-500-craft",
-    number: "06",
-    title: "A product designer who engineers",
-    date: "2026-09-24",
-    format: "Face",
-    channels: ["LinkedIn", "X", "Instagram"],
-    visual: "Type card. Paulo line. Swap a photo later if you want.",
-    linkedin: `I'm Paulo. A product designer who engineers.
-I design the surface and ship it in code.
-Previously Audi, Samsung, 3M, Ford, Sony + Honda, Costco.
-Now AI products.`,
-    x: `I'm Paulo. A product designer who engineers.
-I design the surface and ship it in code.`,
-  },
-  {
-    slug: "yc-landing",
-    number: "07",
-    title: "Partnering with a YC company",
-    date: "2026-09-13",
-    format: "Diary",
-    channels: ["LinkedIn", "X"],
-    visual: "Minimal mark. No company name.",
-    linkedin: `Partnering with a YC company on their landing.
-The brief: looks AI-generated. Fix the buttons. Keep it minimal.
-I'm doing it in code. Not a Figma dump.`,
-    x: `YC landing this week.
-Brief: looks AI-generated. Fix the buttons.
-Doing it in code.`,
-  },
-  {
-    slug: "product-was-last",
-    number: "08",
-    title: "The product was last on the page",
-    date: "2026-09-16",
+    title: "Aligned AI workspace",
+    date: "2026-09-21",
+    kind: "portfolio",
     format: "Case",
     channels: ["LinkedIn", "X", "Instagram"],
-    visual: "Route diagram. No company name.",
-    linkedin: `The product was last on the page.
-The hero talked. The thing that is the product sat at the bottom, small, with no caption.
-Promote it. Put one sentence under it.`,
-    x: `The product was last on the page.
-Promote it. One sentence under it.`,
+    visual: "Portfolio frame. Aligned AI workspace. 1080 x 1350.",
+    portfolioImage: "/work/cases/aligned.webp",
+    linkedin: `Aligned AI workspace.
+Personal AI surface. Designed and coded.`,
+    x: `Aligned AI workspace. Designed and coded.`,
   },
   {
-    slug: "keep-the-system",
-    number: "09",
-    title: "Keep the system. Fix the buttons",
-    date: "2026-09-18",
-    format: "Stack",
+    slug: "builtops-losani",
+    number: "06",
+    title: "BuiltOps operator surface",
+    date: "2026-09-23",
+    kind: "portfolio",
+    format: "Case",
+    channels: ["LinkedIn", "X", "Instagram"],
+    visual: "Portfolio frame. BuiltOps / Losani. 1080 x 1350.",
+    portfolioImage: "/work/06.webp",
+    linkedin: `BuiltOps operator surface.
+Losani. Designed and coded.`,
+    x: `BuiltOps operator surface. Designed and coded.`,
+  },
+  {
+    slug: "model-default",
+    number: "07",
+    title: "Most AI products look the same",
+    date: "2026-09-26",
+    kind: "process",
+    format: "Why-us",
     channels: ["LinkedIn", "X"],
-    visual: "Three buttons. Primary, secondary, ghost.",
-    linkedin: `They didn't ask for a new brand.
-Keep the system. Fix the buttons.
-Three CTAs with the same weight is why the page looks generated.
-That's the work.`,
-    x: `They didn't ask for a new brand.
-Keep the system. Fix the buttons.`,
+    visual: "Process poster. Model default vs shipped surface. 1080 x 1350.",
+    linkedin: `Most AI products look the same.
+Same chat. Same purple button. Same "ask anything."
+That's the model default. Not a designed product.
+I replace that screen and ship it in code.`,
+    x: `Most AI products look the same.
+That's the model default. I replace that screen and ship it in code.`,
+  },
+  {
+    slug: "ford-operator",
+    number: "08",
+    title: "Ford operator screen",
+    date: "2026-09-28",
+    kind: "portfolio",
+    format: "Case",
+    channels: ["LinkedIn", "X", "Instagram"],
+    visual: "Portfolio frame. Ford operator UI. Credit Ford. 1080 x 1350.",
+    portfolioImage: "/work/cases/ford.webp",
+    linkedin: `Ford operator screen.
+OEM-aftermarket program. Designed with Ford.`,
+    x: `Ford operator screen. Designed with Ford.`,
+  },
+  {
+    slug: "afeela-hmi",
+    number: "09",
+    title: "Afeela HMI surface",
+    date: "2026-09-30",
+    kind: "portfolio",
+    format: "Case",
+    channels: ["LinkedIn", "X", "Instagram"],
+    visual: "Portfolio frame. Afeela in-cabin UI. 1080 x 1350.",
+    portfolioImage: "/work/cases/afeela.webp",
+    linkedin: `Afeela HMI surface.
+In-cabin experience. Designed and coded.`,
+    x: `Afeela HMI surface. Designed and coded.`,
   },
 ];
 

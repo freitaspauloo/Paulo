@@ -64,8 +64,8 @@ export default async function SocialPostPage({ params }: PageProps) {
             </div>
 
             <p className="post-note">
-              Export PNG for Daniel. Paste the caption. No company name on the YC
-              work until you say so.
+              Export PNG at 1080 x 1350. Paste the caption. Portfolio posts use
+              the device frame. Process posts are week 1 / 4 / 7.
             </p>
           </div>
         </div>
