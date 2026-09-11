@@ -111,8 +111,7 @@ I design the surface and ship it in code.`,
     linkedin: `I'm Paulo. A product designer who engineers.
 I design the surface and ship it in code.
 Previously Audi, Samsung, 3M, Ford, Sony + Honda, Costco.
-Now AI products.
-paulo.dudesign.us`,
+Now AI products.`,
     x: `I'm Paulo. A product designer who engineers.
 I design the surface and ship it in code.`,
   },
