@@ -85,7 +85,7 @@ function ModelDefault() {
         </div>
       </div>
       <div className="pv-split-pane is-designed">
-        <p className="pv-split-label">Designed</p>
+        <p className="pv-split-label">Shipped</p>
         <img src={assetPath("/work/cases/frameline.png")} alt="" />
       </div>
     </div>
@@ -110,7 +110,7 @@ function HowASurfaceShips() {
         <li>
           <span>03</span>
           <strong>In the product</strong>
-          <em>Clickable. Not a file.</em>
+          <em>Clickable. Not a file</em>
         </li>
       </ol>
     </div>
@@ -172,7 +172,7 @@ function YcLanding() {
   /_/    \\_\\
      ||`}</pre>
       <p className="pv-hero is-mid">looks generated</p>
-      <p className="pv-foot">keep the system. fix the buttons.</p>
+      <p className="pv-foot">doing it in code.</p>
     </div>
   );
 }
