@@ -24,6 +24,23 @@ export type CaseSection = {
   body: string[];
 };
 
+export type CaseGallerySlot = {
+  id: string;
+  label: string;
+  caption?: string;
+  src?: string;
+  alt?: string;
+  /** desktop | mobile affects placeholder framing */
+  variant?: "desktop" | "mobile" | "video";
+};
+
+export type CaseGalleryBlock = {
+  id: string;
+  title?: string;
+  layout: "full" | "duo" | "devices" | "video";
+  items: CaseGallerySlot[];
+};
+
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -39,6 +56,8 @@ export type CaseStudy = {
   sections: CaseSection[];
   cover: { src: string; alt: string };
   logos?: { src: string; alt: string }[];
+  /** Visual blocks between overview and narrative sections. */
+  gallery?: CaseGalleryBlock[];
   /** Large display headline under the eyebrow. Falls back to subtitle. */
   displayTitle?: string;
   /** Short label in the eyebrow after the client, e.g. "AI WORKSPACE". */

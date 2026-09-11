@@ -103,6 +103,59 @@ export const frameline: CaseStudy = {
     src: "/work/cases/frameline.webp",
     alt: "Frameline design surface configurator",
   },
+  gallery: [
+    {
+      id: "interfaces",
+      title: "Product interfaces",
+      layout: "devices",
+      items: [
+        {
+          id: "desktop-catalog",
+          label: "Desktop catalog",
+          caption: "Material library and live configurator",
+          variant: "desktop",
+        },
+        {
+          id: "mobile-catalog",
+          label: "Mobile catalog",
+          caption: "Browse and preview surfaces on smaller viewports",
+          variant: "mobile",
+        },
+      ],
+    },
+    {
+      id: "landings",
+      title: "Marketing surfaces",
+      layout: "duo",
+      items: [
+        {
+          id: "marketing-home",
+          label: "Marketing homepage",
+          caption: "Positioning, pricing, and install path",
+          variant: "desktop",
+        },
+        {
+          id: "material-detail",
+          label: "Material detail page",
+          caption: "Configurator, code preview, and licensing",
+          variant: "desktop",
+        },
+      ],
+    },
+    {
+      id: "launch",
+      title: "Product demo",
+      layout: "video",
+      items: [
+        {
+          id: "demo-reel",
+          label: "Demo reel",
+          caption: "Install flow and live materials in product context",
+          variant: "video",
+        },
+      ],
+    },
+  ],
   logos: [{ src: "/work/logos/frameline.png", alt: "Frameline" }],
   published: true,
   order: 2,

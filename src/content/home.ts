@@ -38,7 +38,7 @@ export const homeTimeline: HomeTimelineEntry[] = [
 export const homeFeaturedProjects: HomeFeaturedProject[] = [
   {
     title: "Personal AI workspace",
-    client: "ALIGNED",
+    client: "ALIGNED AI",
     href: "/work/aligned-ai",
     image: {
       src: "/work/cases/aligned.webp",

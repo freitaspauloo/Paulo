@@ -5,6 +5,7 @@ import {
   CaseStudySidebar,
   type CaseStudyNavItem,
 } from "./CaseStudySidebar";
+import { CaseStudyGallery } from "./CaseStudyGallery";
 import { DecisionBlock } from "./DecisionBlock";
 import { LivePrototype } from "./LivePrototype";
 import { Reveal } from "./motion/Reveal";
@@ -51,14 +52,13 @@ export function CaseStudyLayout({ caseStudy }: Props) {
   return (
     <article className="case-study">
       <div className="case-study__shell">
-        <CaseStudySidebar items={navItems} />
+        <div className="case-study__sidebar-col">
+          <CaseStudySidebar items={navItems} />
+        </div>
 
         <div className="case-study__main">
           <header id="overview" className="case-study__intro">
-            <p className="case-study__eyebrow">
-              <span className="case-study__eyebrow-dot" aria-hidden />
-              {buildEyebrow(caseStudy)}
-            </p>
+            <p className="case-study__eyebrow">{buildEyebrow(caseStudy)}</p>
             <h1 className="case-study__display-title">{displayTitle}</h1>
 
             <div className="case-study__hero">
@@ -113,6 +113,12 @@ export function CaseStudyLayout({ caseStudy }: Props) {
                 prototype={caseStudy.prototype}
                 cover={caseStudy.cover}
               />
+            </Reveal>
+          ) : null}
+
+          {caseStudy.gallery && caseStudy.gallery.length > 0 ? (
+            <Reveal>
+              <CaseStudyGallery blocks={caseStudy.gallery} />
             </Reveal>
           ) : null}
 

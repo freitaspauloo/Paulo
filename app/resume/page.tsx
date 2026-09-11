@@ -1,67 +1,77 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getPublishedCases } from "@/src/content/cases";
+import { resume } from "@/src/content/resume";
 import { site } from "@/src/content/site";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Paulo Freitas — Product Designer, AI/SaaS",
+  description: "Paulo Freitas — Senior Product Designer, AI/SaaS",
 };
 
 export default function ResumePage() {
-  const cases = getPublishedCases();
-
   return (
     <article className="resume-page">
       <p className="resume-hint">
-        Print this page (Ctrl+P / Cmd+P) and save as PDF for applications.
+        Print this page (Ctrl+P / Cmd+P) and save as PDF, or{" "}
+        <Link href={resume.pdfPath}>download the PDF</Link> for applications.
       </p>
 
-      <h1>Paulo Freitas</h1>
+      <h1>{site.name}</h1>
+      <p className="resume-title">{resume.title}</p>
       <p className="resume-meta">
-        {site.title} · {site.domain} · {site.email}
+        United States ·{" "}
+        <a href={`mailto:${site.email}`}>{site.email}</a> ·{" "}
+        <a href={site.linkedin}>linkedin.com/in/freitas-pauloo</a> ·{" "}
+        <a href={site.url}>{site.domain}</a>
       </p>
 
       <section className="resume-block">
         <h2>Summary</h2>
-        <p>
-          Product designer with Fortune 500 craft (Audi, Samsung, 3M, Ford,
-          Sony + Honda, Costco) and startup ship speed. I design complex AI/SaaS
-          surfaces and implement production UI in code — working end to end with
-          PM and Eng, from problem framing through shipped interface.
-        </p>
+        <p>{resume.summary}</p>
       </section>
 
       <section className="resume-block">
-        <h2>Skills</h2>
-        <p>{site.skills.join(" · ")}</p>
+        <h2>Work Experience</h2>
+        {resume.jobs.map((job) => (
+          <div className="resume-job" key={job.company}>
+            <div className="resume-job__head">
+              <strong>{job.company}</strong>
+              <span>{job.dates}</span>
+            </div>
+            <p className="resume-job__role">
+              {job.role} · {job.location}
+            </p>
+            <ul>
+              {job.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </section>
 
       <section className="resume-block">
-        <h2>Selected work</h2>
-        <ul>
-          {cases.map((c) => (
-            <li key={c.slug}>
-              <strong>{c.title}</strong> — {c.subtitle}{" "}
-              <Link href={`/work/${c.slug}`}>
-                {site.domain}/work/{c.slug}
-              </Link>
+        <h2>Education</h2>
+        {resume.education.map((item) => (
+          <div className="resume-job resume-job--compact" key={item.school}>
+            <div className="resume-job__head">
+              <strong>{item.school}</strong>
+              <span>{item.dates}</span>
+            </div>
+            <p className="resume-job__role">{item.degree}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="resume-block">
+        <h2>Skills &amp; Languages</h2>
+        <ul className="resume-skills">
+          {resume.skills.map((group) => (
+            <li key={group.label}>
+              <strong>{group.label}</strong> {group.value}
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className="resume-block">
-        <h2>Experience</h2>
-        <p>
-          <strong>Founder / Creative Director, DUDESIGN</strong> (2020–present)
-          — Product design partner for AI startups. Product judgment, UX/UI, and
-          shipped interfaces in code.
-        </p>
-        <p>
-          <strong>Design lead, XIX3D</strong> — Product design, HMI, and brand
-          systems for automotive and tech clients.
-        </p>
       </section>
     </article>
   );

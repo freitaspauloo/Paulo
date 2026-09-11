@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -16,10 +16,16 @@ type Props = {
   delay?: number;
 };
 
+const REVEAL_START = 0.88;
+
+function isInRevealZone(element: Element) {
+  return element.getBoundingClientRect().top < window.innerHeight * REVEAL_START;
+}
+
 /**
- * Scroll-entry reveal. Animates *from* a hidden state so the visible baseline
- * is the DOM as rendered — if JS fails or the trigger never fires, content
- * stays visible. Respects prefers-reduced-motion via gsap.matchMedia.
+ * Scroll-entry reveal. Off-screen targets are hidden before first paint so
+ * GSAP never flashes visible → hidden → visible. Restored scroll positions
+ * skip animation for blocks already on screen.
  */
 export function Reveal({
   children,
@@ -31,7 +37,7 @@ export function Reveal({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 
@@ -40,21 +46,32 @@ export function Reveal({
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const items = targets ? gsap.utils.toArray<Element>(targets, el) : [el];
         if (items.length === 0) return;
-        gsap.from(items, {
-          autoAlpha: 0,
-          y,
+
+        const alreadyInView = isInRevealZone(el);
+
+        if (!alreadyInView) {
+          gsap.set(items, { autoAlpha: 0, y });
+        }
+
+        const tween = gsap.to(items, {
+          autoAlpha: 1,
+          y: 0,
           duration: 0.7,
           ease: "power3.out",
           stagger,
           delay,
-          immediateRender: false,
+          overwrite: "auto",
           clearProps: "opacity,visibility,transform",
           scrollTrigger: {
             trigger: el,
-            start: "top 88%",
+            start: `top ${REVEAL_START * 100}%`,
             once: true,
           },
         });
+
+        if (alreadyInView) {
+          tween.progress(1);
+        }
       });
     }, el);
 

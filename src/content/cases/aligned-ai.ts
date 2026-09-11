@@ -9,7 +9,7 @@ export const alignedAi: CaseStudy = {
   displayTitle: "Designing a personal AI workspace you can trust",
   metaLabel: "AI workspace",
   year: "2025",
-  timeline: "2024 – 2025",
+  timeline: "2024 – 2026",
   team: "Aligned product team",
   roleTitle: "Product Designer",
   tags: ["AI workspace", "Trust UX", "Shipped in code"],
@@ -101,6 +101,59 @@ export const alignedAi: CaseStudy = {
     src: "/work/cases/aligned.webp",
     alt: "Aligned AI personal workspace interface",
   },
+  gallery: [
+    {
+      id: "interfaces",
+      title: "Product interfaces",
+      layout: "devices",
+      items: [
+        {
+          id: "desktop-workspace",
+          label: "Desktop workspace",
+          caption: "Primary AI workspace — density, navigation, and trust states",
+          variant: "desktop",
+        },
+        {
+          id: "mobile-workspace",
+          label: "Mobile workspace",
+          caption: "Responsive flows for review and commit on the go",
+          variant: "mobile",
+        },
+      ],
+    },
+    {
+      id: "landings",
+      title: "Landing pages",
+      layout: "duo",
+      items: [
+        {
+          id: "consumer-landing",
+          label: "Consumer landing",
+          caption: "Self-serve signup and product story",
+          variant: "desktop",
+        },
+        {
+          id: "enterprise-landing",
+          label: "Enterprise landing",
+          caption: "Team rollout, security, and benchmark proof",
+          variant: "desktop",
+        },
+      ],
+    },
+    {
+      id: "launch",
+      title: "Launch film",
+      layout: "video",
+      items: [
+        {
+          id: "launch-video",
+          label: "Launch video",
+          caption: "Product launch film — workspace, trust UX, and benchmark story",
+          variant: "video",
+        },
+      ],
+    },
+  ],
   logos: [{ src: "/work/logos/aligned.svg", alt: "Aligned AI" }],
   featured: true,
   published: true,
